@@ -1,0 +1,29 @@
+.hero-gradient{
+    background: linear-gradient(to right, #000 55%, #1a0d05);
+}
+
+.hero-shadow{
+    filter: drop-shadow(0px 35px 45px rgba(0,0,0,0.9));
+    transition: 0.3s;
+}
+
+.hero-shadow:hover{
+    filter: drop-shadow(0px 35px 45px rgba(255,106,0,0.35));
+}
+
+.social-icon{
+    color:white;
+    transition:0.3s;
+}
+
+.social-icon:hover{
+    color:#ff6a00;
+}
+
+.about-box{
+    width:180px;
+    height:180px;
+    background:#111;
+    border:1px solid #222;
+    border-radius:12px;
+}

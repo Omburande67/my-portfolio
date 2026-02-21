@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Om Burande</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ================= NAVBAR UNDERLINE ================= */
+.nav-link {
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background: #f97316;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #f97316;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+</style>
+
+</head>
+
+<body class="bg-black text-white scroll-smooth">
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="fixed w-full top-0 bg-black/90 backdrop-blur-md z-50">
+  <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+
+    <div class="text-orange-500 font-bold text-xl">
+      OM
+    </div>
+
+    <ul class="flex gap-10 text-gray-300 font-medium">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About Me</a></li>
+      <li><a href="#" class="nav-link">Projects</a></li>
+      <li><a href="#" class="nav-link">Skills</a></li>
+      <li><a href="#" class="nav-link">Achievements</a></li>
+    </ul>
+
+    <a href="mailto:omburande764@gmail.com"
+       class="bg-orange-500 px-6 py-2 rounded-md hover:bg-orange-600 transition">
+      Hire Me
+    </a>
+
+  </div>
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section id="home" class="min-h-screen flex items-center pt-32">
+
+  <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-2 items-center gap-12 w-full">
+
+    <!-- LEFT SIDE -->
+    <div>
+
+      <p class="text-gray-400 mb-3 text-lg">Hi I am</p>
+
+      <h1 class="text-4xl md:text-5xl font-bold mb-5">
+        OM BURANDE
+      </h1>
+
+      <p class="text-gray-400 mb-6">
+        Software Engineering | Java | DSA |
+        <span id="changing-text" class="text-orange-500 font-semibold"></span>
+      </p>
+
+      <!-- Social Icons -->
+      <div class="flex gap-6 text-xl mb-8">
+        <a href="https://in.linkedin.com/in/omburande" target="_blank" class="hover:text-orange-500 transition">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/Omburande67" target="_blank" class="hover:text-orange-500 transition">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.youtube.com/@omburande764" target="_blank" class="hover:text-orange-500 transition">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://x.com/BurandeOm" target="_blank" class="hover:text-orange-500 transition">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex gap-6 mb-10">
+        <a href="mailto:omburande764@gmail.com"
+           class="bg-orange-500 px-6 py-3 rounded-md hover:bg-orange-600 transition">
+          Hire Me
+        </a>
+
+        <a href="https://drive.google.com/file/d/1ISyyGIuIDVvf6jyru6RokUniSJJqrl4H/view?usp=sharing"
+           target="_blank"
+           class="border border-gray-600 px-6 py-3 rounded-md hover:border-orange-500 hover:text-orange-500 transition">
+          Download CV
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex gap-10 bg-[#111] px-8 py-6 rounded-xl border border-gray-800 w-fit">
+        <div>
+          <h3 class="text-orange-500 font-bold text-xl">15+</h3>
+          <p class="text-gray-400 text-sm">Projects Done</p>
+        </div>
+        <div>
+          <h3 class="text-orange-500 font-bold text-xl">2+</h3>
+          <p class="text-gray-400 text-sm">Experience</p>
+        </div>
+        <div>
+          <h3 class="text-orange-500 font-bold text-xl">5+</h3>
+          <p class="text-gray-400 text-sm">Hackathons</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE IMAGE (UPDATED BLACK FADE STYLE) -->
+    <div class="relative flex justify-center items-end">
+
+      <!-- Dark Fade Circle -->
+      <div class="absolute w-[320px] h-[320px] rounded-full
+                  bg-gradient-to-b from-gray-900 via-gray-800 to-black">
+      </div>
+
+      <!-- Image -->
+      <img src="assets/images/Hero1.png.png"
+           alt="Om Burande"
+           class="relative w-[420px] object-cover
+                  -translate-y-10
+                  transition duration-500
+                  hover:scale-105 hover:shadow-2xl hover:shadow-black/60">
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= TYPING SCRIPT ================= -->
+<script>
+const words = [
+  "Product Thinking",
+  "Product Design",
+  "Full Stack Developer",
+  "Problem Solver",
+  "Tech Entrepreneur"
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeEffect() {
+  const currentWord = words[wordIndex];
+
+  if (!isDeleting) {
+    document.getElementById("changing-text").textContent =
+      currentWord.substring(0, charIndex++);
+    if (charIndex > currentWord.length) {
+      isDeleting = true;
+      setTimeout(typeEffect, 1200);
+      return;
+    }
+  } else {
+    document.getElementById("changing-text").textContent =
+      currentWord.substring(0, charIndex--);
+    if (charIndex < 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+    }
+  }
+
+  setTimeout(typeEffect, isDeleting ? 50 : 100);
+}
+
+typeEffect();
+</script>
+
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="py-28 border-t border-gray-900 bg-black">
+
+  <div class="max-w-7xl mx-auto px-8">
+
+    <h2 class="text-4xl font-bold text-white mb-16">
+      About Me
+    </h2>
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-10 gap-12 items-start">
+
+      <!-- ===== LEFT TEXT (70%) ===== -->
+      <div class="md:col-span-7 text-gray-400 leading-relaxed space-y-8 text-justify">
+
+        <p class="text-lg font-medium text-gray-300">
+          Vishwakarma Institute of Technology
+        </p>
+
+        <p>
+          As a senior at Vishwakarma Institute of Technology in Pune, I have built strong expertise in 
+          <span class="font-semibold text-white">computer engineering</span> 
+          through academics, hands-on experience, and competitive participation. 
+          I have developed a solid foundation in 
+          <span class="font-semibold text-white">software engineering</span>, including 
+          <span class="font-semibold text-white">core and advanced Java</span>, 
+          <span class="font-semibold text-white">data structures and algorithms</span>, 
+          <span class="font-semibold text-white">database systems</span>, and 
+          <span class="font-semibold text-white">API development</span>. 
+          I focus on writing structured, efficient, and scalable systems that translate theoretical concepts into real-world implementations.
+        </p>
+
+        <p>
+          My solution-oriented mindset has been strengthened through participation in 
+          <span class="font-semibold text-white">hackathons</span> 
+          and high-pressure collaborative environments. These experiences improved my analytical thinking, team coordination, and execution discipline.
+        </p>
+
+        <p>
+          My long-term vision is to grow into a technology leader who can 
+          <span class="font-semibold text-white">architect</span> 
+          and build 
+          <span class="font-semibold text-white">innovative products</span>, 
+          while managing 
+          <span class="font-semibold text-white">technical risks</span> 
+          and integrating 
+          <span class="font-semibold text-white">AI-driven innovation</span> 
+          into modern software ecosystems.
+        </p>
+
+        <p class="font-semibold text-white text-lg pt-6">
+          I don't just build projects. I build projects with purpose.
+        </p>
+
+      </div>
+
+
+      <!-- ===== RIGHT IMAGE SIDE (30%) ===== -->
+      <div class="md:col-span-3 flex flex-col gap-8">
+
+        <!-- IMAGE 1 -->
+        <div class="w-full h-56 bg-[#111] border border-gray-800 rounded-xl flex items-center justify-center text-gray-600 text-sm">
+          Add Image Here
+        </div>
+
+        <!-- IMAGE 2 -->
+        <div class="w-full h-56 bg-[#111] border border-gray-800 rounded-xl flex items-center justify-center text-gray-600 text-sm">
+          Add Image Here
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-20 border-t border-gray-900 bg-black">
+
+  <div class="max-w-7xl mx-auto px-8">
+
+    <h2 class="text-4xl font-bold text-white mb-12">
+      Get In Touch
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-12">
+
+      <!-- ================= LEFT SIDE ================= -->
+      <div class="bg-[#0f0f0f] border border-gray-800 rounded-xl p-8 space-y-8">
+
+        <!-- PHONE + WHATSAPP -->
+        <div class="flex items-start gap-4">
+          <a href="https://wa.me/919921542888" target="_blank">
+            <svg class="w-6 h-6 text-green-500 hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.52 3.48A11.86 11.86 0 0012.02 0C5.38 0 .02 5.36.02 12c0 2.12.55 4.19 1.6 6.02L0 24l6.18-1.6A11.93 11.93 0 0012.02 24c6.64 0 12-5.36 12-12 0-3.19-1.24-6.19-3.5-8.52z"/>
+            </svg>
+          </a>
+          <div>
+            <h4 class="text-white font-semibold">Phone / WhatsApp</h4>
+            <a href="https://wa.me/919921542888" target="_blank" class="text-gray-400 hover:text-white text-sm">
+              +91 9921542888
+            </a>
+          </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="flex items-start gap-4">
+          <a href="mailto:omburande764@gmail.com">
+            <svg class="w-6 h-6 text-blue-400 hover:scale-110 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 4h16v16H4z"/>
+              <path d="M22 6l-10 7L2 6"/>
+            </svg>
+          </a>
+          <div>
+            <h4 class="text-white font-semibold">Email</h4>
+            <a href="mailto:omburande764@gmail.com" class="text-gray-400 hover:text-white text-sm block">
+              omburande764@gmail.com
+            </a>
+            <a href="mailto:omburande76@gmail.com" class="text-gray-400 hover:text-white text-sm">
+              omburande76@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="flex items-start gap-4">
+          <a href="https://www.google.com/maps/search/?api=1&query=Bibwewadi+Pune+411037" target="_blank">
+            <svg class="w-6 h-6 text-red-400 hover:scale-110 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 21s-6-5.33-6-10a6 6 0 1112 0c0 4.67-6 10-6 10z"/>
+              <circle cx="12" cy="11" r="2"/>
+            </svg>
+          </a>
+          <div>
+            <h4 class="text-white font-semibold">Location</h4>
+            <a href="https://www.google.com/maps/search/?api=1&query=Bibwewadi+Pune+411037" target="_blank" class="text-gray-400 hover:text-white text-sm">
+              Bibwewadi, Pune (411037), Maharashtra, India
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <!-- ================= RIGHT SIDE (SIMPLIFIED FORM) ================= -->
+      <div class="bg-[#0f0f0f] border border-gray-800 rounded-xl p-8">
+
+        <h3 class="text-white font-semibold mb-8">Contact Me</h3>
+
+        <form class="space-y-6">
+
+          <input type="text" placeholder="Name *"
+            class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-gray-600">
+
+          <input type="text" placeholder="Email or Phone *"
+            class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-gray-600">
+
+          <textarea rows="4" placeholder="Message"
+            class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-gray-600"></textarea>
+
+          <!-- ROBOT CHECK -->
+          <div class="flex items-center gap-3">
+            <input type="checkbox" required class="w-4 h-4 accent-white">
+            <label class="text-sm text-gray-400">
+              I'm not a robot
+            </label>
+          </div>
+
+          <button type="submit"
+            class="w-full bg-white text-black font-semibold py-3 rounded-lg hover:bg-gray-300 transition">
+            Send Message
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</body>
+</html>

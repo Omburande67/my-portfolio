@@ -1,0 +1,33 @@
+Primary Orange: #ff6b00
+Dark Background: #0f0f0f
+Card Background: #1a1a1a
+Text Light: #f5f5f5
+Text Muted: #9ca3af
+Border Soft: #2a2a2a
+
+
+Headings:
+
+👉 Poppins (bold, semi-bold)
+
+Body:
+
+👉 Inter or Poppins regular
+
+Poppins (400, 500, 600, 700)
+
+Inter (400, 500)
+
+Vishwakarma Institute of Technology
+
+
+As a senior at Vishwakarma Institute of Technology in Pune, I have built up my skills in computer engineering through my education, experience, and involvement with different clubs, competitions, and hackathons. I have a solid foundation in software engineering, including core and advanced Java, data structures and algorithms, database systems, and API development. I enjoy writing structured, efficient, and scalable code that implements theoretical concepts into working solutions for the real world.
+
+
+My solution-oriented approach to technology stems from my belief that we can solve real-world problems by creating reliable, adaptive systems that are well-designed. I find that participating in hackathons and other competitive environments helps me develop critical thinking skills and the ability to work well with others and meet deadlines.
+
+
+I want to grow into a technology leader who can architect and build innovative products, while also managing the technical risks associated with those products, and incorporating AI-driven innovation into the modern software environment. I am committed to continuously evolving as both an engineer and an ethical, strategic thinker.
+
+
+I don't just build projects. I build projects to make a difference.

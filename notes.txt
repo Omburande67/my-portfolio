@@ -31,3 +31,19 @@ I want to grow into a technology leader who can architect and build innovative p
 
 
 I don't just build projects. I build projects to make a difference.
+
+
+
+1. Below are my actual skills categories divided in 4 parts, SO please use only these skilss, no any changes, Do same for these skills. 
+Programming Stack: C&C++: 75%, Java(Core+Adv): 85%, Python: 60%, DSA: 10%
+Computer Fundamentals: Object oriented programming:- 90%, Computer Networks & Security:- 75%, Linux/Ubuntu:- 85%, DBMS/RDBMS:- 65%
+Industry tools: Git + Version control: 85%, Android Studio: 90%, Visual Studio: 90%, AI agents: 90%.
+Soft Skills:- Communication:- 90% Presentations:- 90% Learning speed:- 90%
+
+2. Also lightning effect we added on each progress bar is not running till the end of progress bar its only running in half part, i want to run this effect till the end of progress bar.
+3. When skills page opened Title and progress bar are little at bottom means too much header space is visible, looking not good, so need to start from header.
+
+Now do all the things correct.
+
+
+Now please this is very important move of our portfolio building. Till now we build all the frontend part using html, css, and js for animations and more. As you know our web portfolio will dynamic and easily will be update whenever i want throughadmin panel UI accessible to me only. Now its time to move forward on Backend/server and APIS. I know it is very confusing but i want to learn and build these things to show my portfolio project is full stack. Fo backend i descided to use Express and MongoDB atlas database to store my images, descriptions, updates, and whenever i update or add any acheivement,projects, or something it should be update in the databse and properly fetched on public portfolio page which will be deployement. Deployement is last step. Now we have 3 big tasks 1. Creating admin panel UI and Authorization with backend help to make our portfolio dynamically updating, the admin panel should show options of achievements, projects or anything ( i will add those updating section later for now do ready our admin panel completely.) 

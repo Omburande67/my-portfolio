@@ -9,73 +9,323 @@
 <body>
 
 <section class="achievements">
-
     <div class="container">
-
         <h1 class="title">Achievements & Recognition</h1>
         <p class="subtitle">Certificates • Hackathons • Awards</p>
 
-        <div class="cards">
-
-            <!-- CERTIFICATES -->
-            <div class="card">
-                <h2>Industry Credentials</h2>
-
-                <div class="thumbnail-slider">
-                    <div class="thumb-track">
-                        <img src="/client/assets/images/ach-thumnails/secone-1.png" class="thumb active">
-                        <img src="/client/assets/images/ach-thumnails/secone-2.png" class="thumb">
-                        <img src="/client/assets/images/ach-thumnails/secone-3.png" class="thumb">
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="view-btn">View All</button>
-                    <span class="accent-line"></span>
-                </div>
-            </div>
-
-            <!-- HACKATHONS -->
-            <div class="card">
-                <h2>Competitive Highlights</h2>
-
-                <div class="thumbnail-slider">
-                    <div class="thumb-track">
-                        <img src="/client/assets/images/ach-thumnails/sectwo-1.jpg" class="thumb active">
-                        <img src="/client/assets/images/ach-thumnails/sectwo-2.jpg" class="thumb">
-                        <img src="/client/assets/images/ach-thumnails/sectwo-4.jpg" class="thumb">
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="view-btn">View All</button>
-                    <span class="accent-line"></span>
-                </div>
-            </div>
-
-            <!-- AWARDS -->
-            <div class="card">
-                <h2>Milestones</h2>
-
-                <div class="thumbnail-slider">
-                    <div class="thumb-track">
-                        <img src="/client/assets/images/ach-thumnails/secthree-1.jpg" class="thumb active">
-                        <img src="/client/assets/images/ach-thumnails/secthree-2.jpg" class="thumb">
-                        <img src="/client/assets/images/ach-thumnails/secthree-3.jpg" class="thumb">
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="view-btn">View All</button>
-                    <span class="accent-line"></span>
-                </div>
-            </div>
-
+        <div class="cards" id="achievementsContainer">
+            <!-- Cards will be dynamically populated here -->
         </div>
     </div>
-
 </section>
 
-<script src="/client/js/achievements.js"></script>
+<script>
+const API_BASE = 'http://localhost:5000/api';
+
+async function loadAchievements() {
+    try {
+        const response = await fetch(`${API_BASE}/achievements/all`);
+        const achievements = await response.json();
+
+        // Group achievements by category
+        const industry = achievements.filter(a => a.category === 'industry');
+        const competitive = achievements.filter(a => a.category === 'competitive');
+        const milestones = achievements.filter(a => a.category === 'milestone');
+
+        const container = document.getElementById('achievementsContainer');
+        
+        container.innerHTML = `
+            <!-- Industry Credentials Card -->
+            <div class="card">
+                <h2>Industry Credentials</h2>
+                <div class="thumbnail-slider">
+                    <div class="thumb-track" id="industry-thumbnails">
+                        ${generateThumbnails(industry)}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="view-btn" onclick="viewAll('industry')">View All</button>
+                    <span class="accent-line"></span>
+                </div>
+            </div>
+
+            <!-- Competitive Highlights Card -->
+            <div class="card">
+                <h2>Competitive Highlights</h2>
+                <div class="thumbnail-slider">
+                    <div class="thumb-track" id="competitive-thumbnails">
+                        ${generateThumbnails(competitive)}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="view-btn" onclick="viewAll('competitive')">View All</button>
+                    <span class="accent-line"></span>
+                </div>
+            </div>
+
+            <!-- Milestones Card -->
+            <div class="card">
+                <h2>Milestones</h2>
+                <div class="thumbnail-slider">
+                    <div class="thumb-track" id="milestones-thumbnails">
+                        ${generateThumbnails(milestones)}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="view-btn" onclick="viewAll('milestone')">View All</button>
+                    <span class="accent-line"></span>
+                </div>
+            </div>
+        `;
+
+        // Initialize thumbnail click handlers
+        initializeThumbnails();
+
+    } catch (error) {
+        console.error('Error loading achievements:', error);
+        showFallbackContent();
+    }
+}
+
+function generateThumbnails(items) {
+    if (items.length === 0) {
+        return `<div class="no-items">No achievements yet</div>`;
+    }
+    
+    return items.map((item, index) => {
+        const isActive = index === 0 ? 'active' : '';
+        
+        if (item.fileType === 'image' && item.fileUrl) {
+            // Image thumbnail
+            return `<img src="http://localhost:5000${item.fileUrl}" 
+                         class="thumb ${isActive}" 
+                         data-id="${item._id}"
+                         data-title="${item.title}"
+                         data-description="${item.description}"
+                         data-issuer="${item.issuer || ''}"
+                         data-date="${item.date || ''}"
+                         data-link="${item.link || ''}"
+                         data-fileurl="${item.fileUrl || ''}"
+                         data-filetype="${item.fileType || ''}"
+                         onclick="showAchievementDetails(this)">`;
+        } else if (item.fileType === 'pdf' && item.fileUrl) {
+            // PDF thumbnail (icon)
+            return `<div class="thumb pdf-thumb ${isActive}" 
+                         data-id="${item._id}"
+                         data-title="${item.title}"
+                         data-description="${item.description}"
+                         data-issuer="${item.issuer || ''}"
+                         data-date="${item.date || ''}"
+                         data-link="${item.link || ''}"
+                         data-fileurl="${item.fileUrl || ''}"
+                         data-filetype="${item.fileType || ''}"
+                         onclick="showAchievementDetails(this)">
+                        <span style="font-size: 40px;">📄</span>
+                        <span style="font-size: 12px; display: block;">PDF</span>
+                    </div>`;
+        } else {
+            // No file thumbnail (text icon)
+            return `<div class="thumb no-file ${isActive}" 
+                         data-id="${item._id}"
+                         data-title="${item.title}"
+                         data-description="${item.description}"
+                         data-issuer="${item.issuer || ''}"
+                         data-date="${item.date || ''}"
+                         data-link="${item.link || ''}"
+                         onclick="showAchievementDetails(this)">
+                        <span style="font-size: 40px;">📝</span>
+                    </div>`;
+        }
+    }).join('');
+}
+
+function initializeThumbnails() {
+    document.querySelectorAll('.thumb-track').forEach(track => {
+        const thumbs = track.querySelectorAll('.thumb');
+        if (thumbs.length > 0) {
+            thumbs[0].classList.add('active');
+        }
+    });
+}
+
+function showAchievementDetails(thumbnail) {
+    const track = thumbnail.closest('.thumb-track');
+    track.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    thumbnail.classList.add('active');
+    
+    console.log('Selected:', {
+        title: thumbnail.dataset.title,
+        description: thumbnail.dataset.description,
+        issuer: thumbnail.dataset.issuer,
+        date: thumbnail.dataset.date
+    });
+    
+    // Optional: Open modal with details
+    // openAchievementModal(thumbnail.dataset);
+}
+
+function viewAll(category) {
+    window.location.href = `achievement-category.html?category=${category}`;
+}
+
+function showFallbackContent() {
+    const container = document.getElementById('achievementsContainer');
+    container.innerHTML = `
+        <div class="card">
+            <h2>Industry Credentials</h2>
+            <div class="thumbnail-slider">
+                <div class="thumb-track">
+                    <img src="/client/assets/images/ach-thumnails/secone-1.png" class="thumb active">
+                    <img src="/client/assets/images/ach-thumnails/secone-2.png" class="thumb">
+                    <img src="/client/assets/images/ach-thumnails/secone-3.png" class="thumb">
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="view-btn">View All</button>
+                <span class="accent-line"></span>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Competitive Highlights</h2>
+            <div class="thumbnail-slider">
+                <div class="thumb-track">
+                    <img src="/client/assets/images/ach-thumnails/sectwo-1.jpg" class="thumb active">
+                    <img src="/client/assets/images/ach-thumnails/sectwo-2.jpg" class="thumb">
+                    <img src="/client/assets/images/ach-thumnails/sectwo-4.jpg" class="thumb">
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="view-btn">View All</button>
+                <span class="accent-line"></span>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Milestones</h2>
+            <div class="thumbnail-slider">
+                <div class="thumb-track">
+                    <img src="/client/assets/images/ach-thumnails/secthree-1.jpg" class="thumb active">
+                    <img src="/client/assets/images/ach-thumnails/secthree-2.jpg" class="thumb">
+                    <img src="/client/assets/images/ach-thumnails/secthree-3.jpg" class="thumb">
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="view-btn">View All</button>
+                <span class="accent-line"></span>
+            </div>
+        </div>
+    `;
+}
+
+// Load achievements when page loads
+document.addEventListener('DOMContentLoaded', loadAchievements);
+
+// Modal functions (optional)
+function createDetailModal() {
+    const modal = document.createElement('div');
+    modal.className = 'achievement-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modal-image" src="" alt="Achievement">
+            <h2 id="modal-title"></h2>
+            <p id="modal-issuer"></p>
+            <p id="modal-date"></p>
+            <p id="modal-description"></p>
+            <a id="modal-link" href="#" target="_blank">View Certificate</a>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function openModal(achievementData) {
+    const modal = document.querySelector('.achievement-modal') || createDetailModal();
+    
+    document.getElementById('modal-image').src = achievementData.fileUrl ? `http://localhost:5000${achievementData.fileUrl}` : '';
+    document.getElementById('modal-title').textContent = achievementData.title;
+    document.getElementById('modal-issuer').textContent = achievementData.issuer;
+    document.getElementById('modal-date').textContent = achievementData.date;
+    document.getElementById('modal-description').textContent = achievementData.description;
+    
+    const link = document.getElementById('modal-link');
+    if (achievementData.link) {
+        link.href = achievementData.link;
+        link.style.display = 'inline-block';
+    } else {
+        link.style.display = 'none';
+    }
+    
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    const modal = document.querySelector('.achievement-modal');
+    if (modal) modal.style.display = 'none';
+}
+</script>
+
+<style>
+/* Add modal styles */
+.achievement-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#modal-image {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.no-items {
+    padding: 20px;
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+.thumb.pdf-thumb, .thumb.no-file {
+    width: 80px;
+    height: 80px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.thumb.pdf-thumb.active, .thumb.no-file.active {
+    border-color: #667eea;
+    background: #e8eaf6;
+}
+</style>
+
 </body>
 </html>

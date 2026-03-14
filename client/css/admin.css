@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-box h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.login-box h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.login-box input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.login-box input::placeholder {
+    color: #999;
+    font-size: 14px;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.login-box button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Error state styling (can be added dynamically via JavaScript) */
+.login-box input.error {
+    border-color: #f44336;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Loading state for button (can be added dynamically) */
+.login-box button.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.login-box button.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid white;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .login-box {
+        padding: 30px 20px;
+    }
+    
+    .login-box h2 {
+        font-size: 24px;
+    }
+    
+    .login-box input {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .login-box button {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+/* Optional: Add a subtle background pattern */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M0 0 L100 100 M100 0 L0 100" stroke="white" stroke-width="1"/></svg>');
+    pointer-events: none;
+}
+
+/* Optional: Add logo space */
+.login-box .logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-box .logo i {
+    font-size: 50px;
+    color: #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Optional: Add remember me and forgot password links */
+.login-box .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.login-box .options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    cursor: pointer;
+}
+
+.login-box .options input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.login-box .options a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-box .options a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+/* Optional: Add footer */
+.login-box .footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+}
+
+.login-box .footer a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.login-box .footer a:hover {
+    text-decoration: underline;
+}

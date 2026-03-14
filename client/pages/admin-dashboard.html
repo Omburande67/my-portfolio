@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="/client/css/admin.css">
+</head>
+<body>
+
+<div class="dashboard">
+    <h1>Admin Panel</h1>
+
+    <div class="admin-menu">
+        <button onclick="goTo('achievements')">Manage Achievements</button>
+        <button onclick="goTo('projects')">Manage Projects</button>
+        <button onclick="goTo('blogs')">Manage Blogs</button>
+    </div>
+
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+const token = localStorage.getItem("adminToken");
+if (!token) {
+    window.location.href = "admin-login.html";
+}
+
+function goTo(section) {
+    // Map section names to actual HTML file paths
+    const paths = {
+        'achievements': '/client/pages/admin-achievements.html',
+        'projects': '/client/pages/admin-projects.html',
+        'blogs': '/client/pages/admin-blogs.html'
+    };
+    
+    // Navigate to the correct path
+    window.location.href = paths[section];
+}
+
+function logout() {
+    localStorage.removeItem("adminToken");
+    window.location.href = "admin-login.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Om Burande</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            line-height: 1.8;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Background Image */
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* Dark Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
+        .blog-detail-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 122, 0, 0.15);
+            border: 1px solid rgba(255, 122, 0, 0.4);
+            color: #ff7a00;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .back-btn:hover {
+            background: #ff7a00;
+            color: #0a0a0a;
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(255, 122, 0, 0.4);
+        }
+
+        /* Blog Card */
+        .blog-card {
+            background: rgba(18, 25, 43, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255, 122, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Blog Header */
+        .blog-header {
+            margin-bottom: 30px;
+        }
+
+        .blog-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff, #ffaa66, #ff7a00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.3;
+            text-shadow: 0 2px 10px rgba(255, 122, 0, 0.3);
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            font-size: 15px;
+            flex-wrap: wrap;
+        }
+
+        .blog-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 5px 12px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 122, 0, 0.2);
+        }
+
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .blog-tag {
+            background: rgba(255, 122, 0, 0.2);
+            color: #ffaa66;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 13px;
+            border: 1px solid rgba(255, 122, 0, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Cover Image - Smaller Size */
+        .cover-image-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .cover-image {
+            width: 100%;
+            max-width: 600px;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 122, 0, 0.4);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Blog Content */
+        .blog-content {
+            color: #f0f0f0;
+            font-size: 17px;
+        }
+
+        .blog-content h1, 
+        .blog-content h2, 
+        .blog-content h3 {
+            color: #ffaa66;
+            margin: 30px 0 15px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .blog-content p {
+            margin-bottom: 20px;
+        }
+
+        .blog-content ul, 
+        .blog-content ol {
+            margin: 20px 0 20px 30px;
+        }
+
+        .blog-content li {
+            margin-bottom: 10px;
+        }
+
+        .blog-content code {
+            background: #1e2a3a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+            color: #ffaa66;
+        }
+
+        .blog-content pre {
+            background: #1e2a3a;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 122, 0, 0.3);
+        }
+
+        .blog-content blockquote {
+            border-left: 4px solid #ff7a00;
+            padding: 15px 25px;
+            background: rgba(255, 122, 0, 0.1);
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 80px 20px;
+            color: #ffaa66;
+            font-size: 18px;
+            background: rgba(18, 25, 43, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 122, 0, 0.3);
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border: 3px solid rgba(255, 122, 0, 0.3);
+            border-top-color: #ff7a00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error State */
+        .error-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(18, 25, 43, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 122, 0, 0.3);
+        }
+
+        .error-state h2 {
+            font-size: 32px;
+            color: #ffaa66;
+            margin-bottom: 15px;
+        }
+
+        .error-state p {
+            color: #d0d0d0;
+            margin-bottom: 25px;
+        }
+
+        .error-state .back-btn {
+            display: inline-block;
+            margin-bottom: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .blog-card { padding: 25px; }
+            .blog-title { font-size: 28px; }
+            .cover-image { max-width: 100%; }
+            .blog-meta { gap: 15px; }
+            .blog-detail-container { padding: 20px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Image -->
+    <img src="/client/assets/images/blogs-bg.jpg" alt="Background" class="background-image">
+    
+    <!-- Dark Overlay -->
+    <div class="overlay"></div>
+
+    <div class="blog-detail-container">
+        <a href="blogs.html" class="back-btn">← Back to Blogs</a>
+        
+        <div id="blogContent">
+            <div class="loading">Loading blog...</div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+
+        async function loadBlog() {
+            const container = document.getElementById('blogContent');
+            
+            // Get blog ID or slug from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const blogId = urlParams.get('id');
+            
+            if (!blogId) {
+                container.innerHTML = `
+                    <div class="error-state">
+                        <h2>Blog Not Found</h2>
+                        <p>The blog you're looking for doesn't exist.</p>
+                        <a href="blogs.html" class="back-btn" style="display: inline-block;">← Back to Blogs</a>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                // Try to fetch by slug first, then by ID
+                let response = await fetch(`${API_BASE}/blogs/slug/${blogId}`);
+                
+                if (!response.ok) {
+                    response = await fetch(`${API_BASE}/blogs/id/${blogId}`);
+                }
+                
+                if (!response.ok) {
+                    throw new Error('Blog not found');
+                }
+                
+                const blog = await response.json();
+                
+                const tags = Array.isArray(blog.tags) ? blog.tags : [];
+                
+                container.innerHTML = `
+                    <div class="blog-card">
+                        <div class="blog-header">
+                            <h1 class="blog-title">${blog.title || 'Untitled'}</h1>
+                            <div class="blog-meta">
+                                <span class="blog-meta-item">📅 ${blog.date || 'No date'}</span>
+                                <span class="blog-meta-item">⏱️ ${blog.readTime || '5 min read'}</span>
+                            </div>
+                            <div class="blog-tags">
+                                ${tags.map(tag => `<span class="blog-tag">#${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="cover-image-container">
+                            <img src="${blog.coverImage || 'https://via.placeholder.com/600x300?text=Blog+Image'}" 
+                                 alt="${blog.title}" 
+                                 class="cover-image"
+                                 onerror="this.src='https://via.placeholder.com/600x300?text=Image+Not+Found'">
+                        </div>
+                        
+                        <div class="blog-content">
+                            ${blog.content || blog.shortDescription || '<p>No content available</p>'}
+                        </div>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                container.innerHTML = `
+                    <div class="error-state">
+                        <h2>Blog Not Found</h2>
+                        <p>The blog you're looking for doesn't exist or could not be loaded.</p>
+                        <a href="blogs.html" class="back-btn" style="display: inline-block;">← Back to Blogs</a>
+                    </div>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadBlog);
+    </script>
+</body>
+</html>

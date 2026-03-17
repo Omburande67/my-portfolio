@@ -15,34 +15,55 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
+
+body{
+font-family:'Poppins',sans-serif;
 }
 
 /* ================= NAVBAR UNDERLINE ================= */
-.nav-link {
-  position: relative;
-  transition: 0.3s;
+
+.nav-link{
+position:relative;
+transition:0.3s;
 }
 
-.nav-link::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  left: 0;
-  bottom: -4px;
-  background: #f97316;
-  transition: 0.3s;
+.nav-link::after{
+content:"";
+position:absolute;
+width:0%;
+height:2px;
+left:0;
+bottom:-4px;
+background:#f97316;
+transition:0.3s;
 }
 
-.nav-link:hover {
-  color: #f97316;
+.nav-link:hover{
+color:#f97316;
 }
 
-.nav-link:hover::after {
-  width: 100%;
+.nav-link:hover::after{
+width:100%;
 }
+
+/* ===== ORANGE SECTION BACKGROUND ===== */
+
+.orange-bg{
+background:linear-gradient(135deg,#000000,#1a0d05,#000000);
+}
+
+/* ===== HERO VIDEO ===== */
+
+.hero-video{
+position:absolute;
+right:-40px;
+top:50%;
+transform:translateY(-50%);
+width:320px;
+opacity:0.9;
+pointer-events:none;
+}
+
 </style>
 
 </head>
@@ -51,168 +72,243 @@ body {
 
 <!-- ================= NAVBAR ================= -->
 
-<header class="fixed w-full top-0 bg-black/90 backdrop-blur-md z-50">
-  <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+<header class="fixed w-full top-0 bg-transparent backdrop-blur-md z-50">
 
-    <div class="text-orange-500 font-bold text-xl">
-      OM
-    </div>
+<div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
 
-    <ul class="flex gap-10 text-gray-300 font-medium">
-      <li><a href="#home" class="nav-link">Home</a></li>
-      <li><a href="#about" class="nav-link">About Me</a></li>
-      <li><a href="#" class="nav-link">Projects</a></li>
-      <li><a href="/client/pages/skills.html" class="nav-link">Skills</a></li>
-      <li><a href="/client/pages/achievements.html" class="nav-link">Achievements</a></li>
-    </ul>
+<a href="#home" class="flex items-center gap-2 text-orange-500 font-bold text-xl group">
 
-    <a href="mailto:omburande764@gmail.com"
-       class="bg-orange-500 px-6 py-2 rounded-md hover:bg-orange-600 transition">
-      Hire Me
-    </a>
+  <!-- ICON -->
+  <i class="fa-solid fa-code text-2xl transition duration-300
+  group-hover:rotate-12 group-hover:scale-110"></i>
 
-  </div>
+  <!-- TEXT -->
+  <span class="tracking-wider relative">
+    OB
+    <span class="text-white">.</span>
+
+    <!-- UNDERLINE GLOW -->
+    <span class="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+  </span>
+
+</a>
+<ul class="flex gap-10 text-gray-300 font-medium">
+
+<li><a href="#home" class="nav-link">Home</a></li>
+
+<li><a href="#about" class="nav-link">About Me</a></li>
+
+<li><a href="/client/pages/projects.html" class="nav-link">Projects</a></li>
+
+<li><a href="/client/pages/skills.html" class="nav-link">Skills</a></li>
+
+<li><a href="/client/pages/achievements.html" class="nav-link">Achievements</a></li>
+
+<li><a href="/client/pages/blogs.html" class="nav-link">Blogs</a></li>
+
+</ul>
+
+<a href="mailto:omburande764@gmail.com"
+class="bg-orange-500 px-6 py-2 rounded-md hover:bg-orange-600 transition">
+Hire Me
+</a>
+
+</div>
 </header>
 
 
 <!-- ================= HERO ================= -->
 
-<section id="home" class="min-h-screen flex items-center pt-32">
+<section id="home" class="min-h-screen flex items-center pt-32 relative overflow-hidden">
 
-  <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-2 items-center gap-12 w-full">
+  <!-- BACKGROUND VIDEO -->
+<video autoplay muted loop playsinline
+class="absolute top-0 left-0 w-full h-full object-cover z-0">
+  <source src="/client/assets/videos/vim.mp4" type="video/mp4">
+</video>
 
-    <!-- LEFT SIDE -->
-    <div>
+<!-- DARK OVERLAY -->
+<div class="absolute top-0 left-0 w-full h-full bg-black/70 z-0"></div>
 
-      <p class="text-gray-400 mb-3 text-lg">Hi I am</p>
+  
+<div class="relative z-10 max-w-7xl mx-auto px-8 grid md:grid-cols-2 items-center gap-12 w-full">
 
-      <h1 class="text-4xl md:text-5xl font-bold mb-5">
-        OM BURANDE
-      </h1>
+  
 
-      <p class="text-gray-400 mb-6">
-        Software Engineering | Java | DSA |
-        <span id="changing-text" class="text-orange-500 font-semibold"></span>
-      </p>
+<!-- LEFT SIDE -->
 
-      <!-- Social Icons -->
-      <div class="flex gap-6 text-xl mb-8">
-        <a href="https://in.linkedin.com/in/omburande" target="_blank" class="hover:text-orange-500 transition">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="https://github.com/Omburande67" target="_blank" class="hover:text-orange-500 transition">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.youtube.com/@omburande764" target="_blank" class="hover:text-orange-500 transition">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <a href="https://x.com/BurandeOm" target="_blank" class="hover:text-orange-500 transition">
-          <i class="fab fa-x-twitter"></i>
-        </a>
-      </div>
+<div>
 
-      <!-- Buttons -->
-      <div class="flex gap-6 mb-10">
-        <a href="mailto:omburande764@gmail.com"
-           class="bg-orange-500 px-6 py-3 rounded-md hover:bg-orange-600 transition">
-          Hire Me
-        </a>
+<p class="text-gray-400 mb-3 text-lg">
+Hey there, I am 
+</p>
 
-        <a href="https://drive.google.com/file/d/1ISyyGIuIDVvf6jyru6RokUniSJJqrl4H/view?usp=sharing"
-           target="_blank"
-           class="border border-gray-600 px-6 py-3 rounded-md hover:border-orange-500 hover:text-orange-500 transition">
-          Download CV
-        </a>
-      </div>
+<h1 class="text-4xl md:text-5xl font-bold mb-5">
+OM BURANDE
+</h1>
 
-      <!-- Stats -->
-      <div class="flex gap-10 bg-[#111] px-8 py-6 rounded-xl border border-gray-800 w-fit">
-        <div>
-          <h3 class="text-orange-500 font-bold text-xl">15+</h3>
-          <p class="text-gray-400 text-sm">Projects Done</p>
-        </div>
-        <div>
-          <h3 class="text-orange-500 font-bold text-xl">2+</h3>
-          <p class="text-gray-400 text-sm">Experience</p>
-        </div>
-        <div>
-          <h3 class="text-orange-500 font-bold text-xl">5+</h3>
-          <p class="text-gray-400 text-sm">Hackathons</p>
-        </div>
-      </div>
-
-    </div>
+<p class="text-gray-400 mb-6">
+Software Development | Java | Python | 
+<span id="changing-text" class="text-orange-500 font-semibold"></span>
+</p>
 
 
-    <!-- RIGHT SIDE IMAGE (UPDATED BLACK FADE STYLE) -->
-    <div class="relative flex justify-center items-end">
+<!-- ================= SOCIAL ICONS ================= -->
 
-      <!-- Dark Fade Circle -->
-      <div class="absolute w-[320px] h-[320px] rounded-full
-                  bg-gradient-to-b from-gray-900 via-gray-800 to-black">
-      </div>
+<div class="flex gap-6 text-xl mb-8">
 
-      <!-- Image -->
-      <img src="assets/images/Hero1.png.png"
-           alt="Om Burande"
-           class="relative w-[420px] object-cover
-                  -translate-y-10
-                  transition duration-500
-                  hover:scale-105 hover:shadow-2xl hover:shadow-black/60">
+<!-- TELEGRAM -->
 
+<a href="https://t.me/+919921542888" target="_blank" class="hover:text-orange-500 transition">
+<i class="fab fa-telegram"></i>
+</a>
+
+<a href="https://in.linkedin.com/in/omburande" target="_blank" class="hover:text-orange-500 transition">
+<i class="fab fa-linkedin-in"></i>
+</a>
+
+<a href="https://github.com/Omburande67" target="_blank" class="hover:text-orange-500 transition">
+<i class="fab fa-github"></i>
+</a>
+
+<a href="https://www.youtube.com/@omburande764" target="_blank" class="hover:text-orange-500 transition">
+<i class="fab fa-youtube"></i>
+</a>
+
+<a href="https://x.com/BurandeOm" target="_blank" class="hover:text-orange-500 transition">
+<i class="fab fa-x-twitter"></i>
+</a>
+
+</div>
+
+
+<!-- BUTTONS -->
+
+<div class="flex gap-6 mb-10">
+
+<a href="mailto:omburande764@gmail.com"
+class="bg-orange-500 px-6 py-3 rounded-md hover:bg-orange-600 transition">
+Hire Me
+</a>
+
+<a href="https://drive.google.com/file/d/1hwB5DpfvI8Fw7X4sQgAk3SyVWquhpdGj/view?usp=sharing"
+target="_blank"
+class="border border-gray-600 px-6 py-3 rounded-md hover:border-orange-500 hover:text-orange-500 transition">
+Download CV
+</a>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="flex gap-10 bg-[#111] px-8 py-6 rounded-xl border border-gray-800 w-fit">
+
+<div>
+<h3 class="text-orange-500 font-bold text-xl">25+</h3>
+<p class="text-gray-400 text-sm">Projects Done</p>
+</div>
+
+<div>
+<h3 class="text-orange-500 font-bold text-xl">1+</h3>
+<p class="text-gray-400 text-sm">Experience</p>
+</div>
+
+<div>
+<h3 class="text-orange-500 font-bold text-xl">5+</h3>
+<p class="text-gray-400 text-sm">Hackathons</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT SIDE IMAGE -->
+<div class="relative flex justify-center items-end">
+
+  <!-- CIRCLE WRAPPER (controls cutting) -->
+  <div class="absolute bottom-0 overflow-hidden h-[320px] w-[420px] flex justify-center">
+    
+    <!-- CIRCLE -->
+    <div class="w-[400px] h-[400px] rounded-full
+    bg-gradient-to-b from-gray-900 via-gray-800 to-black">
     </div>
 
   </div>
+
+  <!-- IMAGE (independent, not affected) -->
+  <img src="assets/images/Hero1.png.png"
+  alt="Om Burande"
+  class="relative w-[560px] object-cover
+  -translate-y-08
+  transition duration-500
+  hover:scale-105 hover:shadow-2xl hover:shadow-black/60">
+
+</div>
+
+
+
 </section>
 
-
+ 
 <!-- ================= TYPING SCRIPT ================= -->
+
 <script>
+
 const words = [
-  "Product Thinking",
-  "Product Design",
-  "Full Stack Developer",
-  "Problem Solver",
-  "Tech Entrepreneur"
+"Software Engineering",
+"Data Structures & Algorithms",
+"Full Stack Development",
+"Problem Solving",
+"System Design Basics",
+
 ];
 
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+let wordIndex=0;
+let charIndex=0;
+let isDeleting=false;
 
-function typeEffect() {
-  const currentWord = words[wordIndex];
+function typeEffect(){
 
-  if (!isDeleting) {
-    document.getElementById("changing-text").textContent =
-      currentWord.substring(0, charIndex++);
-    if (charIndex > currentWord.length) {
-      isDeleting = true;
-      setTimeout(typeEffect, 1200);
-      return;
-    }
-  } else {
-    document.getElementById("changing-text").textContent =
-      currentWord.substring(0, charIndex--);
-    if (charIndex < 0) {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-    }
-  }
+const currentWord=words[wordIndex];
 
-  setTimeout(typeEffect, isDeleting ? 50 : 100);
+if(!isDeleting){
+
+document.getElementById("changing-text").textContent=currentWord.substring(0,charIndex++);
+
+if(charIndex>currentWord.length){
+isDeleting=true;
+setTimeout(typeEffect,1200);
+return;
+}
+
+}else{
+
+document.getElementById("changing-text").textContent=currentWord.substring(0,charIndex--);
+
+if(charIndex<0){
+isDeleting=false;
+wordIndex=(wordIndex+1)%words.length;
+}
+
+}
+
+setTimeout(typeEffect,isDeleting?50:100);
+
 }
 
 typeEffect();
+
 </script>
 
 
 <!-- ================= ABOUT ================= -->
-<section id="about" class="py-28 border-t border-gray-900 bg-black">
+<section id="about" class="py-10 border-t border-gray-900 orange-bg">
 
-  <div class="max-w-7xl mx-auto px-8">
+<div class="max-w-7xl mx-auto px-8">
 
-    <h2 class="text-4xl font-bold text-white mb-16">
+    <h2 class="text-4xl font-bold text-orange-500 mb-16">
       About Me
     </h2>
 
@@ -223,7 +319,7 @@ typeEffect();
       <div class="md:col-span-7 text-gray-400 leading-relaxed space-y-8 text-justify">
 
         <p class="text-lg font-medium text-gray-300">
-          Vishwakarma Institute of Technology
+          Vishwakarma Institute of Technology, Pune
         </p>
 
         <p>
@@ -263,112 +359,118 @@ typeEffect();
 
       </div>
 
+<div class="md:col-span-3 flex flex-col gap-8">
 
-      <!-- ===== RIGHT IMAGE SIDE (30%) ===== -->
-      <div class="md:col-span-3 flex flex-col gap-8">
+<div class="">
+  <img src="assets/images/about1.png"
+       class="max-w-[80%] max-h-[80%] object-contain"
+       alt="About Image">
+</div>
 
-        <!-- IMAGE 1 -->
-        <div class="w-full h-56 bg-[#111] border border-gray-800 rounded-xl flex items-center justify-center text-gray-600 text-sm">
-          Add Image Here
-        </div>
+<div class="">
+  <img src="assets/images/ach-thumnails/secone-1.png"
+       class="w-full h-full object-contain"
+       alt="About Image">
+</div>
 
-        <!-- IMAGE 2 -->
-        <div class="w-full h-56 bg-[#111] border border-gray-800 rounded-xl flex items-center justify-center text-gray-600 text-sm">
-          Add Image Here
-        </div>
+</div>
 
-      </div>
+</div>
 
-    </div>
-
-  </div>
+</div>
 </section>
 
+
 <!-- ================= CONTACT ================= -->
-<section id="contact" class="py-20 border-t border-gray-900 bg-black">
 
-  <div class="max-w-7xl mx-auto px-8">
+<section id="contact" class="py-9 border-t border-gray-900 orange-bg">
 
-    <h2 class="text-4xl font-bold text-white mb-12">
-      Get In Touch
-    </h2>
+<div class="max-w-7xl mx-auto px-8">
 
-    <div class="grid md:grid-cols-2 gap-12">
+<h2 class="text-4xl font-bold text-orange-500 mb-16">
+Get In Touch
+</h2>
 
-      <!-- ================= LEFT SIDE ================= -->
-      <div class="bg-[#0f0f0f] border border-gray-800 rounded-xl p-8 space-y-8">
+<div class="grid md:grid-cols-2 gap-12">
 
-        <!-- PHONE + WHATSAPP -->
-        <div class="flex items-start gap-4">
-          <a href="https://wa.me/919921542888" target="_blank">
-            <svg class="w-6 h-6 text-green-500 hover:scale-110 transition" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.52 3.48A11.86 11.86 0 0012.02 0C5.38 0 .02 5.36.02 12c0 2.12.55 4.19 1.6 6.02L0 24l6.18-1.6A11.93 11.93 0 0012.02 24c6.64 0 12-5.36 12-12 0-3.19-1.24-6.19-3.5-8.52z"/>
-            </svg>
-          </a>
-          <div>
-            <h4 class="text-white font-semibold">Phone / WhatsApp</h4>
-            <a href="https://wa.me/919921542888" target="_blank" class="text-gray-400 hover:text-white text-sm">
-              +91 9921542888
-            </a>
-          </div>
-        </div>
+<div class="bg-[#0f0f0f] border border-gray-800 rounded-xl p-8 space-y-8">
 
-        <!-- EMAIL -->
-        <div class="flex items-start gap-4">
-          <a href="mailto:omburande764@gmail.com">
-            <svg class="w-6 h-6 text-blue-400 hover:scale-110 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M4 4h16v16H4z"/>
-              <path d="M22 6l-10 7L2 6"/>
-            </svg>
-          </a>
-          <div>
-            <h4 class="text-white font-semibold">Email</h4>
-            <a href="mailto:omburande764@gmail.com" class="text-gray-400 hover:text-white text-sm block">
-              omburande764@gmail.com
-            </a>
-            <a href="mailto:omburande76@gmail.com" class="text-gray-400 hover:text-white text-sm">
-              omburande76@gmail.com
-            </a>
-          </div>
-        </div>
+<!-- PHONE -->
+<div class="flex items-start gap-4">
+  <a href="https://wa.me/919921542888" target="_blank">
+    <i class="fa-brands fa-whatsapp text-green-500 text-xl hover:scale-110 transition"></i>
+  </a>
+  <div>
+    <h4 class="text-white font-semibold">Phone / WhatsApp</h4>
+    <a href="https://wa.me/919921542888"
+       target="_blank"
+       class="text-gray-400 hover:text-white text-sm">
+      +91 9921542888
+    </a>
+  </div>
+</div>
 
-        <!-- LOCATION -->
-        <div class="flex items-start gap-4">
-          <a href="https://www.google.com/maps/search/?api=1&query=Bibwewadi+Pune+411037" target="_blank">
-            <svg class="w-6 h-6 text-red-400 hover:scale-110 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M12 21s-6-5.33-6-10a6 6 0 1112 0c0 4.67-6 10-6 10z"/>
-              <circle cx="12" cy="11" r="2"/>
-            </svg>
-          </a>
-          <div>
-            <h4 class="text-white font-semibold">Location</h4>
-            <a href="https://www.google.com/maps/search/?api=1&query=Bibwewadi+Pune+411037" target="_blank" class="text-gray-400 hover:text-white text-sm">
-              Bibwewadi, Pune (411037), Maharashtra, India
-            </a>
-          </div>
-        </div>
+<!-- EMAIL -->
+<div class="flex items-start gap-4">
+  <a href="mailto:omburande764@gmail.com">
+    <i class="fa-solid fa-envelope text-blue-400 text-xl hover:scale-110 transition"></i>
+  </a>
+  <div>
+    <h4 class="text-white font-semibold">Email</h4>
+    <a href="mailto:omburande764@gmail.com"
+       class="text-gray-400 hover:text-white text-sm">
+      omburande764@gmail.com
+    </a>
+  </div>
+</div>
 
-      </div>
+<!-- LOCATION -->
+<div class="flex items-start gap-4">
+  <a href="https://www.google.com/maps/search/?api=1&query=Bibwewadi+Pune+411037" target="_blank">
+    <svg class="w-6 h-6 text-red-400 hover:scale-110 transition"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2"
+         viewBox="0 0 24 24">
+      <path d="M12 21s-6-5.33-6-10a6 6 0 1112 0c0 4.67-6 10-6 10z"/>
+      <circle cx="12" cy="11" r="2"/>
+    </svg>
+  </a>
+  <div>
+    <h4 class="text-white font-semibold">Location</h4>
+    <a href="https://www.google.com/maps/search/?api=1&query=Bibwewadi+Pune+411037"
+       target="_blank"
+       class="text-gray-400 hover:text-white text-sm">
+      Bibwewadi, Pune (411037), Maharashtra, India
+    </a>
+  </div>
+</div>
+
+</div>
 
 
+<!-- ================= FORM ================= -->
 
-      <!-- ================= RIGHT SIDE (SIMPLIFIED FORM) ================= -->
-      <div class="bg-[#0f0f0f] border border-gray-800 rounded-xl p-8">
+<div class="bg-[#0f0f0f] border border-gray-800 rounded-xl p-8">
 
-        <h3 class="text-white font-semibold mb-8">Contact Me</h3>
+<h3 class="text-white font-semibold mb-8">
+Contact Me
+</h3>
 
-        <form class="space-y-6">
+<form action="https://formsubmit.co/omburande764@gmail.com" method="POST" class="space-y-6">
 
-          <input type="text" placeholder="Name *"
-            class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-gray-600">
+<input type="hidden" name="_captcha" value="false">
 
-          <input type="text" placeholder="Email or Phone *"
-            class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-gray-600">
+<input type="text" name="name" placeholder="Name *" required
+class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300">
 
-          <textarea rows="4" placeholder="Message"
-            class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-gray-600"></textarea>
+<input type="email" name="email" placeholder="Email *" required
+class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300">
 
-          <!-- ROBOT CHECK -->
+<textarea name="message" rows="4" placeholder="Message"
+class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300"></textarea>
+
+<!-- ROBOT CHECK -->
           <div class="flex items-center gap-3">
             <input type="checkbox" required class="w-4 h-4 accent-white">
             <label class="text-sm text-gray-400">
@@ -376,20 +478,29 @@ typeEffect();
             </label>
           </div>
 
-          <button type="submit"
-            class="w-full bg-white text-black font-semibold py-3 rounded-lg hover:bg-gray-300 transition">
-            Send Message
-          </button>
+<button type="submit"
+class="w-full bg-white text-black font-semibold py-3 rounded-lg hover:bg-gray-300 transition">
+Send Message
+</button>
 
-        </form>
+</form>
 
-      </div>
+</div>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="text-center py-6 border-t border-gray-900 text-gray-500 text-sm">
+
+© 2026 Om Burande. All Rights Reserved.
+
+</footer>
 
 </body>
 </html>

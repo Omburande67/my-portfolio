@@ -1,0 +1,12 @@
+/* Minimal CSS - Most styles are in HTML now */
+/* This file can be kept for any additional global styles */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #0a0f1c;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Any additional global styles can go here */

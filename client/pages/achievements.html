@@ -10,6 +10,7 @@
 
 <section class="achievements">
     <div class="container">
+            <a href="/client/index.html" class="back-home-btn">← Back to Home</a>
         <h1 class="title">Achievements & Recognition</h1>
         <p class="subtitle">Certificates • Hackathons • Awards</p>
 
@@ -165,7 +166,12 @@ function showAchievementDetails(thumbnail) {
 }
 
 function viewAll(category) {
-    window.location.href = `achievement-category.html?category=${category}`;
+    const pages = {
+        'industry': 'certificates.html',
+        'competitive': 'hackathons.html',
+        'milestone': 'milestones.html'
+    };
+    window.location.href = pages[category];
 }
 
 function showFallbackContent() {
@@ -264,6 +270,29 @@ function closeModal() {
 </script>
 
 <style>
+
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 122, 0, 0.1);
+    border: 1px solid rgba(255, 122, 0, 0.3);
+    color: #ff7a00;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.back-home-btn:hover {
+    background: #ff7a00;
+    color: #0a0f1c;
+    transform: translateX(-5px);
+    box-shadow: 0 5px 15px rgba(255, 122, 0, 0.3);
+}
 /* Add modal styles */
 .achievement-modal {
     display: none;

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs | Om Burande</title>
+    <link rel="stylesheet" href="/client/css/blogs.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* Dark Overlay for better text readability */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
+        .blog-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px 40px;  /* Reduced top padding from 40px to 20px */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Back to Home Button */
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;  /* Slightly smaller padding */
+            background: rgba(255, 122, 0, 0.15);
+            border: 1px solid rgba(255, 122, 0, 0.4);
+            color: #ff7a00;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            margin-bottom: 20px;  /* Reduced from 30px to 20px */
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            font-size: 14px;
+        }
+
+        .back-home-btn:hover {
+            background: #ff7a00;
+            color: #0a0f1c;
+            transform: translateX(-5px);
+            box-shadow: 0 5px 20px rgba(255, 122, 0, 0.4);
+        }
+
+        /* Header - Reduced spacing */
+        .blog-header {
+            text-align: center;
+            margin-bottom: 20px;  /* Reduced from 50px to 25px */
+        }
+
+        .blog-header h1 {
+            font-size: 42px;  /* Slightly reduced from 48px */
+            font-weight: 700;
+            margin-bottom: 5px;  /* Reduced from 10px */
+            background: linear-gradient(135deg, #ffffff, #ffaa66);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 122, 0, 0.3);
+        }
+
+        .blog-header p {
+            color: #e0e0e0;
+            font-size: 16px;  /* Slightly reduced from 18px */
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Filter Bar - Reduced top margin */
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;  /* Reduced from 40px to 30px */
+            flex-wrap: wrap;
+            gap: 20px;
+            background: rgba(18, 25, 43, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;  /* Slightly reduced padding */
+            border-radius: 50px;
+            border: 1px solid rgba(255, 122, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 10px 18px;  /* Slightly reduced padding */
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 122, 0, 0.4);
+            border-radius: 30px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: #ff7a00;
+            box-shadow: 0 0 15px rgba(255, 122, 0, 0.3);
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .tag-filter {
+            padding: 10px 20px;  /* Slightly reduced padding */
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 122, 0, 0.4);
+            border-radius: 30px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+            min-width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .tag-filter:focus {
+            border-color: #ff7a00;
+            box-shadow: 0 0 15px rgba(255, 122, 0, 0.3);
+        }
+
+        .tag-filter option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;  /* Slightly reduced from 30px */
+        }
+
+        .blog-card {
+            background: rgba(18, 25, 43, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 122, 0, 0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #ff7a00;
+            box-shadow: 0 25px 40px rgba(255, 122, 0, 0.3);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;  /* Slightly reduced from 220px */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blog-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 100%);
+            pointer-events: none;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.15);
+        }
+
+        .blog-content {
+            padding: 20px;  /* Reduced from 25px */
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;  /* Reduced from 15px */
+            font-size: 13px;
+        }
+
+        .blog-date {
+            color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(0,0,0,0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .blog-date::before {
+            content: '📅';
+            margin-right: 4px;
+        }
+
+        .blog-read-time {
+            background: rgba(255, 122, 0, 0.2);
+            color: #ffaa66;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            border: 1px solid rgba(255, 122, 0, 0.3);
+        }
+
+        .blog-title {
+            font-size: 20px;  /* Slightly reduced from 22px */
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;  /* Reduced from 12px */
+            line-height: 1.4;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .blog-description {
+            color: #d0d0d0;
+            font-size: 14px;
+            line-height: 1.5;  /* Slightly reduced from 1.6 */
+            margin-bottom: 15px;  /* Reduced from 20px */
+        }
+
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;  /* Reduced from 8px */
+            margin-bottom: 15px;  /* Reduced from 20px */
+        }
+
+        .blog-tag {
+            background: rgba(255, 122, 0, 0.15);
+            color: #ffaa66;
+            padding: 3px 10px;  /* Slightly reduced padding */
+            border-radius: 20px;
+            font-size: 11px;  /* Slightly reduced */
+            border: 1px solid rgba(255, 122, 0, 0.3);
+            backdrop-filter: blur(4px);
+        }
+
+        .read-more {
+            color: #ffaa66;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            font-size: 14px;
+        }
+
+        .read-more:hover {
+            gap: 12px;
+            color: #ff7a00;
+            text-shadow: 0 0 10px rgba(255, 122, 0, 0.5);
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 40px;  /* Reduced from 60px */
+            color: #ffaa66;
+            font-size: 18px;
+            grid-column: 1 / -1;
+            background: rgba(18, 25, 43, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 122, 0, 0.2);
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border: 3px solid rgba(255, 122, 0, 0.3);
+            border-top-color: #ff7a00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;  /* Reduced from 80px */
+            background: rgba(18, 25, 43, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 122, 0, 0.2);
+            grid-column: 1 / -1;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .empty-state-icon {
+            font-size: 60px;  /* Reduced from 70px */
+            margin-bottom: 15px;  /* Reduced from 20px */
+            filter: drop-shadow(0 0 20px rgba(255, 122, 0, 0.3));
+        }
+
+        .empty-state h3 {
+            font-size: 24px;  /* Reduced from 28px */
+            color: #ffffff;
+            margin-bottom: 8px;  /* Reduced from 10px */
+        }
+
+        .empty-state p {
+            color: #d0d0d0;
+            margin-bottom: 20px;  /* Reduced from 25px */
+        }
+
+        .empty-state .back-home-btn {
+            display: inline-block;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .blog-section {
+                padding: 15px 15px 30px;  /* Even smaller on mobile */
+            }
+            
+            .filter-bar {
+                flex-direction: column;
+                border-radius: 20px;
+            }
+            
+            .search-box, .tag-filter {
+                width: 100%;
+            }
+            
+            .blog-header h1 {
+                font-size: 32px;
+            }
+            
+            .blog-header p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay muted loop playsinline class="video-background">
+        <source src="/client/assets/videos/vd.mp4" type="video/mp4">
+        <source src="/client/assets/videos/dashboard-animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <!-- Dark Overlay -->
+    <div class="overlay"></div>
+
+    <section class="blog-section">
+        <a href="/client/index.html" class="back-home-btn">← Back to Home</a>
+
+        <div class="blog-header">
+            <h1>Blogs & Articles</h1>
+            <p>Thoughts, tutorials, and insights on tech</p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Search blogs...">
+            <select id="tagFilter" class="tag-filter">
+                <option value="">All Topics</option>
+                <option value="AI">🤖 AI</option>
+                <option value="MongoDB">🍃 MongoDB</option>
+                <option value="JavaScript">🟨 JavaScript</option>
+                <option value="React">⚛️ React</option>
+                <option value="Node.js">🟢 Node.js</option>
+                <option value="Python">🐍 Python</option>
+                <option value="Java">☕ Java</option>
+            </select>
+        </div>
+
+        <!-- Blog Grid -->
+        <div id="blogGrid" class="blog-grid">
+            <!-- Populated by JavaScript -->
+        </div>
+    </section>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+        let allBlogs = [];
+
+        async function loadBlogs() {
+            const grid = document.getElementById('blogGrid');
+            grid.innerHTML = '<div class="loading">Loading blogs...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/blogs/all`);
+                if (!response.ok) throw new Error('Failed to fetch');
+                
+                allBlogs = await response.json();
+                displayBlogs(allBlogs);
+            } catch (error) {
+                console.error('Error:', error);
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📝</div>
+                        <h3>No Blogs Yet</h3>
+                        <p>Check back later for new articles</p>
+                        <a href="/client/index.html" class="back-home-btn">← Back to Home</a>
+                    </div>
+                `;
+            }
+        }
+
+        function displayBlogs(blogs) {
+            const grid = document.getElementById('blogGrid');
+            
+            if (blogs.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <h3>No Blogs Found</h3>
+                        <p>Try a different search term or tag</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = blogs.map(blog => {
+                const tags = Array.isArray(blog.tags) ? blog.tags : [];
+                
+                return `
+                    <div class="blog-card" onclick="viewBlog('${blog.slug || blog._id}')">
+                        <div class="blog-image">
+                            <img src="${blog.coverImage || 'https://via.placeholder.com/400x200?text=Blog+Image'}" 
+                                 alt="${blog.title}" 
+                                 onerror="this.src='https://via.placeholder.com/400x200?text=Blog+Image'">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">${blog.date || 'No date'}</span>
+                                <span class="blog-read-time">⏱️ ${blog.readTime || '5 min'}</span>
+                            </div>
+                            <h3 class="blog-title">${blog.title}</h3>
+                            <p class="blog-description">${blog.shortDescription || ''}</p>
+                            <div class="blog-tags">
+                                ${tags.map(tag => `<span class="blog-tag">#${tag}</span>`).join('')}
+                            </div>
+                            <span class="read-more">Read Article →</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function viewBlog(identifier) {
+            window.location.href = `blog-detail.html?id=${identifier}`;
+        }
+
+        // Search and filter functionality
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedTag = document.getElementById('tagFilter').value;
+            
+            let filtered = [...allBlogs];
+            
+            if (searchTerm) {
+                filtered = filtered.filter(blog => 
+                    blog.title.toLowerCase().includes(searchTerm) || 
+                    (blog.shortDescription && blog.shortDescription.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            if (selectedTag) {
+                filtered = filtered.filter(blog => 
+                    Array.isArray(blog.tags) && blog.tags.includes(selectedTag)
+                );
+            }
+            
+            displayBlogs(filtered);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('tagFilter').addEventListener('change', applyFilters);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadBlogs);
+    </script>
+</body>
+</html>

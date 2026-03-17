@@ -5,6 +5,7 @@ const cors = require("cors");
 
 // Routes
 const authRoutes = require("./routes/authRoutes");
+const blogRoutes = require("./routes/blogRoutes");
 const achievementRoutes = require("./routes/achievementRoutes");
 const path = require('path');
 const app = express();
@@ -19,6 +20,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/blogs", blogRoutes);
 
 app.use("/api/achievements", achievementRoutes);
 

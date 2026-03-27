@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 // Fix the import path to match your actual filename
-const authMiddleware = require("../middleware/authmiddleware"); // Changed from "auth" to "authmiddleware"
+const authMiddleware = require("../middleware/authMiddleware"); // Changed from "auth" to "authmiddleware"
 const blogController = require("../controllers/blogController");
 
 // Public routes (no auth needed)

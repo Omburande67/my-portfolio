@@ -1,37 +1,351 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Admin Login</title>
-<link rel="stylesheet" href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveBg 20s linear infinite;
+        }
+
+        @keyframes moveBg {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+
+        /* Login Container */
+        .login-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        /* Login Box */
+        .login-box {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 0 2px rgba(249,115,22,0.5);
+        }
+
+        /* Icon */
+        .login-icon {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-icon i {
+            font-size: 60px;
+            color: #f97316;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Title */
+        .login-box h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .login-box h2 span {
+            color: #f97316;
+        }
+
+        /* Input Group */
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f97316;
+            font-size: 18px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #f97316;
+            background: rgba(249,115,22,0.1);
+            box-shadow: 0 0 10px rgba(249,115,22,0.3);
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Password Toggle */
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: #f97316;
+        }
+
+        /* Button */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249,115,22,0.4);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Loading State */
+        .login-btn.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .btn-text {
+            display: inline-block;
+        }
+
+        .btn-loader {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .login-btn.loading .btn-text {
+            display: none;
+        }
+
+        .login-btn.loading .btn-loader {
+            display: inline-block;
+        }
+
+        /* Message */
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            text-align: center;
+            display: none;
+        }
+
+        .message.error {
+            background: rgba(220, 38, 38, 0.2);
+            border-left: 3px solid #dc2626;
+            color: #ff6b6b;
+        }
+
+        .message.success {
+            background: rgba(34, 197, 94, 0.2);
+            border-left: 3px solid #22c55e;
+            color: #4ade80;
+        }
+
+        .message.show {
+            display: block;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
 </head>
 <body>
 
-    
-<div class="login-box">
-    <h2>Admin Login</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
+<div class="login-container">
+    <div class="login-box">
+        <div class="login-icon">
+            <i class="fas fa-user-shield"></i>
+        </div>
+        <h2>Admin <span>Login</span></h2>
+        
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="username" placeholder="Username" autocomplete="off">
+        </div>
+        
+        <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" placeholder="Password">
+            <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+        </div>
+        
+        <button class="login-btn" id="loginBtn" onclick="login()">
+            <span class="btn-text">Login</span>
+            <span class="btn-loader"></span>
+        </button>
+        
+        <div class="message error" id="errorMsg"></div>
+    </div>
 </div>
 
 <script>
+// Password visibility toggle
+const togglePassword = document.getElementById('togglePassword');
+const passwordInput = document.getElementById('password');
+
+togglePassword.addEventListener('click', function() {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    this.classList.toggle('fa-eye-slash');
+});
+
+// Enter key support
+document.getElementById('username').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') login();
+});
+document.getElementById('password').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') login();
+});
+
+// Login function (original functionality preserved)
 async function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-
-    const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-    });
-
-    const data = await res.json();
-
-    if (data.token) {
-        localStorage.setItem("adminToken", data.token);
-        window.location.href = "/client/pages/admin-dashboard.html";
-    } else {
-        alert("Login failed");
+    const loginBtn = document.getElementById("loginBtn");
+    const errorMsg = document.getElementById("errorMsg");
+    
+    // Validation
+    if (!username.trim()) {
+        errorMsg.textContent = "❌ Please enter username";
+        errorMsg.classList.add('show');
+        setTimeout(() => errorMsg.classList.remove('show'), 3000);
+        document.getElementById("username").focus();
+        return;
+    }
+    
+    if (!password) {
+        errorMsg.textContent = "❌ Please enter password";
+        errorMsg.classList.add('show');
+        setTimeout(() => errorMsg.classList.remove('show'), 3000);
+        document.getElementById("password").focus();
+        return;
+    }
+    
+    // Show loading
+    loginBtn.classList.add('loading');
+    errorMsg.classList.remove('show');
+    
+    try {
+        const res = await fetch("http://localhost:5000/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+        });
+        
+        const data = await res.json();
+        
+        if (data.token) {
+            localStorage.setItem("adminToken", data.token);
+            // Add success effect
+            document.querySelector('.login-box').style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                window.location.href = "/client/pages/admin-dashboard.html";
+            }, 300);
+        } else {
+            errorMsg.textContent = data.message || "❌ Invalid username or password";
+            errorMsg.classList.add('show');
+            loginBtn.classList.remove('loading');
+            // Clear password on error
+            document.getElementById("password").value = '';
+            document.getElementById("password").focus();
+            // Shake effect
+            document.querySelector('.login-box').style.animation = 'shake 0.4s ease';
+            setTimeout(() => {
+                document.querySelector('.login-box').style.animation = '';
+            }, 400);
+        }
+    } catch (error) {
+        errorMsg.textContent = "❌ Connection error. Please check server.";
+        errorMsg.classList.add('show');
+        loginBtn.classList.remove('loading');
     }
 }
 </script>

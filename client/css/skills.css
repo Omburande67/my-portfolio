@@ -90,6 +90,26 @@ header {
     color: #ddd;
 }
 
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 122, 0, 0.1);
+    border: 1px solid rgba(255, 122, 0, 0.3);
+    color: #ff7a00;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+.back-home-btn:hover {
+    background: #ff7a00;
+    color: #0a0f1c;
+    transform: translateX(-5px);
+    box-shadow: 0 5px 15px rgba(255, 122, 0, 0.3);
+}
 /* PROGRESS BAR CONTAINER */
 .progress {
     width: 100%;

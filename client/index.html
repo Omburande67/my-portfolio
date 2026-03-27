@@ -140,7 +140,7 @@ class="absolute top-0 left-0 w-full h-full object-cover z-0">
 <div>
 
 <p class="text-gray-400 mb-3 text-lg">
-Hey there, I am 
+
 </p>
 
 <h1 class="text-4xl md:text-5xl font-bold mb-5">
@@ -309,7 +309,7 @@ typeEffect();
 <div class="max-w-7xl mx-auto px-8">
 
     <h2 class="text-4xl font-bold text-orange-500 mb-16">
-      About Me
+      Thaughts about Engineering 
     </h2>
 
     <!-- GRID -->
@@ -319,7 +319,7 @@ typeEffect();
       <div class="md:col-span-7 text-gray-400 leading-relaxed space-y-8 text-justify">
 
         <p class="text-lg font-medium text-gray-300">
-          Vishwakarma Institute of Technology, Pune
+          @Vishwakarma Institute of Technology, Pune
         </p>
 
         <p>
@@ -493,14 +493,734 @@ Send Message
 
 </section>
 
-
 <!-- ================= FOOTER ================= -->
 
 <footer class="text-center py-6 border-t border-gray-900 text-gray-500 text-sm">
 
-© 2026 Om Burande. All Rights Reserved.
+© 2026 Om Burande. Built, not copied.
 
 </footer>
+
+<!-- ================= SMALL TECH ROBOT CHARACTER (SMART ASSISTANT) ================= -->
+<style>
+/* Character Container */
+.tech-mascot {
+  position: fixed;
+  z-index: 9999;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  filter: drop-shadow(0 8px 15px rgba(0,0,0,0.3));
+  will-change: left, top, transform;
+}
+
+/* Robot Body (Laptop Style) - SMALLER SIZE */
+.robot-body {
+  position: relative;
+  width: 85px;
+  height: 75px;
+  background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+  border-radius: 10px;
+  border: 2px solid #f97316;
+  box-shadow: 0 0 12px rgba(249,115,22,0.3);
+  transition: all 0.3s ease;
+}
+
+/* Laptop Screen Effect */
+.robot-screen {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  height: 40px;
+  background: linear-gradient(180deg, #0a0a0a, #000);
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #f97316;
+}
+
+/* Code Animation on Screen */
+.screen-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    #0f0 0px,
+    #0f0 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.3;
+  animation: scrollCode 2s linear infinite;
+}
+
+@keyframes scrollCode {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(8px); }
+}
+
+/* Glowing Eye - SMALLER */
+.robot-eye {
+  position: absolute;
+  top: 22px;
+  width: 12px;
+  height: 12px;
+  background: #00ff00;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00ff00, 0 0 12px #00ff00;
+  transition: all 0.1s ease;
+}
+
+.left-eye {
+  left: 14px;
+}
+
+.right-eye {
+  right: 14px;
+}
+
+/* Eye Blink Effect */
+@keyframes blinkRobot {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+.blink-robot {
+  animation: blinkRobot 3s infinite;
+}
+
+/* Antenna - SMALLER */
+.antenna {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 18px;
+  background: linear-gradient(180deg, #f97316, #ffaa44);
+  border-radius: 2px;
+}
+
+.antenna-ball {
+  position: absolute;
+  top: -6px;
+  left: -5px;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #ffaa44, #f97316);
+  border-radius: 50%;
+  box-shadow: 0 0 6px #f97316;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+/* Arms - SMALLER */
+.robot-arm {
+  position: absolute;
+  width: 28px;
+  height: 8px;
+  background: linear-gradient(90deg, #2d2d2d, #1a1a1a);
+  border-radius: 15px;
+  top: 50%;
+  transition: all 0.3s ease;
+}
+
+.left-arm {
+  left: -24px;
+  transform: rotate(-20deg);
+}
+
+.right-arm {
+  right: -24px;
+  transform: rotate(20deg);
+}
+
+/* Hand - SMALLER */
+.hand {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #f97316;
+  border-radius: 50%;
+  top: -3px;
+}
+
+.left-hand {
+  left: -4px;
+}
+
+.right-hand {
+  right: -4px;
+}
+
+/* Legs - SMALLER */
+.robot-leg {
+  position: absolute;
+  bottom: -14px;
+  width: 18px;
+  height: 14px;
+  background: linear-gradient(180deg, #2d2d2d, #1a1a1a);
+  border-radius: 0 0 8px 8px;
+}
+
+.left-leg {
+  left: 18px;
+}
+
+.right-leg {
+  right: 18px;
+}
+
+/* Floating Particles - SMALLER */
+.tech-particles {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  pointer-events: none;
+}
+
+.tech-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #f97316;
+  border-radius: 50%;
+  animation: particleFloat 1.5s infinite;
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0);
+  }
+}
+
+/* Interactive Button - SMALLER */
+.robot-button {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 9px;
+  font-weight: bold;
+  white-space: nowrap;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(249,115,22,0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.3);
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.robot-button i {
+  font-size: 9px;
+}
+
+.robot-button:hover {
+  transform: translateX(-50%) scale(1.08);
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  box-shadow: 0 4px 15px rgba(249,115,22,0.6);
+}
+
+/* Social Hub Popup - SMALLER */
+.social-hub {
+  position: absolute;
+  bottom: 55px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 10px;
+  display: none;
+  gap: 6px;
+  flex-direction: column;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  border: 1px solid #f97316;
+  min-width: 140px;
+  animation: slideUp 0.3s ease;
+  z-index: 20;
+}
+
+.social-hub.show {
+  display: flex;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.social-hub a {
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.social-hub a:hover {
+  background: #f97316;
+  transform: translateX(4px);
+}
+
+.social-hub i {
+  width: 16px;
+  font-size: 12px;
+}
+
+/* Movement Animations */
+@keyframes walkCycle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-12deg); }
+  75% { transform: rotate(12deg); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(18deg); }
+  50% { transform: rotate(40deg); }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.5) translateY(30px);
+  }
+}
+
+.robot-walk {
+  animation: walkCycle 0.5s ease-in-out;
+}
+
+.robot-bounce {
+  animation: bounce 0.5s ease;
+}
+
+.robot-wave {
+  animation: wave 0.3s ease-in-out;
+}
+
+.slide-in-effect {
+  animation: slideIn 0.4s ease-out;
+}
+
+.slide-out-effect {
+  animation: slideOut 0.4s ease-out forwards;
+}
+
+/* Hidden State */
+.tech-mascot-hidden {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .robot-body {
+    transform: scale(0.9);
+  }
+}
+</style>
+
+<div class="tech-mascot" id="techMascot">
+  <div class="robot-body" id="robotBody">
+    <!-- Laptop Screen -->
+    <div class="robot-screen">
+      <div class="screen-content"></div>
+    </div>
+    
+    <!-- Eyes -->
+    <div class="robot-eye left-eye blink-robot" id="leftEye"></div>
+    <div class="robot-eye right-eye blink-robot" id="rightEye"></div>
+    
+    <!-- Antenna -->
+    <div class="antenna">
+      <div class="antenna-ball"></div>
+    </div>
+    
+    <!-- Arms -->
+    <div class="robot-arm left-arm" id="leftArm">
+      <div class="hand left-hand"></div>
+    </div>
+    <div class="robot-arm right-arm" id="rightArm">
+      <div class="hand right-hand"></div>
+    </div>
+    
+    <!-- Legs -->
+    <div class="robot-leg left-leg"></div>
+    <div class="robot-leg right-leg"></div>
+    
+    <!-- Tech Particles -->
+    <div class="tech-particles" id="techParticles">
+      <div class="tech-particle" style="top: -3px; left: 8px; animation-delay: 0s;"></div>
+      <div class="tech-particle" style="top: -1px; right: 10px; animation-delay: 0.3s;"></div>
+      <div class="tech-particle" style="top: 2px; left: 28px; animation-delay: 0.6s;"></div>
+    </div>
+    
+    <!-- Interactive Button -->
+    <div class="robot-button" id="robotButton">
+      <i class="fas fa-terminal"></i>
+      <span>CONNECT</span>
+      <i class="fas fa-code-branch"></i>
+    </div>
+  </div>
+  
+  <!-- Social Hub Popup -->
+  <div class="social-hub" id="socialHub">
+    <a href="https://github.com/Omburande67" target="_blank">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+    <a href="https://in.linkedin.com/in/omburande" target="_blank">
+      <i class="fab fa-linkedin-in"></i> LinkedIn
+    </a>
+    <a href="https://www.youtube.com/@omburande764" target="_blank">
+      <i class="fab fa-youtube"></i> YouTube
+    </a>
+    <a href="https://x.com/BurandeOm" target="_blank">
+      <i class="fab fa-x-twitter"></i> Twitter
+    </a>
+    <a href="https://t.me/+919921542888" target="_blank">
+      <i class="fab fa-telegram"></i> Telegram
+    </a>
+    <a href="mailto:omburande764@gmail.com">
+      <i class="fas fa-envelope"></i> Email
+    </a>
+  </div>
+</div>
+
+<script>
+// Small Tech Robot Movement System
+(function() {
+  const mascot = document.getElementById('techMascot');
+  const robotBody = document.getElementById('robotBody');
+  const button = document.getElementById('robotButton');
+  const socialHub = document.getElementById('socialHub');
+  const leftArm = document.getElementById('leftArm');
+  const rightArm = document.getElementById('rightArm');
+  const leftEye = document.getElementById('leftEye');
+  const rightEye = document.getElementById('rightEye');
+  
+  // Available positions (corners and edges - safe spots)
+  const positions = [
+    { top: '12%', left: '2%' },       // Top left corner
+    { top: '12%', left: '88%' },      // Top right corner
+    { top: '45%', left: '2%' },       // Middle left
+    { top: '45%', left: '88%' },      // Middle right
+    { top: '78%', left: '2%' },       // Bottom left
+    { top: '78%', left: '88%' },      // Bottom right
+    { top: '85%', left: '45%' },      // Bottom center
+    { top: '20%', left: '45%' }       // Top center
+  ];
+  
+  let currentPosition = 0;
+  let isVisible = true;
+  let moveInterval;
+  let disappearTimeout;
+  let appearTimeout;
+  let isMoving = false;
+  
+  // Initialize position
+  function setPosition(position) {
+    mascot.style.top = position.top;
+    mascot.style.left = position.left;
+    mascot.style.bottom = 'auto';
+    mascot.style.right = 'auto';
+  }
+  
+  // Random position change with smooth movement
+  function moveToRandomPosition() {
+    if (!isVisible || isMoving) return;
+    
+    isMoving = true;
+    
+    // Add walking animation
+    robotBody.classList.add('robot-walk');
+    
+    // Select new random position
+    let newPosIndex;
+    do {
+      newPosIndex = Math.floor(Math.random() * positions.length);
+    } while (newPosIndex === currentPosition && positions.length > 1);
+    
+    currentPosition = newPosIndex;
+    const newPos = positions[currentPosition];
+    
+    // Smooth transition
+    mascot.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    setPosition(newPos);
+    
+    // Add bounce effect at destination
+    setTimeout(() => {
+      robotBody.classList.add('robot-bounce');
+      robotBody.classList.remove('robot-walk');
+      
+      setTimeout(() => {
+        robotBody.classList.remove('robot-bounce');
+        isMoving = false;
+      }, 500);
+    }, 600);
+    
+    // Arm wave while moving
+    leftArm.style.transform = 'rotate(-35deg)';
+    rightArm.style.transform = 'rotate(35deg)';
+    
+    setTimeout(() => {
+      leftArm.style.transform = 'rotate(-20deg)';
+      rightArm.style.transform = 'rotate(20deg)';
+    }, 400);
+  }
+  
+  // Random movement schedule
+  function scheduleMovement() {
+    if (moveInterval) clearInterval(moveInterval);
+    moveInterval = setInterval(() => {
+      if (isVisible && !isMoving && Math.random() > 0.6) {
+        moveToRandomPosition();
+      }
+    }, getRandomTime(5000, 9000));
+  }
+  
+  // Disappear function
+  function disappear() {
+    if (!isVisible) return;
+    
+    isVisible = false;
+    robotBody.classList.add('slide-out-effect');
+    
+    setTimeout(() => {
+      mascot.classList.add('tech-mascot-hidden');
+      robotBody.classList.remove('slide-out-effect');
+      
+      // Schedule reappearance
+      scheduleAppear();
+    }, 400);
+  }
+  
+  // Appear function
+  function appear() {
+    if (isVisible) return;
+    
+    // Move to new random position before appearing
+    let newPosIndex;
+    do {
+      newPosIndex = Math.floor(Math.random() * positions.length);
+    } while (newPosIndex === currentPosition && positions.length > 1);
+    
+    currentPosition = newPosIndex;
+    setPosition(positions[currentPosition]);
+    
+    mascot.classList.remove('tech-mascot-hidden');
+    robotBody.classList.add('slide-in-effect');
+    
+    setTimeout(() => {
+      robotBody.classList.remove('slide-in-effect');
+      isVisible = true;
+      
+      // Create tech particle explosion
+      createTechExplosion();
+      
+      // Wave arms excitedly
+      leftArm.style.transform = 'rotate(-45deg)';
+      rightArm.style.transform = 'rotate(45deg)';
+      setTimeout(() => {
+        leftArm.style.transform = 'rotate(-20deg)';
+        rightArm.style.transform = 'rotate(20deg)';
+      }, 400);
+      
+      // Change eye color temporarily
+      leftEye.style.boxShadow = '0 0 12px #ffaa44, 0 0 18px #ffaa44';
+      rightEye.style.boxShadow = '0 0 12px #ffaa44, 0 0 18px #ffaa44';
+      setTimeout(() => {
+        leftEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
+        rightEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
+      }, 800);
+      
+      // Schedule next disappearance
+      scheduleDisappear();
+    }, 400);
+  }
+  
+  // Tech particle explosion effect
+  function createTechExplosion() {
+    const particles = document.getElementById('techParticles');
+    for (let i = 0; i < 8; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'tech-particle';
+      particle.style.position = 'absolute';
+      particle.style.top = Math.random() * 40 + 'px';
+      particle.style.left = Math.random() * 70 + 'px';
+      particle.style.animation = `particleFloat ${0.5 + Math.random() * 0.8}s infinite`;
+      particles.appendChild(particle);
+      
+      setTimeout(() => {
+        particle.remove();
+      }, 800);
+    }
+  }
+  
+  function scheduleDisappear() {
+    if (disappearTimeout) clearTimeout(disappearTimeout);
+    disappearTimeout = setTimeout(() => {
+      if (isVisible) {
+        disappear();
+      }
+    }, getRandomTime(12000, 20000));
+  }
+  
+  function scheduleAppear() {
+    if (appearTimeout) clearTimeout(appearTimeout);
+    appearTimeout = setTimeout(() => {
+      if (!isVisible) {
+        appear();
+      }
+    }, getRandomTime(8000, 15000));
+  }
+  
+  function getRandomTime(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  
+  // Interactive button click
+  button.addEventListener('click', (e) => {
+    e.stopPropagation();
+    socialHub.classList.toggle('show');
+    
+    // Excited reaction
+    robotBody.classList.add('robot-bounce');
+    leftArm.style.transform = 'rotate(-50deg)';
+    rightArm.style.transform = 'rotate(50deg)';
+    
+    setTimeout(() => {
+      robotBody.classList.remove('robot-bounce');
+      leftArm.style.transform = 'rotate(-20deg)';
+      rightArm.style.transform = 'rotate(20deg)';
+    }, 400);
+    
+    // Eye flash
+    leftEye.style.boxShadow = '0 0 20px #ffff00, 0 0 30px #ffff00';
+    rightEye.style.boxShadow = '0 0 20px #ffff00, 0 0 30px #ffff00';
+    setTimeout(() => {
+      leftEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
+      rightEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
+    }, 250);
+  });
+  
+  // Close popup when clicking elsewhere
+  document.addEventListener('click', (e) => {
+    if (!mascot.contains(e.target)) {
+      socialHub.classList.remove('show');
+    }
+  });
+  
+  // Hover effects
+  mascot.addEventListener('mouseenter', () => {
+    if (isVisible) {
+      leftArm.style.transform = 'rotate(-35deg)';
+      rightArm.style.transform = 'rotate(35deg)';
+      setTimeout(() => {
+        leftArm.style.transform = 'rotate(-20deg)';
+        rightArm.style.transform = 'rotate(20deg)';
+      }, 250);
+      
+      leftEye.style.boxShadow = '0 0 12px #00ff00, 0 0 18px #00ff00';
+      rightEye.style.boxShadow = '0 0 12px #00ff00, 0 0 18px #00ff00';
+    }
+  });
+  
+  mascot.addEventListener('mouseleave', () => {
+    if (isVisible) {
+      leftArm.style.transform = 'rotate(-20deg)';
+      rightArm.style.transform = 'rotate(20deg)';
+      leftEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
+      rightEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
+    }
+  });
+  
+  // Random arm movements
+  setInterval(() => {
+    if (isVisible && !isMoving && Math.random() > 0.8) {
+      leftArm.style.transform = 'rotate(-40deg)';
+      rightArm.style.transform = 'rotate(40deg)';
+      setTimeout(() => {
+        if (isVisible) {
+          leftArm.style.transform = 'rotate(-20deg)';
+          rightArm.style.transform = 'rotate(20deg)';
+        }
+      }, 250);
+    }
+  }, 5000);
+  
+  // Random eye color change
+  setInterval(() => {
+    if (isVisible && Math.random() > 0.9) {
+      const colors = ['#00ff00', '#ffaa44', '#ff44aa', '#44ffaa'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      leftEye.style.boxShadow = `0 0 10px ${color}, 0 0 15px ${color}`;
+      rightEye.style.boxShadow = `0 0 10px ${color}, 0 0 15px ${color}`;
+      setTimeout(() => {
+        if (isVisible) {
+          leftEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
+          rightEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
+        }
+      }, 400);
+    }
+  }, 7000);
+  
+  // Initialize
+  setPosition(positions[0]);
+  scheduleMovement();
+  scheduleDisappear();
+  
+  console.log('🤖 Small Tech Robot Assistant activated! 🤖');
+})();
+</script>
 
 </body>
 </html>

@@ -293,10 +293,10 @@ font-weight:600;
 
 </div>
 </div>
-
+ <script src="/js/config.js"></script>
 <script>
 
-const API_BASE='http://localhost:5000/api';
+const API_BASE=`${BASE_URL}/api`;
 
 async function loadMilestones(){
 
@@ -314,7 +314,7 @@ milestones.sort((a,b)=>new Date(b.date)-new Date(a.date));
 
 timeline.innerHTML=milestones.map((milestone,index)=>{
 
-const fileUrl=milestone.fileUrl?`http://localhost:5000${milestone.fileUrl}`:'';
+const fileUrl=milestone.fileUrl?`${BASE_URL}${milestone.fileUrl}`:'';
 
 const icons=['🥇','🥈','🥉','🎯','⭐','✨'];
 
@@ -358,7 +358,7 @@ function openModal(item){
 
 const modal=document.getElementById('milestoneModal');
 
-const fileUrl=item.fileUrl?`http://localhost:5000${item.fileUrl}`:'';
+const fileUrl=item.fileUrl?`${BASE_URL}${item.fileUrl}`:'';
 
 document.getElementById('modalImage').src=fileUrl;
 

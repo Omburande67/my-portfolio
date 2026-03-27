@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs | Om Burande</title>
-    <link rel="stylesheet" href="/client/css/blogs.css">
+    <link rel="stylesheet" href="/css/blogs.css">
     <style>
         * {
             margin: 0;
@@ -385,8 +385,8 @@
 <body>
     <!-- Video Background -->
     <video autoplay muted loop playsinline class="video-background">
-        <source src="/client/assets/videos/vd.mp4" type="video/mp4">
-        <source src="/client/assets/videos/dashboard-animation.mp4" type="video/mp4">
+        <source src="/assets/videos/vd.mp4" type="video/mp4">
+        <source src="/assets/videos/dashboard-animation.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     
@@ -394,7 +394,7 @@
     <div class="overlay"></div>
 
     <section class="blog-section">
-        <a href="/client/index.html" class="back-home-btn">← Back to Home</a>
+        <a href="/index.html" class="back-home-btn">← Back to Home</a>
 
         <div class="blog-header">
             <h1>Blogs & Articles</h1>
@@ -421,9 +421,9 @@
             <!-- Populated by JavaScript -->
         </div>
     </section>
-
+    <script src="/js/config.js"></script>
     <script>
-        const API_BASE = 'http://localhost:5000/api';
+        const API_BASE = `${BASE_URL}/api`;
         let allBlogs = [];
 
         async function loadBlogs() {

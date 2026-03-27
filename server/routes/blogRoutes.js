@@ -1,14 +1,16 @@
 const express = require("express");
 const router = express.Router();
-// Fix the import path to match your actual filename
-const authMiddleware = require("../middleware/authMiddleware"); // Changed from "auth" to "authmiddleware"
+const authMiddleware = require("../middleware/authMiddleware");
 const blogController = require("../controllers/blogController");
 
-// Public routes (no auth needed)
+// ✅ Base route (IMPORTANT FIX)
+router.get("/", blogController.getAllBlogs);
+
+// Public routes
 router.get("/all", blogController.getAllBlogs);
-router.get("/id/:id", blogController.getBlogById);
 router.get("/slug/:slug", blogController.getBlogBySlug);
 router.get("/tag/:tag", blogController.getBlogsByTag);
+router.get("/id/:id", blogController.getBlogById);
 
 // Admin routes (protected)
 router.post("/", authMiddleware, blogController.createBlog);

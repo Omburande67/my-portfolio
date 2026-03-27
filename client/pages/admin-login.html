@@ -265,7 +265,7 @@
         <div class="message error" id="errorMsg"></div>
     </div>
 </div>
-
+<script src="/js/config.js"></script>
 <script>
 // Password visibility toggle
 const togglePassword = document.getElementById('togglePassword');
@@ -314,7 +314,7 @@ async function login() {
     errorMsg.classList.remove('show');
     
     try {
-        const res = await fetch("http://localhost:5000/api/auth/login", {
+        const res = await fetch("${BASE_URL}/api/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
@@ -327,7 +327,7 @@ async function login() {
             // Add success effect
             document.querySelector('.login-box').style.transform = 'scale(1.02)';
             setTimeout(() => {
-                window.location.href = "/client/pages/admin-dashboard.html";
+                window.location.href = "/pages/admin-dashboard.html";
             }, 300);
         } else {
             errorMsg.textContent = data.message || "❌ Invalid username or password";

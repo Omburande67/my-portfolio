@@ -385,9 +385,9 @@
             <a id="modalLink" class="modal-link" href="#" target="_blank">View Certificate</a>
         </div>
     </div>
-
+    <script src="/js/config.js"></script>
     <script>
-        const API_BASE = 'http://localhost:5000/api';
+        const API_BASE = `${BASE_URL}/api`;
 
         async function loadCertificates() {
             const grid = document.getElementById('certificatesGrid');
@@ -416,7 +416,7 @@
                 });
 
                 grid.innerHTML = certificates.map(cert => {
-                    const fileUrl = cert.fileUrl ? `http://localhost:5000${cert.fileUrl}` : null;
+                    const fileUrl = cert.fileUrl ? `${BASE_URL}${cert.fileUrl}` : null;
                     const isImage = cert.fileType === 'image';
                     
                     return `
@@ -449,7 +449,7 @@
 
         function openModal(cert) {
             const modal = document.getElementById('certModal');
-            const fileUrl = cert.fileUrl ? `http://localhost:5000${cert.fileUrl}` : '';
+            const fileUrl = cert.fileUrl ? `${BASE_URL}${cert.fileUrl}` : '';
             
             document.getElementById('modalImage').src = fileUrl;
             document.getElementById('modalTitle').textContent = cert.title;

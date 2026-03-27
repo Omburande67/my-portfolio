@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Admin Dashboard</title>
-<link rel="stylesheet" href="/client/css/admin.css">
+<link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
     <button onclick="logout()">Logout</button>
 </div>
-
+<script src="/js/config.js"></script>
 <script>
 const token = localStorage.getItem("adminToken");
 if (!token) {
@@ -27,9 +27,9 @@ if (!token) {
 function goTo(section) {
     // Map section names to actual HTML file paths
     const paths = {
-        'achievements': '/client/pages/admin-achievements.html',
-        'projects': '/client/pages/admin-projects.html',
-        'blogs': '/client/pages/admin-blogs.html'
+        'achievements': '/pages/admin-achievements.html',
+        'projects': '/pages/admin-projects.html',
+        'blogs': '/pages/admin-blogs.html'
     };
     
     // Navigate to the correct path

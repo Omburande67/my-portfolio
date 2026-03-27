@@ -270,7 +270,7 @@
 </head>
 <body>
     <!-- Background Image -->
-    <img src="/client/assets/images/blogs-bg.jpg" alt="Background" class="background-image">
+    <img src="/assets/images/blogs-bg.jpg" alt="Background" class="background-image">
     
     <!-- Dark Overlay -->
     <div class="overlay"></div>
@@ -282,9 +282,9 @@
             <div class="loading">Loading blog...</div>
         </div>
     </div>
-
+    <script src="/js/config.js"></script>
     <script>
-        const API_BASE = 'http://localhost:5000/api';
+        const API_BASE = `${BASE_URL}/api`;
 
         async function loadBlog() {
             const container = document.getElementById('blogContent');

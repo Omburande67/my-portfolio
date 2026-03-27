@@ -403,9 +403,9 @@
             <a id="modalLink" class="modal-link" href="#" target="_blank">View Details</a>
         </div>
     </div>
-
+     <script src="/js/config.js"></script>
     <script>
-        const API_BASE = 'http://localhost:5000/api';
+        const API_BASE = `${BASE_URL}/api`;
 
         async function loadCompetitive() {
             const grid = document.getElementById('competitiveGrid');
@@ -434,7 +434,7 @@
                 });
 
                 grid.innerHTML = achievements.map(comp => {
-                    const fileUrl = comp.fileUrl ? `http://localhost:5000${comp.fileUrl}` : null;
+                    const fileUrl = comp.fileUrl ? `${BASE_URL}${comp.fileUrl}` : null;
                     const hasImage = comp.fileType === 'image' && fileUrl;
                     
                     return `
@@ -465,7 +465,7 @@
 
         function openModal(item) {
             const modal = document.getElementById('compModal');
-            const fileUrl = item.fileUrl ? `http://localhost:5000${item.fileUrl}` : '';
+            const fileUrl = item.fileUrl ? `${BASE_URL}${item.fileUrl}` : '';
             
             document.getElementById('modalImage').src = fileUrl;
             document.getElementById('modalTitle').textContent = item.title;

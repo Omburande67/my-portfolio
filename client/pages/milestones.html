@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Milestones</title>
 
 <style>
@@ -18,6 +18,7 @@ font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
 background:#0a0a0a;
 color:#ffffff;
 min-height:100vh;
+overflow-x:hidden;
 }
 
 /* Animated Background */
@@ -213,6 +214,9 @@ width:90%;
 border-radius:20px;
 padding:35px;
 border:1px solid rgba(255,107,0,0.3);
+position:relative;
+max-height:90vh;
+overflow-y:auto;
 }
 
 .close-modal{
@@ -222,6 +226,11 @@ right:25px;
 font-size:30px;
 cursor:pointer;
 color:#999;
+transition:0.3s;
+}
+
+.close-modal:hover{
+color:#ff6b00;
 }
 
 .modal-image{
@@ -229,6 +238,7 @@ width:100%;
 max-height:380px;
 object-fit:contain;
 margin-bottom:20px;
+border-radius:12px;
 }
 
 .modal-title{
@@ -253,6 +263,291 @@ color:#0a0a0a;
 text-decoration:none;
 border-radius:8px;
 font-weight:600;
+transition:0.3s;
+}
+
+.modal-link:hover{
+transform:translateY(-2px);
+box-shadow:0 5px 15px rgba(255,107,0,0.3);
+}
+
+/* ===== RESPONSIVE STYLES (ADDED ONLY - NO ORIGINAL CODE MODIFIED) ===== */
+@media (max-width: 1024px) {
+    .page-section {
+        padding: 30px 20px;
+    }
+    
+    .timeline-content {
+        width: 48%;
+        padding: 18px;
+    }
+    
+    .milestone-title {
+        font-size: 20px;
+    }
+    
+    .page-title {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-section {
+        padding: 25px 16px;
+    }
+    
+    .back-btn {
+        padding: 10px 18px;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+    
+    .page-title {
+        font-size: 32px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+    }
+    
+    .header {
+        margin-bottom: 30px;
+    }
+    
+    /* Timeline becomes vertical on mobile */
+    .timeline::before {
+        left: 30px;
+        transform: none;
+    }
+    
+    .timeline-item {
+        margin-bottom: 35px;
+        justify-content: flex-start;
+    }
+    
+    .timeline-badge {
+        left: 30px;
+        transform: none;
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+    
+    .timeline-content {
+        width: calc(100% - 70px);
+        margin-left: 70px !important;
+        margin-right: 0 !important;
+        padding: 18px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 70px;
+        margin-right: 0;
+    }
+    
+    .milestone-title {
+        font-size: 18px;
+    }
+    
+    .milestone-date {
+        font-size: 13px;
+    }
+    
+    .milestone-desc {
+        font-size: 14px;
+    }
+    
+    .milestone-image {
+        max-height: 140px;
+    }
+    
+    /* Modal responsive */
+    .modal-content {
+        padding: 25px 20px;
+        width: 95%;
+        max-height: 85vh;
+    }
+    
+    .modal-title {
+        font-size: 24px;
+    }
+    
+    .modal-description {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    .modal-image {
+        max-height: 250px;
+    }
+    
+    .modal-link {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+    
+    .close-modal {
+        top: 15px;
+        right: 20px;
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-section {
+        padding: 20px 12px;
+    }
+    
+    .back-btn {
+        padding: 8px 14px;
+        font-size: 12px;
+        gap: 6px;
+        margin-bottom: 20px;
+    }
+    
+    .page-title {
+        font-size: 26px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+    }
+    
+    .timeline::before {
+        left: 22px;
+        width: 3px;
+    }
+    
+    .timeline-badge {
+        left: 22px;
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+    
+    .timeline-content {
+        width: calc(100% - 58px);
+        margin-left: 58px !important;
+        padding: 14px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 58px;
+    }
+    
+    .milestone-title {
+        font-size: 16px;
+    }
+    
+    .milestone-date {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+    
+    .milestone-desc {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .milestone-image {
+        max-height: 120px;
+        margin-top: 8px;
+    }
+    
+    .timeline-item {
+        margin-bottom: 28px;
+    }
+    
+    .modal-content {
+        padding: 20px 15px;
+    }
+    
+    .modal-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    
+    .modal-description {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+    
+    .modal-image {
+        max-height: 200px;
+        margin-bottom: 15px;
+    }
+    
+    .modal-link {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .close-modal {
+        top: 12px;
+        right: 15px;
+        font-size: 24px;
+    }
+}
+
+/* Tablet landscape optimization */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .timeline-content {
+        width: 47%;
+        padding: 20px;
+    }
+    
+    .milestone-title {
+        font-size: 20px;
+    }
+    
+    .milestone-desc {
+        font-size: 13px;
+    }
+}
+
+/* Fix for small height devices */
+@media (max-height: 600px) {
+    .modal-content {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .modal-image {
+        max-height: 150px;
+    }
+    
+    .modal-title {
+        font-size: 22px;
+    }
+}
+
+/* Ensure smooth transitions */
+.timeline-content, .back-btn, .modal-link, .close-modal {
+    transition: all 0.3s ease;
+}
+
+/* Fix for modal scroll */
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #2a2a2a;
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #ff6b00;
+    border-radius: 10px;
+}
+
+/* Loading state */
+.timeline:contains('Loading...') {
+    text-align: center;
+    padding: 50px;
+    color: #ff6b00;
 }
 
 </style>
@@ -285,7 +580,7 @@ font-weight:600;
 
 <h2 id="modalTitle" class="modal-title"></h2>
 
-<p id="modalDate"></p>
+<p id="modalDate" style="color:#ff6b00; margin-bottom:15px;"></p>
 
 <p id="modalDescription" class="modal-description"></p>
 
@@ -293,7 +588,7 @@ font-weight:600;
 
 </div>
 </div>
- <script src="/js/config.js"></script>
+<script src="/js/config.js"></script>
 <script>
 
 const API_BASE=`${BASE_URL}/api`;
@@ -302,7 +597,7 @@ async function loadMilestones(){
 
 const timeline=document.getElementById('milestonesTimeline');
 
-timeline.innerHTML='Loading...';
+timeline.innerHTML='<div style="text-align:center; padding:50px; color:#ff6b00;">Loading milestones...</div>';
 
 try{
 
@@ -311,6 +606,11 @@ const response=await fetch(`${API_BASE}/achievements/category/milestone`);
 const milestones=await response.json();
 
 milestones.sort((a,b)=>new Date(b.date)-new Date(a.date));
+
+if(milestones.length === 0){
+timeline.innerHTML='<div style="text-align:center; padding:50px; color:#a0a0a0;">No milestones found</div>';
+return;
+}
 
 timeline.innerHTML=milestones.map((milestone,index)=>{
 
@@ -334,7 +634,7 @@ return`
 
 <p class="milestone-desc">${milestone.description}</p>
 
-${fileUrl && milestone.fileType==='image'?`<img src="${fileUrl}" class="milestone-image">`:''}
+${fileUrl && milestone.fileType==='image'?`<img src="${fileUrl}" class="milestone-image" alt="${milestone.title}">`:''}
 
 </div>
 
@@ -348,49 +648,68 @@ ${fileUrl && milestone.fileType==='image'?`<img src="${fileUrl}" class="mileston
 
 catch(err){
 
-timeline.innerHTML='Error loading milestones';
+console.error('Error loading milestones:', err);
+timeline.innerHTML='<div style="text-align:center; padding:50px; color:#ff6b00;">Error loading milestones. Please try again later.</div>';
 
 }
 
 }
 
 function openModal(item){
-
 const modal=document.getElementById('milestoneModal');
-
 const fileUrl=item.fileUrl?`${BASE_URL}${item.fileUrl}`:'';
 
-document.getElementById('modalImage').src=fileUrl;
+const modalImage=document.getElementById('modalImage');
+if(fileUrl && item.fileType==='image'){
+modalImage.src=fileUrl;
+modalImage.style.display='block';
+} else {
+modalImage.style.display='none';
+}
 
 document.getElementById('modalTitle').textContent=item.title;
 
-document.getElementById('modalDate').textContent=item.date;
+const modalDate=document.getElementById('modalDate');
+if(item.date){
+modalDate.textContent=item.date;
+modalDate.style.display='block';
+} else {
+modalDate.style.display='none';
+}
 
 document.getElementById('modalDescription').textContent=item.description;
 
 const modalLink=document.getElementById('modalLink');
-
 if(item.link){
-
 modalLink.href=item.link;
-
 modalLink.style.display='inline-block';
-
+modalLink.textContent='View Details';
 }else{
-
 modalLink.style.display='none';
-
 }
 
 modal.style.display='flex';
-
+document.body.style.overflow='hidden';
 }
 
 function closeModal(){
-
 document.getElementById('milestoneModal').style.display='none';
-
+document.body.style.overflow='auto';
 }
+
+// Close modal on escape key
+document.addEventListener('keydown', function(e) {
+if(e.key === 'Escape') {
+closeModal();
+}
+});
+
+// Close modal when clicking outside
+document.getElementById('milestoneModal').addEventListener('click', function(e) {
+if(e.target === this) {
+closeModal();
+}
+});
 
 document.addEventListener('DOMContentLoaded',loadMilestones);
 

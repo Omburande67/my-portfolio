@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Projects | Om Burande</title>
     <link rel="stylesheet" href="/css/projects.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -133,7 +133,7 @@
             margin-top: 15px;
         }
 
-        /* Profile Section */
+        /* Profile Section - REMOVED profile card, only commits card remains */
         .profile-section {
             display: flex;
             gap: 25px;
@@ -141,165 +141,13 @@
             flex-wrap: wrap;
             position: relative;
             z-index: 1;
+            justify-content: flex-end;
         }
 
-        .profile-card {
-            background: rgba(18, 25, 43, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 25px;
+        /* Commits Card - Now takes full width */
+        .commits-card {
             flex: 1;
             min-width: 300px;
-            border: 1px solid rgba(255, 122, 0, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: slideInLeft 0.8s ease;
-        }
-
-        .profile-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: #ff7a00;
-            box-shadow: 0 20px 40px rgba(255, 122, 0, 0.3);
-        }
-
-        .avatar-wrapper {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .profile-avatar {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 4px solid #ff7a00;
-            object-fit: cover;
-            transition: all 0.5s ease;
-            animation: pulseGlow 2s infinite;
-        }
-
-        .profile-card:hover .profile-avatar {
-            transform: scale(1.05);
-            border-color: #ff944d;
-        }
-
-        .avatar-wrapper::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 122, 0, 0.3);
-            animation: rotate 10s linear infinite;
-        }
-
-        .username-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .username-row .name {
-            color: #ff7a00;
-            font-size: 26px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ff7a00, #ffa64d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .username-row .handle {
-            color: #888;
-            font-size: 16px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            width: 100%;
-            margin: 20px 0;
-        }
-
-        .stat-item {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 12px 5px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 122, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            border-color: #ff7a00;
-            transform: translateY(-3px);
-        }
-
-        .stat-value {
-            color: #ff7a00;
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .stat-label {
-            color: #a0a0a0;
-            font-size: 12px;
-        }
-
-        .joined {
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .github-link {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #ff7a00, #ff944d);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .github-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .github-link:hover::before {
-            left: 100%;
-        }
-
-        .github-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 122, 0, 0.4);
-        }
-
-        /* Commits Card */
-        .commits-card {
-            flex: 1.3;
-            min-width: 400px;
             background: rgba(18, 25, 43, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 24px;
@@ -796,15 +644,182 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Responsive */
+        /* ===== RESPONSIVE STYLES (ADDED ONLY) ===== */
+        @media (max-width: 1024px) {
+            .main-container {
+                padding: 15px 20px;
+            }
+            .stats-grid-container {
+                gap: 15px;
+            }
+        }
+
         @media (max-width: 768px) {
-            .main-container { padding: 15px; }
-            .github-header h1 { font-size: 36px; }
-            .stats-grid-container { grid-template-columns: 1fr; }
-            .commits-card { min-width: 100%; }
-            .header-wrapper { flex-direction: column; }
-            .back-home-btn { align-self: flex-start; }
-            .commits-header { flex-direction: column; align-items: flex-start; }
+            .main-container {
+                padding: 15px;
+            }
+            
+            .github-header h1 {
+                font-size: 32px;
+            }
+            
+            .github-header .subtitle {
+                font-size: 12px;
+            }
+            
+            .stats-grid-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .commits-card {
+                min-width: 100%;
+                padding: 20px;
+            }
+            
+            .commits-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .commits-card h3 {
+                font-size: 18px;
+            }
+            
+            .header-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .back-home-btn {
+                align-self: flex-start;
+            }
+            
+            .github-header {
+                width: 100%;
+            }
+            
+            .github-header h1::after {
+                width: 60px;
+            }
+            
+            .profile-section {
+                justify-content: center;
+            }
+            
+            .chart-container {
+                height: 220px;
+            }
+            
+            .contribution-card {
+                padding: 18px;
+            }
+            
+            .contribution-card h3 {
+                font-size: 18px;
+            }
+            
+            .projects-title {
+                font-size: 28px;
+            }
+            
+            .project-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            #search, #filter {
+                width: 100%;
+                max-width: 300px;
+                min-width: auto;
+            }
+            
+            .repo-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .rate-limit {
+                text-align: center;
+                font-size: 12px;
+            }
+            
+            .stat-card h3 {
+                font-size: 16px;
+            }
+            
+            .lang-name, .lang-percent {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-container {
+                padding: 12px;
+            }
+            
+            .github-header h1 {
+                font-size: 26px;
+            }
+            
+            .commits-card {
+                padding: 15px;
+            }
+            
+            .commits-card h3 {
+                font-size: 16px;
+            }
+            
+            .chart-container {
+                height: 180px;
+            }
+            
+            .projects-title {
+                font-size: 24px;
+            }
+            
+            .repo-card {
+                padding: 15px;
+            }
+            
+            .repo-name {
+                font-size: 18px;
+            }
+            
+            .repo-description {
+                font-size: 12px;
+            }
+            
+            .repo-meta {
+                font-size: 12px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .repo-link {
+                padding: 6px 16px;
+                font-size: 12px;
+            }
+            
+            .back-home-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+            
+            .stat-card {
+                padding: 15px;
+            }
+        }
+
+        /* Tablet landscape optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .stats-grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .repo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -812,7 +827,7 @@
     <div class="main-container">
         <!-- Header with Back Button -->
         <div class="header-wrapper">
-            <a href="/index.html" class="back-home-btn">← Back to Home</a>
+            <a href="index.html" class="back-home-btn">← Back to Home</a>
             <div class="github-header">
                 <h1>GITHUB ACTIVITY</h1>
                 <div class="subtitle">Please do scroll for Recent Projects</div>
@@ -820,36 +835,8 @@
             <div style="width: 100px;"></div> <!-- Spacer for alignment -->
         </div>
 
-        <!-- Profile Section -->
+        <!-- Profile Section - Profile card REMOVED, only commits card remains -->
         <div class="profile-section">
-            <div class="profile-card">
-                <div class="avatar-wrapper">
-                    <img id="avatar" class="profile-avatar" src="" alt="Profile Avatar">
-                </div>
-                <div class="username-row">
-                    <span class="name" id="fullName">Loading...</span>
-                    <span class="handle" id="username"></span>
-                </div>
-                               
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-value" id="repoCount">0</div>
-                        <div class="stat-label">Repos</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="followerCount">0</div>
-                        <div class="stat-label">Followers</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="followingCount">0</div>
-                        <div class="stat-label">Following</div>
-                    </div>
-                </div>
-
-                <div class="joined" id="joined"></div>
-                <a id="githubLink" class="github-link" href="#" target="_blank">View GitHub Profile →</a>
-            </div>
-
             <!-- Commits Chart with Explore Link Below -->
             <div class="commits-card">
                 <div class="commits-header">

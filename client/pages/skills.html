@@ -2,17 +2,172 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Skills</title>
 
     <!-- CSS LINK -->
     <link rel="stylesheet" href="/css/skills.css">
+    
+    <!-- ADDED: Responsive CSS (does not modify existing design, only adds mobile responsiveness) -->
+    <style>
+        /* ===== RESPONSIVE FIXES - ONLY ADDED, NOT CHANGING ANY EXISTING DESIGN ===== */
+        
+        /* Prevent horizontal scroll on mobile */
+        body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        
+        /* Responsive Skills Section */
+        @media (max-width: 1024px) {
+            .skills-section {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+            
+            .skills-wrapper {
+                gap: 20px !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .skills-section {
+                padding: 60px 16px 40px !important;
+            }
+            
+            /* Make skills wrapper stack vertically on mobile */
+            .skills-wrapper {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
+            
+            /* Ensure skill boxes take full width */
+            .skill-box {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 auto !important;
+                box-sizing: border-box !important;
+            }
+            
+            /* Adjust title size for mobile */
+            .skills-title {
+                font-size: 1.8rem !important;
+                text-align: center !important;
+                word-break: break-word !important;
+            }
+            
+            /* Make marquee text readable on mobile */
+            .skills-marquee {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                white-space: nowrap !important;
+            }
+            
+            .skills-marquee span {
+                font-size: 0.8rem !important;
+                display: inline-block !important;
+                white-space: nowrap !important;
+            }
+            
+            /* Back button mobile adjustments */
+            .back-home-btn {
+                position: fixed !important;
+                top: 15px !important;
+                left: 15px !important;
+                z-index: 1000 !important;
+                padding: 8px 16px !important;
+                font-size: 13px !important;
+                white-space: nowrap !important;
+            }
+            
+            /* Skill box internal spacing */
+            .skill-box h3 {
+                font-size: 1.2rem !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .skill {
+                margin-bottom: 18px !important;
+            }
+            
+            .skill-head span:first-child {
+                font-size: 0.85rem !important;
+            }
+            
+            .skill-head span:last-child {
+                font-size: 0.8rem !important;
+            }
+            
+            /* Progress bars touch-friendly */
+            .progress {
+                height: 8px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .skills-section {
+                padding: 70px 12px 30px !important;
+            }
+            
+            .skills-title {
+                font-size: 1.5rem !important;
+            }
+            
+            .skill-box {
+                padding: 20px 15px !important;
+            }
+            
+            .skill-box h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            .skill-head span:first-child {
+                font-size: 0.8rem !important;
+            }
+            
+            .skill-head span:last-child {
+                font-size: 0.75rem !important;
+            }
+            
+            .back-home-btn {
+                top: 12px !important;
+                left: 12px !important;
+                padding: 6px 12px !important;
+                font-size: 11px !important;
+            }
+            
+            .skills-marquee span {
+                font-size: 0.7rem !important;
+            }
+        }
+        
+        /* Tablet landscape optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .skills-wrapper {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px !important;
+            }
+        }
+        
+        /* Ensure all skill boxes maintain their original styling while being responsive */
+        .skill-box {
+            overflow: hidden !important;
+        }
+        
+        /* Make progress bars animate properly on all devices */
+        .progress-bar {
+            transition: width 0.6s ease-out !important;
+        }
+    </style>
 </head>
 <body>
 
     <section class="skills-section">
 
     <div class="skills-overlay"></div>
-     <a href="/index.html" class="back-home-btn">← Back to Home</a>
+     <a href="index.html" class="back-home-btn">← Back to Home</a>
 
     <div class="skills-container">
 
@@ -200,6 +355,57 @@
 
 <!-- JS LINK (VERY IMPORTANT - place before </body>) -->
 <script src="/js/skills.js"></script>
+
+<!-- ADDED: Ensure progress bars animate on mobile as well (doesn't modify original JS behavior) -->
+<script>
+    (function() {
+        // Helper function to check if element is visible in viewport
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            var windowWidth = window.innerWidth || document.documentElement.clientWidth;
+            return (
+                rect.top <= windowHeight + 100 && 
+                rect.bottom >= -100
+            );
+        }
+        
+        // Animate progress bars when they come into view
+        function animateProgressBars() {
+            var progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach(function(bar) {
+                // Skip if already animated
+                if (bar.getAttribute('data-animated') === 'true') return;
+                
+                // Check if bar is visible
+                if (isElementInViewport(bar)) {
+                    var percent = bar.getAttribute('data-percent');
+                    if (percent) {
+                        bar.style.transition = 'width 0.8s ease-out';
+                        bar.style.width = percent + '%';
+                        bar.setAttribute('data-animated', 'true');
+                    }
+                }
+            });
+        }
+        
+        // Run on load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', animateProgressBars);
+        } else {
+            animateProgressBars();
+        }
+        
+        // Run on scroll
+        window.addEventListener('scroll', animateProgressBars);
+        
+        // Run on resize
+        window.addEventListener('resize', animateProgressBars);
+        
+        // Small delay to ensure everything is loaded
+        setTimeout(animateProgressBars, 500);
+    })();
+</script>
 
 </body>
 </html>

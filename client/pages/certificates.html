@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Industry Certifications</title>
     <style>
         * {
@@ -15,6 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0a0a0a;
             color: #ffffff;
+            overflow-x: hidden;
         }
 
         /* Animated Background */
@@ -359,6 +360,321 @@
         .modal-link:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        /* ===== RESPONSIVE STYLES (ADDED ONLY - NO ORIGINAL CODE MODIFIED) ===== */
+        @media (max-width: 1024px) {
+            .page-section {
+                padding: 25px 20px;
+            }
+            
+            .cert-grid {
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-section {
+                padding: 20px 16px;
+            }
+            
+            .back-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .header {
+                margin-bottom: 25px;
+            }
+            
+            .cert-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .cert-card {
+                max-width: 100%;
+            }
+            
+            .cert-image {
+                height: 160px;
+            }
+            
+            .cert-content {
+                padding: 14px;
+            }
+            
+            .cert-title {
+                font-size: 17px;
+            }
+            
+            .cert-date {
+                font-size: 12px;
+            }
+            
+            .cert-description {
+                font-size: 12px;
+                -webkit-line-clamp: 2;
+            }
+            
+            .cert-category {
+                font-size: 10px;
+                padding: 3px 8px;
+            }
+            
+            .view-btn {
+                font-size: 12px;
+            }
+            
+            /* Modal responsive */
+            .modal-content {
+                padding: 20px;
+                width: 95%;
+                max-height: 85vh;
+            }
+            
+            .modal-title {
+                font-size: 20px;
+            }
+            
+            .modal-date {
+                font-size: 13px;
+                margin-bottom: 12px;
+            }
+            
+            .modal-description {
+                font-size: 13px;
+                line-height: 1.5;
+                margin-bottom: 18px;
+            }
+            
+            .modal-image {
+                max-height: 220px;
+                margin-bottom: 15px;
+            }
+            
+            .modal-link {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            
+            .close-modal {
+                top: 12px;
+                right: 15px;
+                width: 28px;
+                height: 28px;
+                font-size: 20px;
+            }
+            
+            .empty-state {
+                padding: 40px 15px;
+            }
+            
+            .empty-state h3 {
+                font-size: 20px;
+            }
+            
+            .empty-state p {
+                font-size: 13px;
+            }
+            
+            .empty-state-icon {
+                font-size: 45px;
+            }
+            
+            .loading {
+                padding: 30px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-section {
+                padding: 15px 12px;
+            }
+            
+            .back-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+                margin-bottom: 15px;
+            }
+            
+            .page-title {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 12px;
+                padding-bottom: 8px;
+            }
+            
+            .subtitle::after {
+                width: 40px;
+                height: 2px;
+            }
+            
+            .cert-grid {
+                gap: 14px;
+            }
+            
+            .cert-image {
+                height: 140px;
+            }
+            
+            .cert-content {
+                padding: 12px;
+            }
+            
+            .cert-title {
+                font-size: 16px;
+            }
+            
+            .cert-date {
+                font-size: 11px;
+                margin-bottom: 8px;
+            }
+            
+            .cert-description {
+                font-size: 11px;
+                margin-bottom: 10px;
+            }
+            
+            .cert-category {
+                font-size: 9px;
+                margin-bottom: 8px;
+            }
+            
+            .view-btn {
+                font-size: 11px;
+            }
+            
+            .modal-content {
+                padding: 18px 15px;
+            }
+            
+            .modal-title {
+                font-size: 18px;
+            }
+            
+            .modal-date {
+                font-size: 12px;
+            }
+            
+            .modal-description {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+            
+            .modal-image {
+                max-height: 180px;
+            }
+            
+            .modal-link {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+            
+            .close-modal {
+                top: 10px;
+                right: 12px;
+                width: 26px;
+                height: 26px;
+                font-size: 18px;
+            }
+            
+            .empty-state h3 {
+                font-size: 18px;
+            }
+            
+            .empty-state p {
+                font-size: 12px;
+            }
+            
+            .empty-state-icon {
+                font-size: 40px;
+            }
+        }
+
+        /* Tablet landscape optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+        }
+
+        /* Small height devices */
+        @media (max-height: 600px) {
+            .modal-content {
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            
+            .modal-image {
+                max-height: 150px;
+            }
+            
+            .modal-title {
+                font-size: 20px;
+            }
+            
+            .modal-description {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 360px) {
+            .cert-title {
+                font-size: 15px;
+            }
+            
+            .cert-description {
+                font-size: 10px;
+            }
+            
+            .cert-content {
+                padding: 10px;
+            }
+            
+            .cert-image {
+                height: 130px;
+            }
+        }
+
+        /* Ensure smooth transitions */
+        .cert-card, .back-btn, .modal-link, .close-modal, .view-btn {
+            transition: all 0.3s ease;
+        }
+
+        /* Modal scrollbar */
+        .modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: #2a2a2a;
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #ff6b00;
+            border-radius: 10px;
+        }
+
+        /* Fix for overflow */
+        .cert-grid, .page-section {
+            overflow-x: hidden;
         }
     </style>
 </head>

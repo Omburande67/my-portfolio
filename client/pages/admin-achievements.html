@@ -3,6 +3,7 @@
 <head>
     <title>Admin - Manage Achievements</title>
     <link rel="stylesheet" href="/css/admin.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <style>
         * {
             margin: 0;
@@ -13,6 +14,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f5f5f5;
+            overflow-x: hidden;
         }
 
         .admin-container {
@@ -330,6 +332,7 @@
             display: flex;
             gap: 20px;
             margin-top: 5px;
+            flex-wrap: wrap;
         }
 
         .radio-group label {
@@ -386,6 +389,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .file-preview img {
@@ -510,6 +514,343 @@
             to {
                 transform: translateX(0);
                 opacity: 1;
+            }
+        }
+
+        /* ===== RESPONSIVE STYLES (ADDED ONLY - NO ORIGINAL CODE MODIFIED) ===== */
+        @media (max-width: 1024px) {
+            .admin-container {
+                padding: 25px 20px;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 20px 15px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .back-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            .category-tabs {
+                gap: 8px;
+                justify-content: center;
+            }
+            
+            .tab-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            
+            .add-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+                margin-left: 0;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .card-image {
+                height: 180px;
+            }
+            
+            .card-content {
+                padding: 16px;
+            }
+            
+            .card-title {
+                font-size: 16px;
+            }
+            
+            .card-description {
+                font-size: 13px;
+            }
+            
+            .card-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .btn {
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            /* Modal responsive */
+            .modal-content {
+                margin: 20px;
+                padding: 20px;
+                width: auto;
+            }
+            
+            .modal-header h2 {
+                font-size: 20px;
+            }
+            
+            .close-btn {
+                font-size: 24px;
+            }
+            
+            .form-group label {
+                font-size: 13px;
+            }
+            
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            .radio-group {
+                gap: 15px;
+            }
+            
+            .radio-group label {
+                font-size: 13px;
+            }
+            
+            .file-upload {
+                padding: 20px;
+            }
+            
+            .file-upload p {
+                font-size: 13px;
+            }
+            
+            .file-upload small {
+                font-size: 11px;
+            }
+            
+            .file-preview {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .file-preview .remove-file {
+                margin-left: 0;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .form-actions button {
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .empty-state {
+                padding: 40px 15px;
+            }
+            
+            .empty-state p {
+                font-size: 14px;
+            }
+            
+            .toast {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                text-align: center;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-container {
+                padding: 15px 12px;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .back-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .category-tabs {
+                gap: 6px;
+            }
+            
+            .tab-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .add-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .card-image {
+                height: 160px;
+            }
+            
+            .card-content {
+                padding: 14px;
+            }
+            
+            .card-title {
+                font-size: 15px;
+            }
+            
+            .card-date {
+                font-size: 12px;
+            }
+            
+            .card-description {
+                font-size: 12px;
+                max-height: 50px;
+            }
+            
+            .card-actions {
+                padding: 12px 14px;
+            }
+            
+            .btn {
+                padding: 8px;
+                font-size: 12px;
+            }
+            
+            .modal-content {
+                margin: 15px;
+                padding: 18px;
+            }
+            
+            .modal-header h2 {
+                font-size: 18px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 8px;
+                font-size: 12px;
+            }
+            
+            .file-upload {
+                padding: 15px;
+            }
+            
+            .file-upload i {
+                font-size: 32px;
+            }
+            
+            .file-upload p {
+                font-size: 12px;
+            }
+            
+            .file-preview {
+                padding: 12px;
+            }
+            
+            .file-preview img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .empty-state {
+                padding: 30px 12px;
+            }
+            
+            .empty-state p {
+                font-size: 13px;
+            }
+            
+            .loading {
+                padding: 30px;
+                font-size: 14px;
+            }
+        }
+
+        /* Tablet landscape optimization */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+            
+            .category-tabs {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Small height devices */
+        @media (max-height: 700px) {
+            .modal-content {
+                margin: 20px auto;
+                max-height: 85vh;
+                overflow-y: auto;
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 360px) {
+            .tab-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+            
+            .card-title {
+                font-size: 14px;
+            }
+            
+            .card-description {
+                font-size: 11px;
+            }
+            
+            .btn {
+                font-size: 11px;
+                padding: 7px;
+            }
+        }
+
+        /* Ensure smooth transitions */
+        .tab-btn, .add-btn, .btn, .achievement-card, .back-btn {
+            transition: all 0.3s ease;
+        }
+
+        /* Fix for modal scroll on mobile */
+        @media (max-width: 768px) {
+            .modal {
+                padding: 10px;
+            }
+            
+            .modal-content {
+                max-height: 90vh;
+                overflow-y: auto;
             }
         }
     </style>

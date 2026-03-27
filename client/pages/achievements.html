@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Achievements</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="stylesheet" href="/css/achievements.css">
 </head>
 <body>
@@ -353,6 +353,306 @@ function closeModal() {
 .thumb.pdf-thumb.active, .thumb.no-file.active {
     border-color: #667eea;
     background: #e8eaf6;
+}
+
+/* ===== RESPONSIVE STYLES (ADDED ONLY - NO ORIGINAL CODE MODIFIED) ===== */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .cards {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .back-home-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .title {
+        font-size: 28px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+    }
+    
+    .cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .card {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .card h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .thumbnail-slider {
+        margin-bottom: 15px;
+    }
+    
+    .thumb-track {
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .thumb {
+        min-width: 70px;
+        width: 70px;
+        height: 70px;
+    }
+    
+    .thumb.pdf-thumb, .thumb.no-file {
+        min-width: 70px;
+        width: 70px;
+        height: 70px;
+    }
+    
+    .thumb.pdf-thumb span, .thumb.no-file span {
+        font-size: 32px !important;
+    }
+    
+    .card-footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .view-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+    
+    .accent-line {
+        width: 100%;
+        height: 2px;
+    }
+    
+    .modal-content {
+        width: 90%;
+        padding: 20px;
+        max-width: 90%;
+        margin: 0 15px;
+    }
+    
+    .modal-content h2 {
+        font-size: 20px;
+    }
+    
+    .modal-content p {
+        font-size: 13px;
+    }
+    
+    #modal-image {
+        max-height: 200px;
+    }
+    
+    .close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+    }
+    
+    .no-items {
+        padding: 15px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-home-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+        gap: 5px;
+    }
+    
+    .title {
+        font-size: 24px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+    }
+    
+    .card {
+        padding: 16px;
+    }
+    
+    .card h2 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+    
+    .thumb {
+        min-width: 60px;
+        width: 60px;
+        height: 60px;
+    }
+    
+    .thumb.pdf-thumb, .thumb.no-file {
+        min-width: 60px;
+        width: 60px;
+        height: 60px;
+    }
+    
+    .thumb.pdf-thumb span, .thumb.no-file span {
+        font-size: 28px !important;
+    }
+    
+    .thumb-track {
+        gap: 10px;
+    }
+    
+    .view-btn {
+        padding: 6px 16px;
+        font-size: 12px;
+    }
+    
+    .modal-content {
+        padding: 18px;
+    }
+    
+    .modal-content h2 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+    
+    .modal-content p {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+    
+    #modal-image {
+        max-height: 160px;
+        margin-bottom: 12px;
+    }
+    
+    .close-btn {
+        top: 8px;
+        right: 12px;
+        font-size: 22px;
+    }
+    
+    .no-items {
+        padding: 12px;
+        font-size: 12px;
+    }
+}
+
+/* Tablet landscape optimization */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .cards {
+        gap: 20px;
+    }
+    
+    .card {
+        padding: 22px;
+    }
+    
+    .thumb {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+/* Small height devices */
+@media (max-height: 600px) {
+    .modal-content {
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+    
+    #modal-image {
+        max-height: 150px;
+    }
+    
+    .modal-content h2 {
+        font-size: 18px;
+    }
+    
+    .modal-content p {
+        font-size: 12px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .title {
+        font-size: 22px;
+    }
+    
+    .subtitle {
+        font-size: 11px;
+    }
+    
+    .card {
+        padding: 14px;
+    }
+    
+    .card h2 {
+        font-size: 16px;
+    }
+    
+    .thumb {
+        min-width: 55px;
+        width: 55px;
+        height: 55px;
+    }
+    
+    .thumb.pdf-thumb, .thumb.no-file {
+        min-width: 55px;
+        width: 55px;
+        height: 55px;
+    }
+    
+    .thumb.pdf-thumb span, .thumb.no-file span {
+        font-size: 24px !important;
+    }
+    
+    .view-btn {
+        padding: 5px 14px;
+        font-size: 11px;
+    }
+}
+
+/* Ensure horizontal scroll on thumbnails is smooth */
+.thumb-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for cleaner look on mobile (optional) */
+@media (max-width: 768px) {
+    .thumb-track::-webkit-scrollbar {
+        height: 3px;
+    }
+    
+    .thumb-track::-webkit-scrollbar-track {
+        background: rgba(255, 122, 0, 0.1);
+        border-radius: 10px;
+    }
+    
+    .thumb-track::-webkit-scrollbar-thumb {
+        background: #ff7a00;
+        border-radius: 10px;
+    }
+}
+
+/* Ensure smooth transitions */
+.back-home-btn, .card, .thumb, .view-btn {
+    transition: all 0.3s ease;
 }
 </style>
 

@@ -15,7 +15,7 @@ body {
     position: relative;
     padding: 60px 8% 100px 8%; /* Reduced top padding */
     margin-bottom: 0;
-    background: url("/client/assets/images/skills-bg.jpg") no-repeat center center/cover;
+    background: url("/assets/images/skills-bg.jpg") no-repeat center center/cover;
     overflow: hidden;
 }
 header {

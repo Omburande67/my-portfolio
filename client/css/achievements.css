@@ -1,0 +1,11 @@
+
+/* BODY */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: url("/assets/images/fas.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+

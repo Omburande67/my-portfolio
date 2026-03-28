@@ -414,6 +414,7 @@ function closeModal() {
         height: 80px;
         object-fit: cover;
         flex-shrink: 0;
+        border-radius: 12px;
     }
     
     .thumb.pdf-thumb, .thumb.no-file {
@@ -498,6 +499,7 @@ function closeModal() {
         min-width: 70px;
         width: 70px;
         height: 70px;
+        border-radius: 10px;
     }
     
     .thumb.pdf-thumb, .thumb.no-file {
@@ -622,7 +624,7 @@ function closeModal() {
     }
 }
 
-/* Ensure images cover full card area */
+/* FIX: Ensure images cover full card area on mobile */
 .thumb {
     object-fit: cover;
     border-radius: 12px;
@@ -632,6 +634,28 @@ function closeModal() {
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
+}
+
+/* FIX: Make thumbnails fit properly on all devices */
+.thumbnail-slider {
+    width: 100%;
+    overflow: hidden;
+}
+
+.thumb-track {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 5px 0 10px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.thumb {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    object-fit: cover;
+    display: block;
 }
 
 /* Smooth scrollbar on mobile */
@@ -654,6 +678,16 @@ function closeModal() {
 /* Ensure smooth transitions */
 .back-home-btn, .card, .thumb, .view-btn {
     transition: all 0.3s ease;
+}
+
+/* Card hover effect consistency */
+.card {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 122, 0, 0.5);
 }
 </style>
 

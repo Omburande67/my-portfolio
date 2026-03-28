@@ -6,19 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="stylesheet" href="/css/achievements.css">
     <style>
-        /* ===== ADDITIONAL RESPONSIVE STYLES (NO ORIGINAL CODE MODIFIED) ===== */
-        /* These styles only enhance responsiveness - all original JS/API untouched */
+        /* ===== COMPLETE CSS FIX - PRESERVES ALL ORIGINAL FUNCTIONALITY ===== */
         
-        /* Ensure container is responsive */
-        .container {
-            width: 100%;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
         
-        /* Make cards layout responsive */
+        body {
+            background: linear-gradient(135deg, #0a0f1c 0%, #0c1222 100%);
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+            color: #eef2ff;
+        }
+        
+        .achievements {
+            padding: 60px 0 80px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Back button */
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 122, 0, 0.1);
+            border: 1px solid rgba(255, 122, 0, 0.3);
+            color: #ff7a00;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            margin-bottom: 20px;
+        }
+        
+        .back-home-btn:hover {
+            background: #ff7a00;
+            color: #0a0f1c;
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(255, 122, 0, 0.3);
+        }
+        
+        /* Title */
+        .title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(120deg, #ffffff, #ffb347, #ff7a00);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #aab4d4;
+            border-left: 3px solid #ff7a00;
+            padding-left: 20px;
+            margin-bottom: 48px;
+        }
+        
+        /* Cards grid */
         .cards {
             display: flex;
             flex-wrap: wrap;
@@ -26,26 +83,43 @@
             justify-content: center;
         }
         
-        /* Card styling - preserve original but add responsive width */
+        /* Individual card */
         .card {
-            background: rgba(15, 25, 35, 0.6);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid rgba(255, 122, 0, 0.2);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background: rgba(18, 25, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 28px 24px;
+            width: calc(33.333% - 20px);
+            min-width: 300px;
             flex: 1;
-            min-width: 280px;
-            max-width: 100%;
+            border: 1px solid rgba(255, 122, 0, 0.25);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
         
-        /* Thumbnail track improvements for mobile */
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 122, 0, 0.5);
+        }
+        
+        .card h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #ffc285);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-left: 4px solid #ff7a00;
+            padding-left: 16px;
+        }
+        
+        /* Thumbnail slider - FIXED */
         .thumbnail-slider {
             width: 100%;
             overflow-x: auto;
             overflow-y: hidden;
-            margin: 15px 0;
-            border-radius: 12px;
+            margin: 16px 0 20px;
+            border-radius: 16px;
         }
         
         .thumb-track {
@@ -59,161 +133,200 @@
             -webkit-overflow-scrolling: touch;
         }
         
-        /* Thumbnail sizing - proper fit for all devices */
+        /* THUMBNAIL STYLES - PROPER SIZE AND FIT */
         .thumb {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             object-fit: cover;
-            border-radius: 14px;
+            border-radius: 16px;
             cursor: pointer;
             border: 2px solid rgba(255, 122, 0, 0.3);
             transition: all 0.25s ease;
             scroll-snap-align: start;
             flex-shrink: 0;
-            background: #1a1f2e;
+            background: #1e2a3a;
+            display: block;
         }
         
         .thumb.active {
             border-color: #ff7a00;
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+            transform: scale(1.03);
+            box-shadow: 0 4px 15px rgba(255, 122, 0, 0.4);
         }
         
         /* PDF and no-file thumbnails */
         .thumb.pdf-thumb, .thumb.no-file {
-            width: 100px;
-            height: 100px;
-            display: inline-flex;
+            width: 110px;
+            height: 110px;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #1e2a3a, #0f1722);
-            border-radius: 14px;
-            cursor: pointer;
-            border: 2px solid rgba(255, 122, 0, 0.3);
+            background: linear-gradient(145deg, #1f2a3e, #131c2c);
+            border-radius: 16px;
+            gap: 6px;
             flex-shrink: 0;
         }
         
-        .thumb.pdf-thumb.active, .thumb.no-file.active {
-            border-color: #ff7a00;
-            background: linear-gradient(135deg, #2a3a4a, #1a2535);
+        .thumb.pdf-thumb span:first-child, .thumb.no-file span:first-child {
+            font-size: 44px;
         }
         
-        /* Hide scrollbar for cleaner look on mobile (optional) */
-        .thumb-track::-webkit-scrollbar {
-            height: 4px;
+        .thumb.pdf-thumb span:last-child, .thumb.no-file span:last-child {
+            font-size: 11px;
+            color: #aaa;
         }
         
-        .thumb-track::-webkit-scrollbar-track {
-            background: rgba(255, 122, 0, 0.1);
-            border-radius: 10px;
-        }
-        
-        .thumb-track::-webkit-scrollbar-thumb {
-            background: #ff7a00;
-            border-radius: 10px;
-        }
-        
-        /* Card footer responsive */
+        /* Card footer */
         .card-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 15px;
+            margin-top: 20px;
             flex-wrap: wrap;
             gap: 12px;
         }
         
         .view-btn {
             background: rgba(255, 122, 0, 0.15);
-            border: 1px solid rgba(255, 122, 0, 0.4);
-            color: #ff9f4a;
+            border: 1px solid rgba(255, 122, 0, 0.5);
+            color: #ffae6e;
             padding: 8px 22px;
-            border-radius: 30px;
-            font-weight: 500;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 14px;
+            transition: 0.2s;
         }
         
         .view-btn:hover {
             background: #ff7a00;
             color: #0a0f1c;
-            transform: translateY(-2px);
+            border-color: #ff7a00;
         }
         
         .accent-line {
             height: 3px;
-            width: 60px;
+            width: 70px;
             background: linear-gradient(90deg, #ff7a00, #ffb347);
             border-radius: 3px;
         }
         
-        /* Title and subtitle responsive */
-        .title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff, #ff9f4a);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 15px;
+        .no-items {
+            padding: 24px;
+            text-align: center;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            color: #bbb;
+            width: 100%;
         }
         
-        .subtitle {
-            font-size: 1rem;
-            color: #aab4d4;
-            margin-bottom: 40px;
-            border-left: 3px solid #ff7a00;
-            padding-left: 18px;
+        /* Modal styles */
+        .achievement-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
         }
         
-        /* ===== RESPONSIVE BREAKPOINTS ===== */
+        .modal-content {
+            background: #101826;
+            padding: 28px;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            border: 1px solid rgba(255, 122, 0, 0.3);
+        }
         
-        /* Tablet and smaller laptops */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #ffaa66;
+        }
+        
+        .close-btn:hover {
+            color: #ff7a00;
+        }
+        
+        #modal-image {
+            max-width: 100%;
+            max-height: 260px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .modal-content h2 {
+            color: #ffbd7a;
+            margin-bottom: 8px;
+        }
+        
+        .modal-content p {
+            color: #ccd6f0;
+            margin: 6px 0;
+        }
+        
+        #modal-link {
+            display: inline-block;
+            margin-top: 16px;
+            background: #ff7a00;
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: #0a0f1c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        /* ===== RESPONSIVE DESIGN - MOBILE FIRST ===== */
+        
+        /* Tablet */
         @media (max-width: 1024px) {
             .container {
-                padding: 0 24px;
-            }
-            .cards {
-                gap: 24px;
+                padding: 0 20px;
             }
             .card {
                 padding: 22px;
             }
-            .title {
-                font-size: 2.2rem;
-            }
             .thumb {
-                width: 90px;
-                height: 90px;
+                width: 95px;
+                height: 95px;
             }
             .thumb.pdf-thumb, .thumb.no-file {
-                width: 90px;
-                height: 90px;
+                width: 95px;
+                height: 95px;
             }
         }
         
-        /* Mobile landscape and tablets */
+        /* Mobile Landscape & Tablet Portrait */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 18px;
+            .achievements {
+                padding: 40px 0 60px;
             }
             
             .back-home-btn {
                 padding: 8px 16px;
                 font-size: 12px;
-                margin-bottom: 20px;
+                margin-bottom: 16px;
             }
             
             .title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .subtitle {
                 font-size: 0.85rem;
-                margin-bottom: 28px;
-                padding-left: 14px;
+                margin-bottom: 32px;
             }
             
             .cards {
@@ -224,7 +337,6 @@
             .card {
                 width: 100%;
                 padding: 20px;
-                min-width: auto;
             }
             
             .card h2 {
@@ -232,7 +344,62 @@
                 margin-bottom: 16px;
             }
             
-            /* Thumbnails - properly fitted for mobile */
+            /* THUMBNAILS - PROPERLY FITTED FOR MOBILE */
+            .thumb {
+                width: 95px;
+                height: 95px;
+                border-radius: 14px;
+            }
+            
+            .thumb.pdf-thumb, .thumb.no-file {
+                width: 95px;
+                height: 95px;
+            }
+            
+            .thumb.pdf-thumb span:first-child, .thumb.no-file span:first-child {
+                font-size: 38px;
+            }
+            
+            .thumb-track {
+                gap: 14px;
+                padding-bottom: 8px;
+            }
+            
+            .card-footer {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .view-btn {
+                padding: 7px 18px;
+                font-size: 0.85rem;
+            }
+            
+            .accent-line {
+                width: 55px;
+            }
+        }
+        
+        /* Small Mobile */
+        @media (max-width: 550px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .title {
+                font-size: 1.7rem;
+            }
+            
+            .card {
+                padding: 18px;
+            }
+            
+            .card h2 {
+                font-size: 1.3rem;
+            }
+            
+            /* LARGER THUMBNAILS FOR BETTER VISIBILITY ON SMALL SCREENS */
             .thumb {
                 width: 85px;
                 height: 85px;
@@ -244,97 +411,8 @@
                 height: 85px;
             }
             
-            .thumb.pdf-thumb span, .thumb.no-file span {
-                font-size: 36px !important;
-            }
-            
-            .thumb-track {
-                gap: 14px;
-                padding-bottom: 10px;
-            }
-            
-            .card-footer {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            .view-btn {
-                padding: 7px 18px;
-                font-size: 13px;
-            }
-            
-            .accent-line {
-                width: 50px;
-            }
-            
-            /* Modal responsive */
-            .modal-content {
-                width: 90%;
-                max-width: 90%;
-                padding: 20px;
-                margin: 20px;
-            }
-            
-            .modal-content h2 {
-                font-size: 1.3rem;
-            }
-            
-            #modal-image {
-                max-height: 180px;
-            }
-            
-            .close-btn {
-                top: 12px;
-                right: 16px;
-                font-size: 26px;
-            }
-        }
-        
-        /* Small mobile devices */
-        @media (max-width: 550px) {
-            .container {
-                padding: 0 14px;
-            }
-            
-            .back-home-btn {
-                padding: 6px 14px;
-                font-size: 11px;
-                gap: 6px;
-            }
-            
-            .title {
-                font-size: 1.6rem;
-            }
-            
-            .subtitle {
-                font-size: 0.8rem;
-                margin-bottom: 24px;
-            }
-            
-            .card {
-                padding: 16px;
-            }
-            
-            .card h2 {
-                font-size: 1.25rem;
-                margin-bottom: 14px;
-            }
-            
-            /* Larger thumbnails for better visibility on small screens */
-            .thumb {
-                width: 75px;
-                height: 75px;
-                border-radius: 10px;
-            }
-            
-            .thumb.pdf-thumb, .thumb.no-file {
-                width: 75px;
-                height: 75px;
-            }
-            
-            .thumb.pdf-thumb span, .thumb.no-file span {
-                font-size: 32px !important;
+            .thumb.pdf-thumb span:first-child, .thumb.no-file span:first-child {
+                font-size: 34px;
             }
             
             .thumb-track {
@@ -343,75 +421,35 @@
             
             .view-btn {
                 padding: 6px 16px;
-                font-size: 12px;
+                font-size: 0.8rem;
             }
             
             .accent-line {
                 width: 45px;
             }
-            
-            .modal-content {
-                padding: 18px;
-            }
-            
-            .modal-content h2 {
-                font-size: 1.2rem;
-            }
-            
-            .modal-content p {
-                font-size: 0.75rem;
-            }
-            
-            #modal-image {
-                max-height: 150px;
-            }
-            
-            .close-btn {
-                top: 10px;
-                right: 12px;
-                font-size: 22px;
-            }
-            
-            .no-items {
-                padding: 12px;
-                font-size: 12px;
-            }
         }
         
-        /* Extra small devices */
-        @media (max-width: 400px) {
+        /* Extra Small Mobile */
+        @media (max-width: 420px) {
             .thumb {
-                width: 70px;
-                height: 70px;
+                width: 75px;
+                height: 75px;
             }
             
             .thumb.pdf-thumb, .thumb.no-file {
-                width: 70px;
-                height: 70px;
+                width: 75px;
+                height: 75px;
             }
             
-            .thumb.pdf-thumb span, .thumb.no-file span {
-                font-size: 28px !important;
-            }
-            
-            .thumb-track {
-                gap: 10px;
-            }
-            
-            .card h2 {
-                font-size: 1.15rem;
-            }
-            
-            .view-btn {
-                padding: 5px 14px;
-                font-size: 11px;
+            .thumb.pdf-thumb span:first-child, .thumb.no-file span:first-child {
+                font-size: 30px;
             }
         }
         
-        /* Very small devices (below 360px) */
+        /* Very Small Devices */
         @media (max-width: 360px) {
             .title {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
             
             .subtitle {
@@ -419,45 +457,17 @@
             }
             
             .thumb {
-                width: 65px;
-                height: 65px;
+                width: 70px;
+                height: 70px;
             }
             
             .thumb.pdf-thumb, .thumb.no-file {
-                width: 65px;
-                height: 65px;
-            }
-            
-            .thumb.pdf-thumb span, .thumb.no-file span {
-                font-size: 26px !important;
-            }
-            
-            .card {
-                padding: 14px;
-            }
-            
-            .card h2 {
-                font-size: 1.1rem;
+                width: 70px;
+                height: 70px;
             }
         }
         
-        /* Tablet landscape optimization */
-        @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
-            .cards {
-                gap: 20px;
-            }
-            
-            .card {
-                padding: 20px;
-            }
-            
-            .thumb {
-                width: 85px;
-                height: 85px;
-            }
-        }
-        
-        /* Desktop large screens */
+        /* Desktop Large Screens */
         @media (min-width: 1400px) {
             .container {
                 max-width: 1400px;
@@ -465,55 +475,39 @@
             }
             
             .thumb {
-                width: 120px;
-                height: 120px;
+                width: 130px;
+                height: 130px;
             }
             
             .thumb.pdf-thumb, .thumb.no-file {
-                width: 120px;
-                height: 120px;
+                width: 130px;
+                height: 130px;
             }
             
             .cards {
                 gap: 35px;
             }
-            
-            .card {
-                padding: 30px;
-            }
-            
-            .title {
-                font-size: 3rem;
-            }
         }
         
-        /* Ensure no overflow issues */
-        body {
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #0a0f1c 0%, #0c1222 100%);
-            font-family: system-ui, -apple-system, 'Segoe UI', 'Poppins', sans-serif;
+        /* Scrollbar Styling */
+        .thumb-track::-webkit-scrollbar {
+            height: 4px;
         }
         
-        .achievements {
-            padding: 60px 0 80px;
-            min-height: 100vh;
+        .thumb-track::-webkit-scrollbar-track {
+            background: rgba(255, 122, 0, 0.15);
+            border-radius: 10px;
         }
         
-        /* Card hover effect */
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 122, 0, 0.5);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        .thumb-track::-webkit-scrollbar-thumb {
+            background: #ff7a00;
+            border-radius: 10px;
         }
         
-        /* Make sure images scale properly */
+        /* Ensure images display properly */
         img.thumb {
+            display: block;
             object-fit: cover;
-        }
-        
-        /* Smooth transitions */
-        .thumb, .view-btn, .back-home-btn, .card {
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
     </style>
 </head>
@@ -633,8 +627,8 @@ function generateThumbnails(items) {
                          data-fileurl="${item.fileUrl || ''}"
                          data-filetype="${item.fileType || ''}"
                          onclick="showAchievementDetails(this)">
-                        <span style="font-size: 40px;">📄</span>
-                        <span style="font-size: 12px; display: block;">PDF</span>
+                        <span>📄</span>
+                        <span>PDF</span>
                     </div>`;
         } else {
             // No file thumbnail (text icon)
@@ -646,7 +640,8 @@ function generateThumbnails(items) {
                          data-date="${item.date || ''}"
                          data-link="${item.link || ''}"
                          onclick="showAchievementDetails(this)">
-                        <span style="font-size: 40px;">📝</span>
+                        <span>📝</span>
+                        <span>Info</span>
                     </div>`;
         }
     }).join('');
@@ -780,137 +775,6 @@ function closeModal() {
     if (modal) modal.style.display = 'none';
 }
 </script>
-
-<style>
-/* ===== ORIGINAL STYLES PRESERVED ===== */
-.back-home-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: rgba(255, 122, 0, 0.1);
-    border: 1px solid rgba(255, 122, 0, 0.3);
-    color: #ff7a00;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-}
-
-.back-home-btn:hover {
-    background: #ff7a00;
-    color: #0a0f1c;
-    transform: translateX(-5px);
-    box-shadow: 0 5px 15px rgba(255, 122, 0, 0.3);
-}
-
-/* Add modal styles */
-.achievement-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 500px;
-    position: relative;
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-#modal-image {
-    max-width: 100%;
-    max-height: 300px;
-    object-fit: contain;
-    margin-bottom: 20px;
-}
-
-.no-items {
-    padding: 20px;
-    text-align: center;
-    color: #999;
-    font-style: italic;
-}
-
-.thumb.pdf-thumb, .thumb.no-file {
-    width: 80px;
-    height: 80px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #f5f5f5;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.thumb.pdf-thumb.active, .thumb.no-file.active {
-    border-color: #667eea;
-    background: #e8eaf6;
-}
-
-/* Card base styles */
-.card {
-    background: rgba(18, 25, 45, 0.7);
-    backdrop-filter: blur(12px);
-    border-radius: 24px;
-    border: 1px solid rgba(255, 122, 0, 0.25);
-}
-
-.card h2 {
-    color: #fff;
-    font-size: 1.6rem;
-    margin-bottom: 18px;
-    font-weight: 600;
-}
-
-.thumb-track {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-}
-
-.thumbnail-slider {
-    overflow: hidden;
-}
-
-.view-btn {
-    background: rgba(255, 122, 0, 0.2);
-    border: 1px solid rgba(255, 122, 0, 0.4);
-    color: #ff9f4a;
-    border-radius: 30px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.view-btn:hover {
-    background: #ff7a00;
-    color: #0a0f1c;
-}
-
-.accent-line {
-    height: 2px;
-    background: linear-gradient(90deg, #ff7a00, #ffb347);
-}
-</style>
 
 </body>
 </html>

@@ -1059,7 +1059,7 @@
             };
 
             const id = document.getElementById('blogId').value;
-            const url = id ? `${BASE_URL}/api/blogs/${id}` : '${BASE_URL}/api/blogs';
+            const url = id ? `${BASE_URL}/api/blogs/${id}` : `${BASE_URL}/api/blogs`;
             const method = id ? 'PUT' : 'POST';
 
             try {

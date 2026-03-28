@@ -65,24 +65,7 @@ opacity:0.9;
 pointer-events:none;
 }
 
-/* ===== RESPONSIVE FIXES ===== */
-@media (max-width: 768px) {
-  .hero-video {
-    width: 200px;
-    right: -20px;
-    opacity: 0.5;
-  }
-  
-  .stats-container {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-  
-  .hero-image-container {
-    margin-top: 2rem;
-  }
-}
+/* ===== GLOBAL FIXES ===== */
 
 /* Prevent horizontal scroll */
 html, body {
@@ -90,17 +73,147 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Smooth scroll behavior */
+/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
+/* Fix stacking layers */
+header {
+  z-index: 50;
+}
+
+#mobileMenu {
+  z-index: 60;
+  backdrop-filter: blur(10px);
+}
+
+/* When menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+
+/* ===== HERO + RESPONSIVENESS ===== */
+
+@media (max-width: 768px) {
+
+  /* HERO VIDEO */
+  .hero-video {
+    width: 180px;
+    right: -10px;
+    opacity: 0.4;
+  }
+
+  /* HERO TEXT SPACING */
+  #home {
+    padding-top: 100px;
+  }
+
+  /* STATS FIX */
+  .stats-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+
+  /* IMAGE CONTAINER */
+  .hero-image-container {
+    margin-top: 2rem;
+    justify-content: center;
+  }
+
+  /* HERO IMAGE SIZE CONTROL */
+  .hero-image-container img {
+    width: 90%;
+    max-width: 320px;
+  }
+
+}
+
+
+/* ===== SMALL MOBILE DEVICES ===== */
+
+@media (max-width: 480px) {
+
+  /* HERO VIDEO SMALL */
+  .hero-video {
+    width: 140px;
+    right: -5px;
+    opacity: 0.3;
+  }
+
+  /* TEXT SCALE */
+  h1 {
+    font-size: 26px !important;
+  }
+
+  p {
+    font-size: 13px;
+  }
+
+  /* BUTTON SPACING */
+  .stats-container {
+    gap: 1rem;
+    padding: 12px;
+  }
+
+  /* IMAGE */
+  .hero-image-container img {
+    width: 95%;
+    max-width: 280px;
+  }
+}
+
+
+/* ===== MOBILE MENU FIX (IMPORTANT) ===== */
+
+/* Overlay (background blur layer) */
+#mobileMenu {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+/* Sliding panel */
+#mobileMenuPanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  transition: transform 0.3s ease;
+}
+
+/* Prevent navbar overlap */
+header {
+  backdrop-filter: blur(10px);
+}
+
+
 /* ===== TECH MASCOT RESPONSIVE ===== */
+
 @media (max-width: 768px) {
   .tech-mascot {
-    transform: scale(0.85);
+    transform: scale(0.75);
     transform-origin: bottom left;
   }
+}
+
+
+/* ===== EXTRA POLISH ===== */
+
+/* Fix unwanted scroll bounce */
+body {
+  overscroll-behavior: none;
+}
+
+/* Better tap feel */
+a, button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 </style>
@@ -162,21 +275,30 @@ Hire Me
 </div>
 
 <!-- Mobile Navigation Menu -->
-<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-black/95 backdrop-blur-lg z-50 transform -translate-x-full transition-transform duration-300 md:hidden">
-  <div class="flex justify-end p-5">
-    <button id="closeMenuBtn" class="text-white text-3xl">
-      <i class="fas fa-times"></i>
-    </button>
+<div id="mobileMenu" class="fixed inset-0 bg-black/70 backdrop-blur-md z-[60] opacity-0 pointer-events-none transition-all duration-300 md:hidden">
+  
+  <!-- Actual Menu Panel -->
+  <div id="mobileMenuPanel" class="absolute top-0 left-0 w-full h-full bg-black/95 transform -translate-x-full transition-transform duration-300">
+
+    <div class="flex justify-end p-5">
+      <button id="closeMenuBtn" class="text-white text-3xl">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <ul class="flex flex-col items-center gap-8 text-xl font-medium text-gray-300 mt-10">
+      <li><a href="#home" class="hover:text-orange-500 transition">Home</a></li>
+      <li><a href="#about" class="hover:text-orange-500 transition">About Me</a></li>
+      <li><a href="/pages/projects.html" class="hover:text-orange-500 transition">Projects</a></li>
+      <li><a href="/pages/skills.html" class="hover:text-orange-500 transition">Skills</a></li>
+      <li><a href="/pages/achievements.html" class="hover:text-orange-500 transition">Achievements</a></li>
+      <li><a href="/pages/blogs.html" class="hover:text-orange-500 transition">Blogs</a></li>
+      <li class="mt-4">
+        <a href="mailto:omburande764@gmail.com" class="bg-orange-500 px-8 py-3 rounded-md hover:bg-orange-600 transition">Hire Me</a>
+      </li>
+    </ul>
+
   </div>
-  <ul class="flex flex-col items-center gap-8 text-xl font-medium text-gray-300 mt-10">
-    <li><a href="#home" class="hover:text-orange-500 transition">Home</a></li>
-    <li><a href="#about" class="hover:text-orange-500 transition">About Me</a></li>
-    <li><a href="/pages/projects.html" class="hover:text-orange-500 transition">Projects</a></li>
-    <li><a href="/pages/skills.html" class="hover:text-orange-500 transition">Skills</a></li>
-    <li><a href="/pages/achievements.html" class="hover:text-orange-500 transition">Achievements</a></li>
-    <li><a href="/pages/blogs.html" class="hover:text-orange-500 transition">Blogs</a></li>
-    <li class="mt-4"><a href="mailto:omburande764@gmail.com" class="bg-orange-500 px-8 py-3 rounded-md hover:bg-orange-600 transition">Hire Me</a></li>
-  </ul>
 </div>
 </header>
 
@@ -970,29 +1092,51 @@ Send Message
 </div>
 
 <script>
-// Mobile Menu Toggle
+// ===== MOBILE MENU (FIXED VERSION) =====
+
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuPanel = document.getElementById('mobileMenuPanel');
 const closeMenuBtn = document.getElementById('closeMenuBtn');
 
-if(mobileMenuBtn) {
-  mobileMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.remove('-translate-x-full');
-  });
+// OPEN MENU
+function openMenu() {
+  if (!mobileMenu || !mobileMenuPanel) return;
+
+  mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+  mobileMenu.classList.add('opacity-100');
+
+  mobileMenuPanel.classList.remove('-translate-x-full');
+
+  // 🔥 Lock background scroll
+  document.body.style.overflow = 'hidden';
 }
 
-if(closeMenuBtn) {
-  closeMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.add('-translate-x-full');
-  });
+// CLOSE MENU
+function closeMenu() {
+  if (!mobileMenu || !mobileMenuPanel) return;
+
+  mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+  mobileMenuPanel.classList.add('-translate-x-full');
+
+  // 🔥 Restore scroll
+  document.body.style.overflow = 'auto';
 }
 
-// Close mobile menu when clicking on a link
-const mobileLinks = mobileMenu?.querySelectorAll('a');
-mobileLinks?.forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.add('-translate-x-full');
-  });
+// Button events
+mobileMenuBtn?.addEventListener('click', openMenu);
+closeMenuBtn?.addEventListener('click', closeMenu);
+
+// Click outside (overlay click)
+mobileMenu?.addEventListener('click', (e) => {
+  if (e.target === mobileMenu) {
+    closeMenu();
+  }
+});
+
+// Close when clicking any link
+mobileMenu?.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeMenu);
 });
 
 // Tech Robot Script (same as original but scaled for mobile)

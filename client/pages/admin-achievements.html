@@ -1156,7 +1156,7 @@
             }
 
             const id = document.getElementById('achievementId').value;
-            const url = id ? `${BASE_URL}/api/achievements/${id}` : '${BASE_URL}/api/achievements';
+            const url = id ? `${BASE_URL}/api/achievements/${id}` : `${BASE_URL}/api/achievements`;
             const method = id ? 'PUT' : 'POST';
 
             try {

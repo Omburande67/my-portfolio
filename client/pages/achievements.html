@@ -4,223 +4,320 @@
     <meta charset="UTF-8">
     <title>Achievements</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <link rel="stylesheet" href="/css/achievements.css">
     <style>
-        /* ===== COMPLETE CSS FIX - PRESERVES ALL ORIGINAL FUNCTIONALITY ===== */
+        /* ===== FIXED CSS - THUMBNAILS NOW DISPLAY PROPERLY ===== */
+
+        /* Additional background fallback - ensures background shows even if CSS fails */
+        body {
+            background: url("/assets/images/fas.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
         
-        /* Base styles */
+        /* Ensure body has proper background color fallback while image loads */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0f1c 0%, #0c1222 100%);
+            z-index: -2;
+        }
+        
+        /* Dark overlay for better text readability */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        /* Ensure all content appears above the background */
+        .achievements, header, section, footer {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* RESET */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        /* BODY */
         body {
-            background: linear-gradient(135deg, #0a0f1c 0%, #0c1222 100%);
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
-            color: #eef2ff;
+            font-family: 'Segoe UI', sans-serif;
+            background: url("/assets/images/fas.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
         }
-        
+
+        /* SECTION */
         .achievements {
-            padding: 60px 0 80px;
-            min-height: 100vh;
+            padding: 30px 6%;
         }
-        
+
+        /* CONTAINER */
         .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 24px;
+            max-width: 1200px;
+            margin: auto;
         }
-        
-        /* Back button */
+
+        /* HEADER */
+        .title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ff7a00;
+            font-weight: 500;
+            margin-bottom: 28px;
+        }
+
+        /* BACK HOME BUTTON */
         .back-home-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 10px 20px;
-            background: rgba(255, 122, 0, 0.1);
-            border: 1px solid rgba(255, 122, 0, 0.3);
+            background: rgba(255, 122, 0, 0.2);
+            border: 1px solid rgba(255, 122, 0, 0.5);
             color: #ff7a00;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 500;
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
             margin-bottom: 20px;
         }
-        
+
         .back-home-btn:hover {
             background: #ff7a00;
             color: #0a0f1c;
             transform: translateX(-5px);
-            box-shadow: 0 5px 15px rgba(255, 122, 0, 0.3);
         }
-        
-        /* Title */
-        .title {
-            font-size: 2.8rem;
-            font-weight: 800;
-            background: linear-gradient(120deg, #ffffff, #ffb347, #ff7a00);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 12px;
-        }
-        
-        .subtitle {
-            font-size: 1rem;
-            color: #aab4d4;
-            border-left: 3px solid #ff7a00;
-            padding-left: 20px;
-            margin-bottom: 48px;
-        }
-        
-        /* Cards grid */
+
+        /* CARD GRID */
         .cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
-        
-        /* Individual card */
+
+        /* CARD */
         .card {
-            background: rgba(18, 25, 45, 0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 28px;
-            padding: 28px 24px;
-            width: calc(33.333% - 20px);
-            min-width: 300px;
-            flex: 1;
-            border: 1px solid rgba(255, 122, 0, 0.25);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background: rgba(10, 10, 10, 0.85);
+            padding: 18px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
         }
-        
+
         .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 122, 0, 0.5);
+            transform: translateY(-4px);
         }
-        
+
+        /* BLACK & WHITE LIGHTNING BORDER */
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            padding: 2px;
+            background: linear-gradient(
+                120deg,
+                #ffffff,
+                #000000,
+                #ffffff
+            );
+            background-size: 250% 250%;
+            -webkit-mask:
+                linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+            animation: borderLightning 3.5s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes borderLightning {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
         .card h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff, #ffc285);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            border-left: 4px solid #ff7a00;
-            padding-left: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: #ff9f4a;
         }
-        
-        /* Thumbnail slider - FIXED */
+
+        /* ===== FIXED THUMBNAIL AREA - HORIZONTAL SCROLL ===== */
         .thumbnail-slider {
             width: 100%;
             overflow-x: auto;
             overflow-y: hidden;
-            margin: 16px 0 20px;
-            border-radius: 16px;
+            border-radius: 8px;
+            background: #111;
+            margin-bottom: 10px;
+            scroll-behavior: smooth;
         }
-        
+
         .thumb-track {
             display: flex;
             flex-direction: row;
-            gap: 16px;
-            padding: 8px 4px 12px 4px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
+            gap: 12px;
+            padding: 12px;
+            min-height: 160px;
         }
-        
-        /* THUMBNAIL STYLES - PROPER SIZE AND FIT */
+
+        /* FIXED THUMBNAIL STYLES */
         .thumb {
-            width: 110px;
-            height: 110px;
+            width: 130px;
+            height: 130px;
             object-fit: cover;
-            border-radius: 16px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 2px solid rgba(255, 122, 0, 0.3);
+            border: 2px solid rgba(255, 122, 0, 0.4);
             transition: all 0.25s ease;
-            scroll-snap-align: start;
             flex-shrink: 0;
-            background: #1e2a3a;
+            background: #1a1f2e;
             display: block;
         }
-        
+
         .thumb.active {
             border-color: #ff7a00;
-            transform: scale(1.03);
-            box-shadow: 0 4px 15px rgba(255, 122, 0, 0.4);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.4);
         }
-        
+
         /* PDF and no-file thumbnails */
         .thumb.pdf-thumb, .thumb.no-file {
-            width: 110px;
-            height: 110px;
+            width: 130px;
+            height: 130px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(145deg, #1f2a3e, #131c2c);
-            border-radius: 16px;
-            gap: 6px;
+            background: linear-gradient(145deg, #2a2a3a, #1a1a2a);
+            border-radius: 8px;
             flex-shrink: 0;
+            gap: 8px;
         }
-        
-        .thumb.pdf-thumb span:first-child, .thumb.no-file span:first-child {
-            font-size: 44px;
+
+        .thumb.pdf-thumb span, .thumb.no-file span {
+            font-size: 42px;
         }
-        
+
         .thumb.pdf-thumb span:last-child, .thumb.no-file span:last-child {
-            font-size: 11px;
-            color: #aaa;
+            font-size: 12px;
+            color: #ffaa66;
         }
-        
-        /* Card footer */
+
+        /* Scrollbar styling */
+        .thumbnail-slider::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        .thumbnail-slider::-webkit-scrollbar-track {
+            background: rgba(255, 122, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .thumbnail-slider::-webkit-scrollbar-thumb {
+            background: #ff7a00;
+            border-radius: 10px;
+        }
+
+        /* FOOTER */
         .card-footer {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            gap: 12px;
+            justify-content: space-between;
+            margin-top: 8px;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        /* VIEW BUTTON */
         .view-btn {
-            background: rgba(255, 122, 0, 0.15);
-            border: 1px solid rgba(255, 122, 0, 0.5);
-            color: #ffae6e;
-            padding: 8px 22px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        
-        .view-btn:hover {
+            padding: 7px 18px;
             background: #ff7a00;
-            color: #0a0f1c;
-            border-color: #ff7a00;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
         }
-        
-        .accent-line {
-            height: 3px;
-            width: 70px;
-            background: linear-gradient(90deg, #ff7a00, #ffb347);
-            border-radius: 3px;
+
+        .view-btn:hover {
+            background: #ff9a2a;
+            transform: scale(1.02);
         }
-        
+
+        /* Sliding text animation */
+        .card-footer::before {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -100%;
+            white-space: nowrap;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            opacity: 0.85;
+            animation: slideTextRight 8s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Different text per section */
+        .cards .card:nth-child(1) .card-footer::before {
+            content: "Explore All Certifications   ";
+        }
+
+        .cards .card:nth-child(2) .card-footer::before {
+            content: "View Hackathon Highlights   ";
+        }
+
+        .cards .card:nth-child(3) .card-footer::before {
+            content: "See Award Achievements   ";
+        }
+
+        @keyframes slideTextRight {
+            0% {
+                right: -100%;
+            }
+            100% {
+                right: 110%;
+            }
+        }
+
+        /* No items message */
         .no-items {
-            padding: 24px;
+            padding: 40px;
             text-align: center;
-            background: rgba(0,0,0,0.3);
-            border-radius: 20px;
-            color: #bbb;
+            color: #888;
+            font-style: italic;
             width: 100%;
         }
-        
+
         /* Modal styles */
         .achievement-modal {
             display: none;
@@ -229,54 +326,54 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
-        
+
         .modal-content {
-            background: #101826;
-            padding: 28px;
-            border-radius: 24px;
+            background: #1a1f2e;
+            padding: 24px;
+            border-radius: 16px;
             max-width: 500px;
             width: 90%;
             position: relative;
-            border: 1px solid rgba(255, 122, 0, 0.3);
+            border: 1px solid #ff7a00;
         }
-        
+
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 20px;
+            top: 12px;
+            right: 16px;
             font-size: 28px;
             cursor: pointer;
-            color: #ffaa66;
-        }
-        
-        .close-btn:hover {
             color: #ff7a00;
         }
-        
+
+        .close-btn:hover {
+            color: #ffaa66;
+        }
+
         #modal-image {
             max-width: 100%;
-            max-height: 260px;
+            max-height: 250px;
             object-fit: contain;
-            border-radius: 12px;
+            border-radius: 8px;
             margin-bottom: 16px;
         }
-        
+
         .modal-content h2 {
-            color: #ffbd7a;
+            color: #ff9f4a;
             margin-bottom: 8px;
         }
-        
+
         .modal-content p {
-            color: #ccd6f0;
+            color: #ccc;
             margin: 6px 0;
         }
-        
+
         #modal-link {
             display: inline-block;
             margin-top: 16px;
@@ -287,227 +384,83 @@
             text-decoration: none;
             font-weight: bold;
         }
-        
-        /* ===== RESPONSIVE DESIGN - MOBILE FIRST ===== */
-        
-        /* Tablet */
-        @media (max-width: 1024px) {
-            .container {
-                padding: 0 20px;
-            }
-            .card {
-                padding: 22px;
-            }
-            .thumb {
-                width: 95px;
-                height: 95px;
-            }
-            .thumb.pdf-thumb, .thumb.no-file {
-                width: 95px;
-                height: 95px;
-            }
-        }
-        
-        /* Mobile Landscape & Tablet Portrait */
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .achievements {
-                padding: 40px 0 60px;
-            }
-            
-            .back-home-btn {
-                padding: 8px 16px;
-                font-size: 12px;
-                margin-bottom: 16px;
+                padding: 20px 4%;
             }
             
             .title {
-                font-size: 2rem;
+                font-size: 28px;
             }
             
             .subtitle {
-                font-size: 0.85rem;
-                margin-bottom: 32px;
+                font-size: 14px;
+                margin-bottom: 20px;
             }
             
             .cards {
-                flex-direction: column;
-                gap: 24px;
+                gap: 20px;
             }
             
             .card {
-                width: 100%;
-                padding: 20px;
+                padding: 14px;
             }
             
             .card h2 {
-                font-size: 1.4rem;
-                margin-bottom: 16px;
+                font-size: 18px;
+                margin-bottom: 12px;
             }
             
-            /* THUMBNAILS - PROPERLY FITTED FOR MOBILE */
+            /* Mobile thumbnails - slightly smaller but still visible */
             .thumb {
-                width: 95px;
-                height: 95px;
-                border-radius: 14px;
+                width: 100px;
+                height: 100px;
             }
             
             .thumb.pdf-thumb, .thumb.no-file {
-                width: 95px;
-                height: 95px;
+                width: 100px;
+                height: 100px;
             }
             
-            .thumb.pdf-thumb span:first-child, .thumb.no-file span:first-child {
-                font-size: 38px;
-            }
-            
-            .thumb-track {
-                gap: 14px;
-                padding-bottom: 8px;
-            }
-            
-            .card-footer {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            .view-btn {
-                padding: 7px 18px;
-                font-size: 0.85rem;
-            }
-            
-            .accent-line {
-                width: 55px;
-            }
-        }
-        
-        /* Small Mobile */
-        @media (max-width: 550px) {
-            .container {
-                padding: 0 16px;
-            }
-            
-            .title {
-                font-size: 1.7rem;
-            }
-            
-            .card {
-                padding: 18px;
-            }
-            
-            .card h2 {
-                font-size: 1.3rem;
-            }
-            
-            /* LARGER THUMBNAILS FOR BETTER VISIBILITY ON SMALL SCREENS */
-            .thumb {
-                width: 85px;
-                height: 85px;
-                border-radius: 12px;
-            }
-            
-            .thumb.pdf-thumb, .thumb.no-file {
-                width: 85px;
-                height: 85px;
-            }
-            
-            .thumb.pdf-thumb span:first-child, .thumb.no-file span:first-child {
+            .thumb.pdf-thumb span, .thumb.no-file span {
                 font-size: 34px;
             }
             
             .thumb-track {
-                gap: 12px;
+                gap: 10px;
+                padding: 10px;
             }
             
             .view-btn {
-                padding: 6px 16px;
-                font-size: 0.8rem;
+                padding: 6px 14px;
+                font-size: 12px;
             }
             
-            .accent-line {
-                width: 45px;
+            .card-footer::before {
+                font-size: 10px;
             }
         }
-        
-        /* Extra Small Mobile */
-        @media (max-width: 420px) {
+
+        @media (max-width: 480px) {
             .thumb {
-                width: 75px;
-                height: 75px;
+                width: 85px;
+                height: 85px;
             }
             
             .thumb.pdf-thumb, .thumb.no-file {
-                width: 75px;
-                height: 75px;
+                width: 85px;
+                height: 85px;
             }
             
-            .thumb.pdf-thumb span:first-child, .thumb.no-file span:first-child {
-                font-size: 30px;
+            .thumb.pdf-thumb span, .thumb.no-file span {
+                font-size: 28px;
             }
-        }
-        
-        /* Very Small Devices */
-        @media (max-width: 360px) {
+            
             .title {
-                font-size: 1.5rem;
+                font-size: 24px;
             }
-            
-            .subtitle {
-                font-size: 0.75rem;
-            }
-            
-            .thumb {
-                width: 70px;
-                height: 70px;
-            }
-            
-            .thumb.pdf-thumb, .thumb.no-file {
-                width: 70px;
-                height: 70px;
-            }
-        }
-        
-        /* Desktop Large Screens */
-        @media (min-width: 1400px) {
-            .container {
-                max-width: 1400px;
-                padding: 0 40px;
-            }
-            
-            .thumb {
-                width: 130px;
-                height: 130px;
-            }
-            
-            .thumb.pdf-thumb, .thumb.no-file {
-                width: 130px;
-                height: 130px;
-            }
-            
-            .cards {
-                gap: 35px;
-            }
-        }
-        
-        /* Scrollbar Styling */
-        .thumb-track::-webkit-scrollbar {
-            height: 4px;
-        }
-        
-        .thumb-track::-webkit-scrollbar-track {
-            background: rgba(255, 122, 0, 0.15);
-            border-radius: 10px;
-        }
-        
-        .thumb-track::-webkit-scrollbar-thumb {
-            background: #ff7a00;
-            border-radius: 10px;
-        }
-        
-        /* Ensure images display properly */
-        img.thumb {
-            display: block;
-            object-fit: cover;
         }
     </style>
 </head>
@@ -515,7 +468,7 @@
 
 <section class="achievements">
     <div class="container">
-            <a href="index.html" class="back-home-btn">← Back to Home</a>
+            <a href="/index.html" class="back-home-btn">← Back to Home</a>
         <h1 class="title">Achievements & Recognition</h1>
         <p class="subtitle">Certificates • Hackathons • Awards</p>
 
@@ -552,7 +505,6 @@ async function loadAchievements() {
                 </div>
                 <div class="card-footer">
                     <button class="view-btn" onclick="viewAll('industry')">View All</button>
-                    <span class="accent-line"></span>
                 </div>
             </div>
 
@@ -566,7 +518,6 @@ async function loadAchievements() {
                 </div>
                 <div class="card-footer">
                     <button class="view-btn" onclick="viewAll('competitive')">View All</button>
-                    <span class="accent-line"></span>
                 </div>
             </div>
 
@@ -580,7 +531,6 @@ async function loadAchievements() {
                 </div>
                 <div class="card-footer">
                     <button class="view-btn" onclick="viewAll('milestone')">View All</button>
-                    <span class="accent-line"></span>
                 </div>
             </div>
         `;
@@ -641,7 +591,7 @@ function generateThumbnails(items) {
                          data-link="${item.link || ''}"
                          onclick="showAchievementDetails(this)">
                         <span>📝</span>
-                        <span>Info</span>
+                        <span>Award</span>
                     </div>`;
         }
     }).join('');
@@ -695,7 +645,6 @@ function showFallbackContent() {
             </div>
             <div class="card-footer">
                 <button class="view-btn">View All</button>
-                <span class="accent-line"></span>
             </div>
         </div>
         <div class="card">
@@ -709,7 +658,6 @@ function showFallbackContent() {
             </div>
             <div class="card-footer">
                 <button class="view-btn">View All</button>
-                <span class="accent-line"></span>
             </div>
         </div>
         <div class="card">
@@ -723,7 +671,6 @@ function showFallbackContent() {
             </div>
             <div class="card-footer">
                 <button class="view-btn">View All</button>
-                <span class="accent-line"></span>
             </div>
         </div>
     `;

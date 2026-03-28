@@ -10,7 +10,7 @@
 
 <section class="achievements">
     <div class="container">
-            <a href="/index.html" class="back-home-btn">← Back to Home</a>
+            <a href="index.html" class="back-home-btn">← Back to Home</a>
         <h1 class="title">Achievements & Recognition</h1>
         <p class="subtitle">Certificates • Hackathons • Awards</p>
 
@@ -93,39 +93,33 @@ function generateThumbnails(items) {
         return `<div class="no-items">No achievements yet</div>`;
     }
     
-    // Take only first 5 items for thumbnails
-    const displayItems = items.slice(0, 5);
-    
-    return displayItems.map((item, index) => {
+    return items.map((item, index) => {
         const isActive = index === 0 ? 'active' : '';
         
         if (item.fileType === 'image' && item.fileUrl) {
-            // Image thumbnail with proper error handling
-            const imageUrl = item.fileUrl.startsWith('http') ? item.fileUrl : `${BASE_URL}${item.fileUrl}`;
-            return `<img src="${imageUrl}" 
+            // Image thumbnail
+            return `<img src="${BASE_URL}${item.fileUrl}" 
                          class="thumb ${isActive}" 
                          data-id="${item._id}"
-                         data-title="${escapeHtml(item.title)}"
-                         data-description="${escapeHtml(item.description)}"
-                         data-issuer="${escapeHtml(item.issuer || '')}"
-                         data-date="${escapeHtml(item.date || '')}"
-                         data-link="${escapeHtml(item.link || '')}"
-                         data-fileurl="${escapeHtml(item.fileUrl || '')}"
-                         data-filetype="${escapeHtml(item.fileType || '')}"
-                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 24 24\' fill=\'%23ff7a00\'%3E%3Cpath d=\'M4 4h16v16H4z\'/%3E%3C/svg%3E'"
-                         onclick="showAchievementDetails(this)"
-                         alt="${escapeHtml(item.title)}">`;
+                         data-title="${item.title}"
+                         data-description="${item.description}"
+                         data-issuer="${item.issuer || ''}"
+                         data-date="${item.date || ''}"
+                         data-link="${item.link || ''}"
+                         data-fileurl="${item.fileUrl || ''}"
+                         data-filetype="${item.fileType || ''}"
+                         onclick="showAchievementDetails(this)">`;
         } else if (item.fileType === 'pdf' && item.fileUrl) {
             // PDF thumbnail (icon)
             return `<div class="thumb pdf-thumb ${isActive}" 
                          data-id="${item._id}"
-                         data-title="${escapeHtml(item.title)}"
-                         data-description="${escapeHtml(item.description)}"
-                         data-issuer="${escapeHtml(item.issuer || '')}"
-                         data-date="${escapeHtml(item.date || '')}"
-                         data-link="${escapeHtml(item.link || '')}"
-                         data-fileurl="${escapeHtml(item.fileUrl || '')}"
-                         data-filetype="${escapeHtml(item.fileType || '')}"
+                         data-title="${item.title}"
+                         data-description="${item.description}"
+                         data-issuer="${item.issuer || ''}"
+                         data-date="${item.date || ''}"
+                         data-link="${item.link || ''}"
+                         data-fileurl="${item.fileUrl || ''}"
+                         data-filetype="${item.fileType || ''}"
                          onclick="showAchievementDetails(this)">
                         <span style="font-size: 40px;">📄</span>
                         <span style="font-size: 12px; display: block;">PDF</span>
@@ -134,30 +128,16 @@ function generateThumbnails(items) {
             // No file thumbnail (text icon)
             return `<div class="thumb no-file ${isActive}" 
                          data-id="${item._id}"
-                         data-title="${escapeHtml(item.title)}"
-                         data-description="${escapeHtml(item.description)}"
-                         data-issuer="${escapeHtml(item.issuer || '')}"
-                         data-date="${escapeHtml(item.date || '')}"
-                         data-link="${escapeHtml(item.link || '')}"
+                         data-title="${item.title}"
+                         data-description="${item.description}"
+                         data-issuer="${item.issuer || ''}"
+                         data-date="${item.date || ''}"
+                         data-link="${item.link || ''}"
                          onclick="showAchievementDetails(this)">
                         <span style="font-size: 40px;">📝</span>
-                        <span style="font-size: 12px; display: block;">${escapeHtml(item.title).substring(0, 15)}</span>
                     </div>`;
         }
     }).join('');
-}
-
-// Helper function to escape HTML
-function escapeHtml(str) {
-    if (!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        return m;
-    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-        return c;
-    });
 }
 
 function initializeThumbnails() {
@@ -180,6 +160,9 @@ function showAchievementDetails(thumbnail) {
         issuer: thumbnail.dataset.issuer,
         date: thumbnail.dataset.date
     });
+    
+    // Optional: Open modal with details
+    // openAchievementModal(thumbnail.dataset);
 }
 
 function viewAll(category) {
@@ -198,13 +181,13 @@ function showFallbackContent() {
             <h2>Industry Credentials</h2>
             <div class="thumbnail-slider">
                 <div class="thumb-track">
-                    <img src="/assets/images/ach-thumnails/secone-1.png" class="thumb active" onerror="this.style.display='none'">
-                    <img src="/assets/images/ach-thumnails/secone-2.png" class="thumb" onerror="this.style.display='none'">
-                    <img src="/assets/images/ach-thumnails/secone-3.png" class="thumb" onerror="this.style.display='none'">
+                    <img src="/assets/images/ach-thumnails/secone-1.png" class="thumb active">
+                    <img src="/assets/images/ach-thumnails/secone-2.png" class="thumb">
+                    <img src="/assets/images/ach-thumnails/secone-3.png" class="thumb">
                 </div>
             </div>
             <div class="card-footer">
-                <button class="view-btn" onclick="viewAll('industry')">View All</button>
+                <button class="view-btn">View All</button>
                 <span class="accent-line"></span>
             </div>
         </div>
@@ -212,13 +195,13 @@ function showFallbackContent() {
             <h2>Competitive Highlights</h2>
             <div class="thumbnail-slider">
                 <div class="thumb-track">
-                    <img src="/assets/images/ach-thumnails/sectwo-1.jpg" class="thumb active" onerror="this.style.display='none'">
-                    <img src="/assets/images/ach-thumnails/sectwo-2.jpg" class="thumb" onerror="this.style.display='none'">
-                    <img src="/assets/images/ach-thumnails/sectwo-4.jpg" class="thumb" onerror="this.style.display='none'">
+                    <img src="/assets/images/ach-thumnails/sectwo-1.jpg" class="thumb active">
+                    <img src="/assets/images/ach-thumnails/sectwo-2.jpg" class="thumb">
+                    <img src="/assets/images/ach-thumnails/sectwo-4.jpg" class="thumb">
                 </div>
             </div>
             <div class="card-footer">
-                <button class="view-btn" onclick="viewAll('competitive')">View All</button>
+                <button class="view-btn">View All</button>
                 <span class="accent-line"></span>
             </div>
         </div>
@@ -226,13 +209,13 @@ function showFallbackContent() {
             <h2>Milestones</h2>
             <div class="thumbnail-slider">
                 <div class="thumb-track">
-                    <img src="/assets/images/ach-thumnails/secthree-1.jpg" class="thumb active" onerror="this.style.display='none'">
-                    <img src="/assets/images/ach-thumnails/secthree-2.jpg" class="thumb" onerror="this.style.display='none'">
-                    <img src="/assets/images/ach-thumnails/secthree-3.jpg" class="thumb" onerror="this.style.display='none'">
+                    <img src="/assets/images/ach-thumnails/secthree-1.jpg" class="thumb active">
+                    <img src="/assets/images/ach-thumnails/secthree-2.jpg" class="thumb">
+                    <img src="/assets/images/ach-thumnails/secthree-3.jpg" class="thumb">
                 </div>
             </div>
             <div class="card-footer">
-                <button class="view-btn" onclick="viewAll('milestone')">View All</button>
+                <button class="view-btn">View All</button>
                 <span class="accent-line"></span>
             </div>
         </div>
@@ -287,25 +270,7 @@ function closeModal() {
 </script>
 
 <style>
-/* Base styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    background: #0a0a0a;
-    color: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-x: hidden;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
 
 .back-home-btn {
     display: inline-flex;
@@ -320,7 +285,6 @@ body {
     font-weight: 500;
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
-    margin-bottom: 30px;
 }
 
 .back-home-btn:hover {
@@ -329,93 +293,48 @@ body {
     transform: translateX(-5px);
     box-shadow: 0 5px 15px rgba(255, 122, 0, 0.3);
 }
-
-.title {
-    font-size: 42px;
-    font-weight: 700;
-    text-align: center;
-    background: linear-gradient(135deg, #ffffff, #ff7a00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
+/* Add modal styles */
+.achievement-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
 }
 
-.subtitle {
-    text-align: center;
-    color: #b0b0b0;
-    font-size: 16px;
-    margin-bottom: 40px;
-}
-
-.cards {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-.card {
-    flex: 1;
-    min-width: 280px;
-    background: rgba(20, 20, 20, 0.95);
-    border-radius: 20px;
-    padding: 25px;
-    border: 1px solid rgba(255, 122, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-.card:hover {
-    border-color: rgba(255, 122, 0, 0.5);
-    transform: translateY(-5px);
-}
-
-.card h2 {
-    color: #ff7a00;
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.thumbnail-slider {
-    margin-bottom: 20px;
-}
-
-.thumb-track {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto;
-    padding: 10px 5px;
-    scroll-behavior: smooth;
-}
-
-.thumb-track::-webkit-scrollbar {
-    height: 5px;
-}
-
-.thumb-track::-webkit-scrollbar-track {
-    background: rgba(255, 122, 0, 0.1);
+.modal-content {
+    background: white;
+    padding: 30px;
     border-radius: 10px;
+    max-width: 500px;
+    position: relative;
 }
 
-.thumb-track::-webkit-scrollbar-thumb {
-    background: #ff7a00;
-    border-radius: 10px;
-}
-
-.thumb {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 12px;
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
     cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
 }
 
-.thumb.active {
-    border-color: #ff7a00;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);
+#modal-image {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.no-items {
+    padding: 20px;
+    text-align: center;
+    color: #999;
+    font-style: italic;
 }
 
 .thumb.pdf-thumb, .thumb.no-file {
@@ -425,160 +344,32 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 122, 0, 0.1);
-    border-radius: 12px;
+    background: #f5f5f5;
+    border-radius: 8px;
     cursor: pointer;
     border: 2px solid transparent;
-    flex-shrink: 0;
 }
 
 .thumb.pdf-thumb.active, .thumb.no-file.active {
-    border-color: #ff7a00;
-    background: rgba(255, 122, 0, 0.2);
-    transform: scale(1.05);
+    border-color: #667eea;
+    background: #e8eaf6;
 }
 
-.card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(255, 122, 0, 0.2);
-}
-
-.view-btn {
-    background: linear-gradient(135deg, #ff7a00, #ffa64d);
-    color: #0a0a0a;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.view-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 122, 0, 0.3);
-}
-
-.accent-line {
-    width: 50px;
-    height: 2px;
-    background: linear-gradient(90deg, #ff7a00, transparent);
-}
-
-.no-items {
-    text-align: center;
-    padding: 30px;
-    color: #666;
-    font-style: italic;
-}
-
-/* Modal styles */
-.achievement-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: #1a1a1a;
-    padding: 30px;
-    border-radius: 15px;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-    border: 1px solid #ff7a00;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #999;
-    transition: color 0.3s;
-}
-
-.close-btn:hover {
-    color: #ff7a00;
-}
-
-#modal-image {
-    width: 100%;
-    max-height: 250px;
-    object-fit: contain;
-    margin-bottom: 20px;
-    border-radius: 10px;
-}
-
-#modal-title {
-    color: #ff7a00;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-#modal-issuer, #modal-date {
-    color: #b0b0b0;
-    margin-bottom: 10px;
-}
-
-#modal-description {
-    color: #a0a0a0;
-    line-height: 1.6;
-    margin: 15px 0;
-}
-
-#modal-link {
-    display: inline-block;
-    background: #ff7a00;
-    color: #0a0a0a;
-    padding: 10px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-
-#modal-link:hover {
-    background: #ffa64d;
-    transform: translateY(-2px);
-}
-
-/* ===== RESPONSIVE STYLES ===== */
+/* ===== RESPONSIVE STYLES (ADDED ONLY - NO ORIGINAL CODE MODIFIED) ===== */
 @media (max-width: 1024px) {
     .container {
-        padding: 30px 20px;
+        padding: 0 20px;
     }
-    
     .cards {
         gap: 25px;
-    }
-    
-    .title {
-        font-size: 38px;
     }
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 20px 15px;
-    }
-    
     .back-home-btn {
         padding: 8px 16px;
         font-size: 12px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
     
     .title {
@@ -605,22 +396,31 @@ body {
         margin-bottom: 15px;
     }
     
+    .thumbnail-slider {
+        margin-bottom: 15px;
+    }
+    
     .thumb-track {
         gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
     }
     
     .thumb {
-        width: 70px;
-        height: 70px;
+        min-width: 80px;
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        flex-shrink: 0;
     }
     
     .thumb.pdf-thumb, .thumb.no-file {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .thumb.pdf-thumb span, .thumb.no-file span {
-        font-size: 32px !important;
+        min-width: 80px;
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
     }
     
     .card-footer {
@@ -636,26 +436,41 @@ body {
     
     .accent-line {
         width: 100%;
+        height: 2px;
     }
     
     .modal-content {
+        width: 90%;
         padding: 20px;
+        max-width: 90%;
+        margin: 0 15px;
     }
     
     .modal-content h2 {
         font-size: 20px;
     }
     
+    .modal-content p {
+        font-size: 13px;
+    }
+    
     #modal-image {
-        max-height: 180px;
+        max-height: 200px;
+    }
+    
+    .close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+    }
+    
+    .no-items {
+        padding: 15px;
+        font-size: 13px;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 15px 12px;
-    }
-    
     .back-home-btn {
         padding: 6px 12px;
         font-size: 11px;
@@ -676,20 +491,27 @@ body {
     
     .card h2 {
         font-size: 18px;
+        margin-bottom: 12px;
     }
     
     .thumb {
-        width: 60px;
-        height: 60px;
+        min-width: 70px;
+        width: 70px;
+        height: 70px;
     }
     
     .thumb.pdf-thumb, .thumb.no-file {
-        width: 60px;
-        height: 60px;
+        min-width: 70px;
+        width: 70px;
+        height: 70px;
     }
     
     .thumb.pdf-thumb span, .thumb.no-file span {
-        font-size: 28px !important;
+        font-size: 32px !important;
+    }
+    
+    .thumb-track {
+        gap: 10px;
     }
     
     .view-btn {
@@ -703,14 +525,32 @@ body {
     
     .modal-content h2 {
         font-size: 18px;
+        margin-bottom: 8px;
+    }
+    
+    .modal-content p {
+        font-size: 12px;
+        margin-bottom: 8px;
     }
     
     #modal-image {
-        max-height: 150px;
+        max-height: 160px;
+        margin-bottom: 12px;
+    }
+    
+    .close-btn {
+        top: 8px;
+        right: 12px;
+        font-size: 22px;
+    }
+    
+    .no-items {
+        padding: 12px;
+        font-size: 12px;
     }
 }
 
-/* Tablet landscape */
+/* Tablet landscape optimization */
 @media (min-width: 769px) and (max-width: 1024px) {
     .cards {
         gap: 20px;
@@ -724,6 +564,96 @@ body {
         width: 75px;
         height: 75px;
     }
+}
+
+/* Small height devices */
+@media (max-height: 600px) {
+    .modal-content {
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+    
+    #modal-image {
+        max-height: 150px;
+    }
+    
+    .modal-content h2 {
+        font-size: 18px;
+    }
+    
+    .modal-content p {
+        font-size: 12px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .title {
+        font-size: 22px;
+    }
+    
+    .subtitle {
+        font-size: 11px;
+    }
+    
+    .card {
+        padding: 14px;
+    }
+    
+    .card h2 {
+        font-size: 16px;
+    }
+    
+    .thumb {
+        min-width: 65px;
+        width: 65px;
+        height: 65px;
+    }
+    
+    .thumb.pdf-thumb, .thumb.no-file {
+        min-width: 65px;
+        width: 65px;
+        height: 65px;
+    }
+    
+    .view-btn {
+        padding: 5px 14px;
+        font-size: 11px;
+    }
+}
+
+/* Ensure images cover full card area */
+.thumb {
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.thumb-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+/* Smooth scrollbar on mobile */
+@media (max-width: 768px) {
+    .thumb-track::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .thumb-track::-webkit-scrollbar-track {
+        background: rgba(255, 122, 0, 0.1);
+        border-radius: 10px;
+    }
+    
+    .thumb-track::-webkit-scrollbar-thumb {
+        background: #ff7a00;
+        border-radius: 10px;
+    }
+}
+
+/* Ensure smooth transitions */
+.back-home-btn, .card, .thumb, .view-btn {
+    transition: all 0.3s ease;
 }
 </style>
 

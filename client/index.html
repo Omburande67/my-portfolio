@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Om Burande</title>
 
 <!-- Tailwind CDN -->
@@ -72,11 +72,11 @@ pointer-events:none;
 
 <!-- ================= NAVBAR ================= -->
 
-<header class="fixed w-full top-0 bg-black/80 backdrop-blur-md z-50 border-b border-gray-800/50">
+<header class="fixed w-full top-0 bg-transparent backdrop-blur-md z-50">
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-3 md:py-5 flex items-center justify-between gap-4 flex-wrap">
+<div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
 
-<a href="#home" class="flex items-center gap-2 text-orange-500 font-bold text-xl group shrink-0">
+<a href="#home" class="flex items-center gap-2 text-orange-500 font-bold text-xl group">
 
   <!-- ICON -->
   <i class="fa-solid fa-code text-2xl transition duration-300
@@ -92,14 +92,7 @@ pointer-events:none;
   </span>
 
 </a>
-
-<!-- Mobile Menu Button -->
-<button id="mobileMenuBtn" class="md:hidden text-white text-2xl focus:outline-none z-50">
-  <i class="fas fa-bars"></i>
-</button>
-
-<!-- Desktop Navigation -->
-<ul class="hidden md:flex gap-6 lg:gap-10 text-gray-300 font-medium">
+<ul class="flex gap-10 text-gray-300 font-medium">
 
 <li><a href="#home" class="nav-link">Home</a></li>
 
@@ -116,35 +109,17 @@ pointer-events:none;
 </ul>
 
 <a href="mailto:omburande764@gmail.com"
-class="hidden md:inline-block bg-orange-500 px-5 py-2 rounded-md hover:bg-orange-600 transition text-sm whitespace-nowrap">
+class="bg-orange-500 px-6 py-2 rounded-md hover:bg-orange-600 transition">
 Hire Me
 </a>
 
-</div>
-
-<!-- Mobile Navigation Menu - FIXED: No overlapping, proper spacing -->
-<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-black/95 backdrop-blur-lg z-50 transform -translate-x-full transition-transform duration-300 md:hidden overflow-y-auto">
-  <div class="flex justify-end p-5">
-    <button id="closeMenuBtn" class="text-white text-3xl">
-      <i class="fas fa-times"></i>
-    </button>
-  </div>
-  <ul class="flex flex-col items-center gap-6 text-xl font-medium text-gray-300 mt-10 px-6 pb-10">
-    <li class="w-full text-center"><a href="#home" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">Home</a></li>
-    <li class="w-full text-center"><a href="#about" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">About Me</a></li>
-    <li class="w-full text-center"><a href="/pages/projects.html" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">Projects</a></li>
-    <li class="w-full text-center"><a href="/pages/skills.html" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">Skills</a></li>
-    <li class="w-full text-center"><a href="/pages/achievements.html" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">Achievements</a></li>
-    <li class="w-full text-center"><a href="/pages/blogs.html" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">Blogs</a></li>
-    <li class="w-full text-center mt-4"><a href="mailto:omburande764@gmail.com" class="bg-orange-500 px-8 py-3 rounded-md hover:bg-orange-600 transition inline-block" onclick="closeMobileMenu()">Hire Me</a></li>
-  </ul>
 </div>
 </header>
 
 
 <!-- ================= HERO ================= -->
 
-<section id="home" class="min-h-screen flex items-center pt-24 md:pt-32 relative overflow-hidden">
+<section id="home" class="min-h-screen flex items-center pt-32 relative overflow-hidden">
 
   <!-- BACKGROUND VIDEO -->
 <video autoplay muted loop playsinline
@@ -156,20 +131,23 @@ class="absolute top-0 left-0 w-full h-full object-cover z-0">
 <div class="absolute top-0 left-0 w-full h-full bg-black/70 z-0"></div>
 
   
-<div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 grid md:grid-cols-2 items-center gap-8 md:gap-12 w-full">
+<div class="relative z-10 max-w-7xl mx-auto px-8 grid md:grid-cols-2 items-center gap-12 w-full">
 
   
 
 <!-- LEFT SIDE -->
-<div class="text-center md:text-left">
 
-<p class="text-gray-400 mb-3 text-lg"></p>
+<div>
 
-<h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-5">
+<p class="text-gray-400 mb-3 text-lg">
+
+</p>
+
+<h1 class="text-4xl md:text-5xl font-bold mb-5">
 OM BURANDE
 </h1>
 
-<p class="text-gray-400 mb-5 md:mb-6 text-sm sm:text-base">
+<p class="text-gray-400 mb-6">
 Software Development | Java | Python | 
 <span id="changing-text" class="text-orange-500 font-semibold"></span>
 </p>
@@ -177,9 +155,10 @@ Software Development | Java | Python |
 
 <!-- ================= SOCIAL ICONS ================= -->
 
-<div class="flex gap-7 text-2xl mb-6 md:mb-8 justify-center md:justify-start">
+<div class="flex gap-6 text-2xl mb-8">
 
 <!-- TELEGRAM -->
+
 <a href="https://t.me/+919921542888" target="_blank" class="hover:text-orange-500 transition">
 <i class="fab fa-telegram"></i>
 </a>
@@ -204,16 +183,17 @@ Software Development | Java | Python |
 
 
 <!-- BUTTONS -->
-<div class="flex gap-4 md:gap-6 mb-8 md:mb-10 justify-center md:justify-start flex-wrap">
+
+<div class="flex gap-6 mb-10">
 
 <a href="mailto:omburande764@gmail.com"
-class="bg-orange-500 px-5 md:px-6 py-2.5 md:py-3 rounded-md hover:bg-orange-600 transition text-sm md:text-base">
+class="bg-orange-500 px-6 py-3 rounded-md hover:bg-orange-600 transition">
 Hire Me
 </a>
 
 <a href="https://drive.google.com/file/d/1hwB5DpfvI8Fw7X4sQgAk3SyVWquhpdGj/view?usp=sharing"
 target="_blank"
-class="border border-gray-600 px-5 md:px-6 py-2.5 md:py-3 rounded-md hover:border-orange-500 hover:text-orange-500 transition text-sm md:text-base">
+class="border border-gray-600 px-6 py-3 rounded-md hover:border-orange-500 hover:text-orange-500 transition">
 Download CV
 </a>
 
@@ -221,21 +201,22 @@ Download CV
 
 
 <!-- STATS -->
-<div class="stats-container flex gap-6 md:gap-10 bg-[#111] px-5 md:px-8 py-4 md:py-6 rounded-xl border border-gray-800 w-full md:w-fit justify-center">
 
-<div class="text-center">
-<h3 class="text-orange-500 font-bold text-lg md:text-xl">25+</h3>
-<p class="text-gray-400 text-xs md:text-sm">Projects Done</p>
+<div class="flex gap-10 bg-[#111] px-8 py-6 rounded-xl border border-gray-800 w-fit">
+
+<div>
+<h3 class="text-orange-500 font-bold text-xl">25+</h3>
+<p class="text-gray-400 text-sm">Projects Done</p>
 </div>
 
-<div class="text-center">
-<h3 class="text-orange-500 font-bold text-lg md:text-xl">1+</h3>
-<p class="text-gray-400 text-xs md:text-sm">Experience</p>
+<div>
+<h3 class="text-orange-500 font-bold text-xl">1+</h3>
+<p class="text-gray-400 text-sm">Experience</p>
 </div>
 
-<div class="text-center">
-<h3 class="text-orange-500 font-bold text-lg md:text-xl">5+</h3>
-<p class="text-gray-400 text-xs md:text-sm">Hackathons</p>
+<div>
+<h3 class="text-orange-500 font-bold text-xl">5+</h3>
+<p class="text-gray-400 text-sm">Hackathons</p>
 </div>
 
 </div>
@@ -244,13 +225,13 @@ Download CV
 
 
 <!-- RIGHT SIDE IMAGE -->
-<div class="relative flex justify-center items-end hero-image-container mt-8 md:mt-0">
+<div class="relative flex justify-center items-end">
 
   <!-- CIRCLE WRAPPER (controls cutting) -->
-  <div class="absolute bottom-0 overflow-hidden h-[280px] sm:h-[320px] w-[340px] sm:w-[420px] flex justify-center">
+  <div class="absolute bottom-0 overflow-hidden h-[320px] w-[420px] flex justify-center">
     
     <!-- CIRCLE -->
-    <div class="w-[340px] sm:w-[400px] h-[340px] sm:h-[400px] rounded-full
+    <div class="w-[400px] h-[400px] rounded-full
     bg-gradient-to-b from-gray-900 via-gray-800 to-black">
     </div>
 
@@ -259,11 +240,10 @@ Download CV
   <!-- IMAGE (independent, not affected) -->
   <img src="assets/images/Hero1.png.png"
   alt="Om Burande"
-  class="relative w-[380px] sm:w-[480px] md:w-[560px] object-cover
+  class="relative w-[560px] object-cover
   -translate-y-08
   transition duration-500
-  hover:scale-105 hover:shadow-2xl hover:shadow-black/60"
-  style="max-width: 85%;">
+  hover:scale-105 hover:shadow-2xl hover:shadow-black/60">
 
 </div>
 
@@ -324,24 +304,25 @@ typeEffect();
 
 
 <!-- ================= ABOUT ================= -->
-<section id="about" class="py-12 md:py-10 border-t border-gray-900 orange-bg">
+<section id="about" class="py-7 border-t border-gray-900 orange-bg">
 
-<div class="max-w-7xl mx-auto px-5 sm:px-8">
+<div class="max-w-7xl mx-auto px-8">
 
-    <h2 class="text-3xl md:text-4xl font-bold text-orange-500 mb-10 md:mb-16 text-center md:text-left">
+    <h2 class="text-4xl font-bold text-orange-500 mb-16">
       Thaughts about Engineering 
     </h2>
 
-    <!-- GRID - FULLY RESPONSIVE -->
-    <div class="grid md:grid-cols-10 gap-8 md:gap-12 items-start">
+    <!-- GRID -->
+    <div class="grid md:grid-cols-10 gap-12 items-start">
 
       <!-- ===== LEFT TEXT (70%) ===== -->
-      <div class="md:col-span-7 text-gray-400 leading-relaxed space-y-5 md:space-y-8 text-justify">
+      <div class="md:col-span-7 text-gray-400 leading-relaxed space-y-8 text-justify">
 
-        <p class="text-base md:text-lg font-medium text-gray-300">
+        <p class="text-lg font-medium text-gray-300">
           2026 @Vishwakarma Institute of Technology, Pune
         </p>
-        <p class="text-sm md:text-base">
+
+        <p>
           As a senior at Vishwakarma Institute of Technology in Pune, I have built strong expertise in 
           <span class="font-semibold text-white">computer engineering</span> 
           through academics, hands-on experience, and competitive participation. 
@@ -353,12 +334,14 @@ typeEffect();
           <span class="font-semibold text-white">API integration</span>. 
           I focus on writing structured, efficient, and scalable systems that translate theoretical concepts into real-world implementations.
         </p>
-        <p class="text-sm md:text-base">
+
+        <p>
           My solution-oriented mindset has been strengthened through participation in 
           <span class="font-semibold text-white">hackathons</span> 
           and high-pressure collaborative environments. These experiences improved my analytical thinking, team coordination, and execution discipline.
         </p>
-        <p class="text-sm md:text-base">
+
+        <p>
           My long-term vision is to grow into a technology leader who can 
           <span class="font-semibold text-white">architect</span> 
           and build 
@@ -370,27 +353,29 @@ typeEffect();
           into modern software ecosystems.
         </p>
 
-        <p class="font-semibold text-white text-base md:text-lg pt-4">
+        <p class="font-semibold text-white text-lg pt-6">
           Not interested in fake claims, Just Learning & trying to deliver products over projects.
-        </p>
-        <p class="font-semibold text-white text-sm md:text-base"></p>
-          Ongoing learning : Daily DSA practice, Working on industrial projects, Live Competitions.
-        </p>
+           <p class="font-semibold text-white text-lg pt-6"></p>
+            Ongoing learning : Daily DSA practice, Working on industrial projects, Live Competitions , . 
+            </p>
             
            
       </div>
 
-<div class="md:col-span-3 flex flex-col gap-6 md:gap-8 items-center">
-  <div class="w-full flex justify-center">
-    <img src="assets/images/about1.png"
-         class="max-w-[70%] md:max-w-[80%] object-contain"
-         alt="About Image">
-  </div>
-  <div class="w-full flex justify-center">
-    <img src="assets/images/ach-thumnails/secone-1.png"
-         class="w-full max-w-[80%] object-contain"
-         alt="About Image">
-  </div>
+<div class="md:col-span-3 flex flex-col gap-8">
+
+<div class="">
+  <img src="assets/images/about1.png"
+       class="max-w-[80%] max-h-[80%] object-contain"
+       alt="About Image">
+</div>
+
+<div class="">
+  <img src="assets/images/ach-thumnails/secone-1.png"
+       class="w-full h-full object-contain"
+       alt="About Image">
+</div>
+
 </div>
 
 </div>
@@ -401,28 +386,28 @@ typeEffect();
 
 <!-- ================= CONTACT ================= -->
 
-<section id="contact" class="py-12 md:py-10 border-t border-gray-900 orange-bg">
+<section id="contact" class="py-7 border-t border-gray-900 orange-bg">
 
-<div class="max-w-7xl mx-auto px-5 sm:px-8">
+<div class="max-w-7xl mx-auto px-8">
 
-<h2 class="text-3xl md:text-4xl font-bold text-orange-500 mb-10 md:mb-16 text-center md:text-left">
+<h2 class="text-4xl font-bold text-orange-500 mb-16">
 Get In Touch
 </h2>
 
-<div class="grid md:grid-cols-2 gap-8 md:gap-12">
+<div class="grid md:grid-cols-2 gap-12">
 
-<div class="bg-[#0f0f0f] border border-gray-800 rounded-xl p-6 md:p-8 space-y-6 md:space-y-8">
+<div class="bg-[#0f0f0f] border border-gray-800 rounded-xl p-8 space-y-8">
 
 <!-- PHONE -->
 <div class="flex items-start gap-4">
-  <a href="https://wa.me/919921542888" target="_blank" class="shrink-0">
+  <a href="https://wa.me/919921542888" target="_blank">
     <i class="fa-brands fa-whatsapp text-green-500 text-xl hover:scale-110 transition"></i>
   </a>
   <div>
-    <h4 class="text-white font-semibold text-sm md:text-base">Phone / WhatsApp</h4>
+    <h4 class="text-white font-semibold">Phone / WhatsApp</h4>
     <a href="https://wa.me/919921542888"
        target="_blank"
-       class="text-gray-400 hover:text-white text-xs md:text-sm break-all">
+       class="text-gray-400 hover:text-white text-sm">
       +91 9921542888
     </a>
   </div>
@@ -430,13 +415,13 @@ Get In Touch
 
 <!-- EMAIL -->
 <div class="flex items-start gap-4">
-  <a href="mailto:omburande764@gmail.com" class="shrink-0">
+  <a href="mailto:omburande764@gmail.com">
     <i class="fa-solid fa-envelope text-blue-400 text-xl hover:scale-110 transition"></i>
   </a>
   <div>
-    <h4 class="text-white font-semibold text-sm md:text-base">Email</h4>
+    <h4 class="text-white font-semibold">Email</h4>
     <a href="mailto:omburande764@gmail.com"
-       class="text-gray-400 hover:text-white text-xs md:text-sm break-all">
+       class="text-gray-400 hover:text-white text-sm">
       omburande764@gmail.com
     </a>
   </div>
@@ -444,8 +429,8 @@ Get In Touch
 
 <!-- LOCATION -->
 <div class="flex items-start gap-4">
-  <a href="https://www.google.com/maps/search/?api=1&query=Bibwewadi+Pune+411037" target="_blank" class="shrink-0">
-    <svg class="w-5 h-5 md:w-6 md:h-6 text-red-400 hover:scale-110 transition"
+  <a href="https://www.google.com/maps/search/?api=1&query=Bibwewadi+Pune+411037" target="_blank">
+    <svg class="w-6 h-6 text-red-400 hover:scale-110 transition"
          fill="none"
          stroke="currentColor"
          stroke-width="2"
@@ -455,10 +440,10 @@ Get In Touch
     </svg>
   </a>
   <div>
-    <h4 class="text-white font-semibold text-sm md:text-base">Location</h4>
+    <h4 class="text-white font-semibold">Location</h4>
     <a href="https://www.google.com/maps/search/?api=1&query=Bibwewadi+Pune+411037"
        target="_blank"
-       class="text-gray-400 hover:text-white text-xs md:text-sm break-all">
+       class="text-gray-400 hover:text-white text-sm">
       Bibwewadi, Pune (411037), Maharashtra, India
     </a>
   </div>
@@ -469,35 +454,35 @@ Get In Touch
 
 <!-- ================= FORM ================= -->
 
-<div class="bg-[#0f0f0f] border border-gray-800 rounded-xl p-6 md:p-8">
+<div class="bg-[#0f0f0f] border border-gray-800 rounded-xl p-8">
 
-<h3 class="text-white font-semibold mb-6 md:mb-8 text-lg md:text-xl">
+<h3 class="text-white font-semibold mb-8">
 Contact Me
 </h3>
 
-<form action="https://formsubmit.co/omburande764@gmail.com" method="POST" class="space-y-5">
+<form action="https://formsubmit.co/omburande764@gmail.com" method="POST" class="space-y-6">
 
 <input type="hidden" name="_captcha" value="false">
 
 <input type="text" name="name" placeholder="Name *" required
-class="w-full bg-black border border-gray-800 rounded-lg px-4 py-2.5 md:py-3 text-gray-300 text-sm md:text-base">
+class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300">
 
 <input type="email" name="email" placeholder="Email *" required
-class="w-full bg-black border border-gray-800 rounded-lg px-4 py-2.5 md:py-3 text-gray-300 text-sm md:text-base">
+class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300">
 
 <textarea name="message" rows="4" placeholder="Message"
-class="w-full bg-black border border-gray-800 rounded-lg px-4 py-2.5 md:py-3 text-gray-300 text-sm md:text-base"></textarea>
+class="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-gray-300"></textarea>
 
 <!-- ROBOT CHECK -->
           <div class="flex items-center gap-3">
             <input type="checkbox" required class="w-4 h-4 accent-white">
-            <label class="text-xs md:text-sm text-gray-400">
+            <label class="text-sm text-gray-400">
               I'm not a robot
             </label>
           </div>
 
 <button type="submit"
-class="w-full bg-white text-black font-semibold py-2.5 md:py-3 rounded-lg hover:bg-gray-300 transition text-sm md:text-base">
+class="w-full bg-white text-black font-semibold py-3 rounded-lg hover:bg-gray-300 transition">
 Send Message
 </button>
 
@@ -513,9 +498,9 @@ Send Message
 
 <!-- ================= FOOTER ================= -->
 
-<footer class="text-center py-6 border-t border-gray-900 text-gray-500 text-xs md:text-sm">
+<footer class="text-center py-6 border-t border-gray-900 text-gray-500 text-sm">
 
-© 2026 Om Burande. Built, not copied. Last update 28 March-26
+© 2026 Om Burande. Built, not copied. Last update : 28 march-26
 
 </footer>
 
@@ -881,92 +866,80 @@ Send Message
 
 /* Responsive */
 @media (max-width: 768px) {
-  .tech-mascot {
-    transform: scale(0.75);
-    transform-origin: bottom left;
+  .robot-body {
+    transform: scale(0.9);
   }
 }
 </style>
 
 <div class="tech-mascot" id="techMascot">
   <div class="robot-body" id="robotBody">
+    <!-- Laptop Screen -->
     <div class="robot-screen">
       <div class="screen-content"></div>
     </div>
+    
+    <!-- Eyes -->
     <div class="robot-eye left-eye blink-robot" id="leftEye"></div>
     <div class="robot-eye right-eye blink-robot" id="rightEye"></div>
+    
+    <!-- Antenna -->
     <div class="antenna">
       <div class="antenna-ball"></div>
     </div>
+    
+    <!-- Arms -->
     <div class="robot-arm left-arm" id="leftArm">
       <div class="hand left-hand"></div>
     </div>
     <div class="robot-arm right-arm" id="rightArm">
       <div class="hand right-hand"></div>
     </div>
+    
+    <!-- Legs -->
     <div class="robot-leg left-leg"></div>
     <div class="robot-leg right-leg"></div>
+    
+    <!-- Tech Particles -->
     <div class="tech-particles" id="techParticles">
       <div class="tech-particle" style="top: -3px; left: 8px; animation-delay: 0s;"></div>
       <div class="tech-particle" style="top: -1px; right: 10px; animation-delay: 0.3s;"></div>
       <div class="tech-particle" style="top: 2px; left: 28px; animation-delay: 0.6s;"></div>
     </div>
+    
+    <!-- Interactive Button -->
     <div class="robot-button" id="robotButton">
       <i class="fas fa-terminal"></i>
       <span>CONNECT</span>
       <i class="fas fa-code-branch"></i>
     </div>
   </div>
+  
+  <!-- Social Hub Popup -->
   <div class="social-hub" id="socialHub">
-    <a href="https://github.com/Omburande67" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-    <a href="https://in.linkedin.com/in/omburande" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-    <a href="https://www.youtube.com/@omburande764" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-    <a href="https://x.com/BurandeOm" target="_blank"><i class="fab fa-x-twitter"></i> Twitter</a>
-    <a href="https://t.me/+919921542888" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-    <a href="mailto:omburande764@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+    <a href="https://github.com/Omburande67" target="_blank">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+    <a href="https://in.linkedin.com/in/omburande" target="_blank">
+      <i class="fab fa-linkedin-in"></i> LinkedIn
+    </a>
+    <a href="https://www.youtube.com/@omburande764" target="_blank">
+      <i class="fab fa-youtube"></i> YouTube
+    </a>
+    <a href="https://x.com/BurandeOm" target="_blank">
+      <i class="fab fa-x-twitter"></i> Twitter
+    </a>
+    <a href="https://t.me/+919921542888" target="_blank">
+      <i class="fab fa-telegram"></i> Telegram
+    </a>
+    <a href="mailto:omburande764@gmail.com">
+      <i class="fas fa-envelope"></i> Email
+    </a>
   </div>
 </div>
 
 <script>
-// Mobile Menu Toggle - FIXED
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const closeMenuBtn = document.getElementById('closeMenuBtn');
-
-function closeMobileMenu() {
-  if(mobileMenu) {
-    mobileMenu.classList.add('-translate-x-full');
-  }
-}
-
-function openMobileMenu() {
-  if(mobileMenu) {
-    mobileMenu.classList.remove('-translate-x-full');
-  }
-}
-
-if(mobileMenuBtn) {
-  mobileMenuBtn.addEventListener('click', openMobileMenu);
-}
-
-if(closeMenuBtn) {
-  closeMenuBtn.addEventListener('click', closeMobileMenu);
-}
-
-// Close mobile menu when clicking on a link
-const mobileLinks = mobileMenu?.querySelectorAll('a');
-mobileLinks?.forEach(link => {
-  link.addEventListener('click', closeMobileMenu);
-});
-
-// Close menu on escape key
-document.addEventListener('keydown', function(e) {
-  if(e.key === 'Escape') {
-    closeMobileMenu();
-  }
-});
-
-// Tech Robot Script (same as original)
+// Small Tech Robot Movement System
 (function() {
   const mascot = document.getElementById('techMascot');
   const robotBody = document.getElementById('robotBody');
@@ -977,15 +950,16 @@ document.addEventListener('keydown', function(e) {
   const leftEye = document.getElementById('leftEye');
   const rightEye = document.getElementById('rightEye');
   
+  // Available positions (corners and edges - safe spots)
   const positions = [
-    { top: '12%', left: '2%' },
-    { top: '12%', left: '88%' },
-    { top: '45%', left: '2%' },
-    { top: '45%', left: '88%' },
-    { top: '78%', left: '2%' },
-    { top: '78%', left: '88%' },
-    { top: '85%', left: '45%' },
-    { top: '20%', left: '45%' }
+    { top: '12%', left: '2%' },       // Top left corner
+    { top: '12%', left: '88%' },      // Top right corner
+    { top: '45%', left: '2%' },       // Middle left
+    { top: '45%', left: '88%' },      // Middle right
+    { top: '78%', left: '2%' },       // Bottom left
+    { top: '78%', left: '88%' },      // Bottom right
+    { top: '85%', left: '45%' },      // Bottom center
+    { top: '20%', left: '45%' }       // Top center
   ];
   
   let currentPosition = 0;
@@ -995,6 +969,7 @@ document.addEventListener('keydown', function(e) {
   let appearTimeout;
   let isMoving = false;
   
+  // Initialize position
   function setPosition(position) {
     mascot.style.top = position.top;
     mascot.style.left = position.left;
@@ -1002,82 +977,120 @@ document.addEventListener('keydown', function(e) {
     mascot.style.right = 'auto';
   }
   
+  // Random position change with smooth movement
   function moveToRandomPosition() {
     if (!isVisible || isMoving) return;
+    
     isMoving = true;
+    
+    // Add walking animation
     robotBody.classList.add('robot-walk');
+    
+    // Select new random position
     let newPosIndex;
     do {
       newPosIndex = Math.floor(Math.random() * positions.length);
     } while (newPosIndex === currentPosition && positions.length > 1);
+    
     currentPosition = newPosIndex;
     const newPos = positions[currentPosition];
+    
+    // Smooth transition
     mascot.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
     setPosition(newPos);
+    
+    // Add bounce effect at destination
     setTimeout(() => {
       robotBody.classList.add('robot-bounce');
       robotBody.classList.remove('robot-walk');
+      
       setTimeout(() => {
         robotBody.classList.remove('robot-bounce');
         isMoving = false;
       }, 500);
     }, 600);
+    
+    // Arm wave while moving
     leftArm.style.transform = 'rotate(-35deg)';
     rightArm.style.transform = 'rotate(35deg)';
+    
     setTimeout(() => {
       leftArm.style.transform = 'rotate(-20deg)';
       rightArm.style.transform = 'rotate(20deg)';
     }, 400);
   }
   
+  // Random movement schedule
   function scheduleMovement() {
     if (moveInterval) clearInterval(moveInterval);
     moveInterval = setInterval(() => {
-      if (isVisible && !isMoving && Math.random() > 0.6) moveToRandomPosition();
+      if (isVisible && !isMoving && Math.random() > 0.6) {
+        moveToRandomPosition();
+      }
     }, getRandomTime(5000, 9000));
   }
   
+  // Disappear function
   function disappear() {
     if (!isVisible) return;
+    
     isVisible = false;
     robotBody.classList.add('slide-out-effect');
+    
     setTimeout(() => {
       mascot.classList.add('tech-mascot-hidden');
       robotBody.classList.remove('slide-out-effect');
+      
+      // Schedule reappearance
       scheduleAppear();
     }, 400);
   }
   
+  // Appear function
   function appear() {
     if (isVisible) return;
+    
+    // Move to new random position before appearing
     let newPosIndex;
     do {
       newPosIndex = Math.floor(Math.random() * positions.length);
     } while (newPosIndex === currentPosition && positions.length > 1);
+    
     currentPosition = newPosIndex;
     setPosition(positions[currentPosition]);
+    
     mascot.classList.remove('tech-mascot-hidden');
     robotBody.classList.add('slide-in-effect');
+    
     setTimeout(() => {
       robotBody.classList.remove('slide-in-effect');
       isVisible = true;
+      
+      // Create tech particle explosion
       createTechExplosion();
+      
+      // Wave arms excitedly
       leftArm.style.transform = 'rotate(-45deg)';
       rightArm.style.transform = 'rotate(45deg)';
       setTimeout(() => {
         leftArm.style.transform = 'rotate(-20deg)';
         rightArm.style.transform = 'rotate(20deg)';
       }, 400);
+      
+      // Change eye color temporarily
       leftEye.style.boxShadow = '0 0 12px #ffaa44, 0 0 18px #ffaa44';
       rightEye.style.boxShadow = '0 0 12px #ffaa44, 0 0 18px #ffaa44';
       setTimeout(() => {
         leftEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
         rightEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
       }, 800);
+      
+      // Schedule next disappearance
       scheduleDisappear();
     }, 400);
   }
   
+  // Tech particle explosion effect
   function createTechExplosion() {
     const particles = document.getElementById('techParticles');
     for (let i = 0; i < 8; i++) {
@@ -1088,21 +1101,28 @@ document.addEventListener('keydown', function(e) {
       particle.style.left = Math.random() * 70 + 'px';
       particle.style.animation = `particleFloat ${0.5 + Math.random() * 0.8}s infinite`;
       particles.appendChild(particle);
-      setTimeout(() => particle.remove(), 800);
+      
+      setTimeout(() => {
+        particle.remove();
+      }, 800);
     }
   }
   
   function scheduleDisappear() {
     if (disappearTimeout) clearTimeout(disappearTimeout);
     disappearTimeout = setTimeout(() => {
-      if (isVisible) disappear();
+      if (isVisible) {
+        disappear();
+      }
     }, getRandomTime(12000, 20000));
   }
   
   function scheduleAppear() {
     if (appearTimeout) clearTimeout(appearTimeout);
     appearTimeout = setTimeout(() => {
-      if (!isVisible) appear();
+      if (!isVisible) {
+        appear();
+      }
     }, getRandomTime(8000, 15000));
   }
   
@@ -1110,17 +1130,23 @@ document.addEventListener('keydown', function(e) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
   
-  button?.addEventListener('click', (e) => {
+  // Interactive button click
+  button.addEventListener('click', (e) => {
     e.stopPropagation();
-    if(socialHub) socialHub.classList.toggle('show');
+    socialHub.classList.toggle('show');
+    
+    // Excited reaction
     robotBody.classList.add('robot-bounce');
     leftArm.style.transform = 'rotate(-50deg)';
     rightArm.style.transform = 'rotate(50deg)';
+    
     setTimeout(() => {
       robotBody.classList.remove('robot-bounce');
       leftArm.style.transform = 'rotate(-20deg)';
       rightArm.style.transform = 'rotate(20deg)';
     }, 400);
+    
+    // Eye flash
     leftEye.style.boxShadow = '0 0 20px #ffff00, 0 0 30px #ffff00';
     rightEye.style.boxShadow = '0 0 20px #ffff00, 0 0 30px #ffff00';
     setTimeout(() => {
@@ -1129,11 +1155,15 @@ document.addEventListener('keydown', function(e) {
     }, 250);
   });
   
+  // Close popup when clicking elsewhere
   document.addEventListener('click', (e) => {
-    if (mascot && !mascot.contains(e.target) && socialHub) socialHub.classList.remove('show');
+    if (!mascot.contains(e.target)) {
+      socialHub.classList.remove('show');
+    }
   });
   
-  mascot?.addEventListener('mouseenter', () => {
+  // Hover effects
+  mascot.addEventListener('mouseenter', () => {
     if (isVisible) {
       leftArm.style.transform = 'rotate(-35deg)';
       rightArm.style.transform = 'rotate(35deg)';
@@ -1141,12 +1171,13 @@ document.addEventListener('keydown', function(e) {
         leftArm.style.transform = 'rotate(-20deg)';
         rightArm.style.transform = 'rotate(20deg)';
       }, 250);
+      
       leftEye.style.boxShadow = '0 0 12px #00ff00, 0 0 18px #00ff00';
       rightEye.style.boxShadow = '0 0 12px #00ff00, 0 0 18px #00ff00';
     }
   });
   
-  mascot?.addEventListener('mouseleave', () => {
+  mascot.addEventListener('mouseleave', () => {
     if (isVisible) {
       leftArm.style.transform = 'rotate(-20deg)';
       rightArm.style.transform = 'rotate(20deg)';
@@ -1155,9 +1186,42 @@ document.addEventListener('keydown', function(e) {
     }
   });
   
+  // Random arm movements
+  setInterval(() => {
+    if (isVisible && !isMoving && Math.random() > 0.8) {
+      leftArm.style.transform = 'rotate(-40deg)';
+      rightArm.style.transform = 'rotate(40deg)';
+      setTimeout(() => {
+        if (isVisible) {
+          leftArm.style.transform = 'rotate(-20deg)';
+          rightArm.style.transform = 'rotate(20deg)';
+        }
+      }, 250);
+    }
+  }, 5000);
+  
+  // Random eye color change
+  setInterval(() => {
+    if (isVisible && Math.random() > 0.9) {
+      const colors = ['#00ff00', '#ffaa44', '#ff44aa', '#44ffaa'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      leftEye.style.boxShadow = `0 0 10px ${color}, 0 0 15px ${color}`;
+      rightEye.style.boxShadow = `0 0 10px ${color}, 0 0 15px ${color}`;
+      setTimeout(() => {
+        if (isVisible) {
+          leftEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
+          rightEye.style.boxShadow = '0 0 6px #00ff00, 0 0 12px #00ff00';
+        }
+      }, 400);
+    }
+  }, 7000);
+  
+  // Initialize
   setPosition(positions[0]);
   scheduleMovement();
   scheduleDisappear();
+  
+  console.log('🤖 Small Tech Robot Assistant activated! 🤖');
 })();
 </script>
 

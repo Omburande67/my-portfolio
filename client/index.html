@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Om Burande | Portfolio</title>
+<title>Om Burande</title>
 
 <!-- Tailwind CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -18,7 +18,6 @@
 
 body{
 font-family:'Poppins',sans-serif;
-overflow-x: hidden;
 }
 
 /* ================= NAVBAR UNDERLINE ================= */
@@ -65,49 +64,11 @@ opacity:0.9;
 pointer-events:none;
 }
 
-/* ===== RESPONSIVE FIXES ===== */
-@media (max-width: 768px) {
-  .hero-video {
-    width: 200px;
-    right: -20px;
-    opacity: 0.5;
-  }
-  
-  .stats-container {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-  
-  .hero-image-container {
-    margin-top: 2rem;
-  }
-}
-
-/* Prevent horizontal scroll */
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* ===== TECH MASCOT RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .tech-mascot {
-    transform: scale(0.85);
-    transform-origin: bottom left;
-  }
-}
-
 </style>
 
 </head>
 
-<body class="bg-black text-white scroll-smooth overflow-x-hidden">
+<body class="bg-black text-white scroll-smooth">
 
 <!-- ================= NAVBAR ================= -->
 
@@ -133,7 +94,7 @@ html {
 </a>
 
 <!-- Mobile Menu Button -->
-<button id="mobileMenuBtn" class="md:hidden text-white text-2xl focus:outline-none">
+<button id="mobileMenuBtn" class="md:hidden text-white text-2xl focus:outline-none z-50">
   <i class="fas fa-bars"></i>
 </button>
 
@@ -161,21 +122,21 @@ Hire Me
 
 </div>
 
-<!-- Mobile Navigation Menu -->
-<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-black/95 backdrop-blur-lg z-50 transform -translate-x-full transition-transform duration-300 md:hidden">
+<!-- Mobile Navigation Menu - FIXED: No overlapping, proper spacing -->
+<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-black/95 backdrop-blur-lg z-50 transform -translate-x-full transition-transform duration-300 md:hidden overflow-y-auto">
   <div class="flex justify-end p-5">
     <button id="closeMenuBtn" class="text-white text-3xl">
       <i class="fas fa-times"></i>
     </button>
   </div>
-  <ul class="flex flex-col items-center gap-8 text-xl font-medium text-gray-300 mt-10">
-    <li><a href="#home" class="hover:text-orange-500 transition">Home</a></li>
-    <li><a href="#about" class="hover:text-orange-500 transition">About Me</a></li>
-    <li><a href="/pages/projects.html" class="hover:text-orange-500 transition">Projects</a></li>
-    <li><a href="/pages/skills.html" class="hover:text-orange-500 transition">Skills</a></li>
-    <li><a href="/pages/achievements.html" class="hover:text-orange-500 transition">Achievements</a></li>
-    <li><a href="/pages/blogs.html" class="hover:text-orange-500 transition">Blogs</a></li>
-    <li class="mt-4"><a href="mailto:omburande764@gmail.com" class="bg-orange-500 px-8 py-3 rounded-md hover:bg-orange-600 transition">Hire Me</a></li>
+  <ul class="flex flex-col items-center gap-6 text-xl font-medium text-gray-300 mt-10 px-6 pb-10">
+    <li class="w-full text-center"><a href="#home" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">Home</a></li>
+    <li class="w-full text-center"><a href="#about" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">About Me</a></li>
+    <li class="w-full text-center"><a href="/pages/projects.html" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">Projects</a></li>
+    <li class="w-full text-center"><a href="/pages/skills.html" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">Skills</a></li>
+    <li class="w-full text-center"><a href="/pages/achievements.html" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">Achievements</a></li>
+    <li class="w-full text-center"><a href="/pages/blogs.html" class="hover:text-orange-500 transition block py-3" onclick="closeMobileMenu()">Blogs</a></li>
+    <li class="w-full text-center mt-4"><a href="mailto:omburande764@gmail.com" class="bg-orange-500 px-8 py-3 rounded-md hover:bg-orange-600 transition inline-block" onclick="closeMobileMenu()">Hire Me</a></li>
   </ul>
 </div>
 </header>
@@ -363,12 +324,12 @@ typeEffect();
 
 
 <!-- ================= ABOUT ================= -->
-<section id="about" class="py-12 md:py-12 border-t border-gray-900 orange-bg">
+<section id="about" class="py-12 md:py-10 border-t border-gray-900 orange-bg">
 
 <div class="max-w-7xl mx-auto px-5 sm:px-8">
 
     <h2 class="text-3xl md:text-4xl font-bold text-orange-500 mb-10 md:mb-16 text-center md:text-left">
-      Mindset about Engineering 
+      Thaughts about Engineering 
     </h2>
 
     <!-- GRID - FULLY RESPONSIVE -->
@@ -380,7 +341,6 @@ typeEffect();
         <p class="text-base md:text-lg font-medium text-gray-300">
           2026 @Vishwakarma Institute of Technology, Pune
         </p>
-
         <p class="text-sm md:text-base">
           As a senior at Vishwakarma Institute of Technology in Pune, I have built strong expertise in 
           <span class="font-semibold text-white">computer engineering</span> 
@@ -393,13 +353,11 @@ typeEffect();
           <span class="font-semibold text-white">API integration</span>. 
           I focus on writing structured, efficient, and scalable systems that translate theoretical concepts into real-world implementations.
         </p>
-
         <p class="text-sm md:text-base">
           My solution-oriented mindset has been strengthened through participation in 
           <span class="font-semibold text-white">hackathons</span> 
           and high-pressure collaborative environments. These experiences improved my analytical thinking, team coordination, and execution discipline.
         </p>
-
         <p class="text-sm md:text-base">
           My long-term vision is to grow into a technology leader who can 
           <span class="font-semibold text-white">architect</span> 
@@ -416,7 +374,7 @@ typeEffect();
           Not interested in fake claims, Just Learning & trying to deliver products over projects.
         </p>
         <p class="font-semibold text-white text-sm md:text-base"></p>
-            Current Update of Me : Daily DSA practice, Working on industrial projects, Live Competitions.
+          Ongoing learning : Daily DSA practice, Working on industrial projects, Live Competitions.
         </p>
             
            
@@ -443,7 +401,7 @@ typeEffect();
 
 <!-- ================= CONTACT ================= -->
 
-<section id="contact" class="py-12 md:py-20 border-t border-gray-900 orange-bg">
+<section id="contact" class="py-12 md:py-10 border-t border-gray-900 orange-bg">
 
 <div class="max-w-7xl mx-auto px-5 sm:px-8">
 
@@ -557,7 +515,7 @@ Send Message
 
 <footer class="text-center py-6 border-t border-gray-900 text-gray-500 text-xs md:text-sm">
 
-© 2026 Om Burande. Built, not copied.
+© 2026 Om Burande. Built, not copied. Last update 28 March-26
 
 </footer>
 
@@ -970,32 +928,45 @@ Send Message
 </div>
 
 <script>
-// Mobile Menu Toggle
+// Mobile Menu Toggle - FIXED
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const closeMenuBtn = document.getElementById('closeMenuBtn');
 
-if(mobileMenuBtn) {
-  mobileMenuBtn.addEventListener('click', () => {
+function closeMobileMenu() {
+  if(mobileMenu) {
+    mobileMenu.classList.add('-translate-x-full');
+  }
+}
+
+function openMobileMenu() {
+  if(mobileMenu) {
     mobileMenu.classList.remove('-translate-x-full');
-  });
+  }
+}
+
+if(mobileMenuBtn) {
+  mobileMenuBtn.addEventListener('click', openMobileMenu);
 }
 
 if(closeMenuBtn) {
-  closeMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.add('-translate-x-full');
-  });
+  closeMenuBtn.addEventListener('click', closeMobileMenu);
 }
 
 // Close mobile menu when clicking on a link
 const mobileLinks = mobileMenu?.querySelectorAll('a');
 mobileLinks?.forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.add('-translate-x-full');
-  });
+  link.addEventListener('click', closeMobileMenu);
 });
 
-// Tech Robot Script (same as original but scaled for mobile)
+// Close menu on escape key
+document.addEventListener('keydown', function(e) {
+  if(e.key === 'Escape') {
+    closeMobileMenu();
+  }
+});
+
+// Tech Robot Script (same as original)
 (function() {
   const mascot = document.getElementById('techMascot');
   const robotBody = document.getElementById('robotBody');

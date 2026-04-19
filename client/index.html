@@ -111,19 +111,28 @@ html {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.96);
+
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  z-index: 9999;
+
+  z-index: 999999; /* 🔥 increased */
+
   transform: translateX(-100%);
-  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  opacity: 0;                /* 🔥 added */
+  pointer-events: none;      /* 🔥 added */
+
+  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+
   overflow-y: auto;
-  visibility: visible;
   display: flex;
   flex-direction: column;
-}
 
+  isolation: isolate;        /* 🔥 VERY IMPORTANT */
+}
 #mobileMenu.show {
   transform: translateX(0);
+  opacity: 1;              /* 🔥 added */
+  pointer-events: auto;    /* 🔥 added */
 }
 
 /* Mobile menu inner container for proper centering */
@@ -228,7 +237,9 @@ body.menu-open {
 header {
   z-index: 100;
 }
-
+#mobileMenu {
+  position: fixed !important;
+}
 /* Additional fix for menu links spacing */
 @media (max-width: 768px) {
   #mobileMenu ul {
@@ -251,6 +262,10 @@ header {
   #closeMenuBtn i {
     font-size: 1.2rem;
   }
+
+  video {
+  pointer-events: none;
+}
 }
 
 </style>

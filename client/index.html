@@ -103,7 +103,7 @@ html {
   }
 }
 
-/* ===== FIXED MOBILE MENU STYLES - NO OVERLAPPING, PROPER BACKDROP BLUR ===== */
+/* ===== FIXED MOBILE MENU STYLES - FULLY FUNCTIONAL, NO OVERLAPPING, PROPER BACKDROP BLUR ===== */
 #mobileMenu {
   position: fixed;
   top: 0;
@@ -111,63 +111,112 @@ html {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.96);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   z-index: 9999;
   transform: translateX(-100%);
-  transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
   overflow-y: auto;
   visibility: visible;
+  display: flex;
+  flex-direction: column;
 }
 
 #mobileMenu.show {
   transform: translateX(0);
 }
 
+/* Mobile menu inner container for proper centering */
+.mobile-menu-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 80px 24px 40px;
+  width: 100%;
+}
+
 /* Ensure mobile menu links are properly clickable and visible */
+#mobileMenu ul {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+#mobileMenu ul li {
+  width: 100%;
+  text-align: center;
+}
+
 #mobileMenu ul li a {
-  display: inline-block;
+  display: block;
   padding: 12px 20px;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: #e5e7eb;
-  transition: all 0.2s ease;
-  width: auto;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  width: 100%;
+  border-radius: 12px;
 }
 
 #mobileMenu ul li a:hover {
   color: #f97316;
-  transform: translateX(5px);
+  background: rgba(249, 115, 22, 0.1);
+  transform: translateX(6px);
 }
 
 #mobileMenu .hire-me-mobile {
   display: inline-block;
   background: #f97316;
   color: white !important;
-  padding: 12px 32px;
+  padding: 14px 32px;
   border-radius: 40px;
   font-weight: 600;
   margin-top: 20px;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  text-align: center;
+  width: auto;
+  min-width: 160px;
 }
 
 #mobileMenu .hire-me-mobile:hover {
   background: #ea580c;
   transform: scale(1.02);
   color: white !important;
+  background: rgba(249, 115, 22, 1);
 }
 
 /* Close button style */
 #closeMenuBtn {
-  background: transparent;
-  border: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
-  padding: 12px;
-  transition: transform 0.2s;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
 }
 
 #closeMenuBtn:hover {
   transform: rotate(90deg);
+  background: rgba(249, 115, 22, 0.2);
+  border-color: #f97316;
 }
 
 /* Prevent body scroll when menu open */
@@ -180,21 +229,27 @@ header {
   z-index: 100;
 }
 
-/* Ensure mobile menu content is centered and scrollable */
-#mobileMenu .flex.flex-col {
-  min-height: 100vh;
-  justify-content: center;
-  padding: 80px 20px 40px;
-}
-
 /* Additional fix for menu links spacing */
 @media (max-width: 768px) {
   #mobileMenu ul {
-    gap: 1.8rem;
+    gap: 1.5rem;
   }
   #mobileMenu ul li a {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     padding: 10px 16px;
+  }
+}
+
+/* Close button responsive */
+@media (max-width: 480px) {
+  #closeMenuBtn {
+    width: 42px;
+    height: 42px;
+    top: 16px;
+    right: 16px;
+  }
+  #closeMenuBtn i {
+    font-size: 1.2rem;
   }
 }
 
@@ -256,22 +311,22 @@ Hire Me
 
 </div>
 
-<!-- Mobile Navigation Menu - FIXED: Proper backdrop blur, no overlapping, perfect visibility -->
+<!-- Mobile Navigation Menu - FIXED: Fully functional with proper backdrop blur and click handling -->
 <div id="mobileMenu" class="md:hidden">
-  <div class="flex justify-end p-5">
-    <button id="closeMenuBtn" class="text-white text-3xl focus:outline-none" aria-label="Close menu">
-      <i class="fas fa-times"></i>
-    </button>
+  <button id="closeMenuBtn" aria-label="Close menu">
+    <i class="fas fa-times text-2xl"></i>
+  </button>
+  <div class="mobile-menu-container">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="/pages/projects.html">Projects</a></li>
+      <li><a href="/pages/skills.html">Skills</a></li>
+      <li><a href="/pages/achievements.html">Achievements</a></li>
+      <li><a href="/pages/blogs.html">Blogs</a></li>
+      <li><a href="mailto:omburande764@gmail.com" class="hire-me-mobile">Hire Me</a></li>
+    </ul>
   </div>
-  <ul class="flex flex-col items-center gap-6 text-xl font-medium text-gray-300">
-    <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
-    <li><a href="#about" onclick="closeMobileMenu()">About Me</a></li>
-    <li><a href="/pages/projects.html" onclick="closeMobileMenu()">Projects</a></li>
-    <li><a href="/pages/skills.html" onclick="closeMobileMenu()">Skills</a></li>
-    <li><a href="/pages/achievements.html" onclick="closeMobileMenu()">Achievements</a></li>
-    <li><a href="/pages/blogs.html" onclick="closeMobileMenu()">Blogs</a></li>
-    <li class="mt-4"><a href="mailto:omburande764@gmail.com" class="hire-me-mobile" onclick="closeMobileMenu()">Hire Me</a></li>
-  </ul>
 </div>
 </header>
 
@@ -1065,7 +1120,7 @@ Send Message
 </div>
 
 <script>
-// ================= FIXED MOBILE MENU WITH PROPER BACKDROP BLUR =================
+// ================= FIXED MOBILE MENU - COMPLETE WORKING SOLUTION =================
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const closeMenuBtn = document.getElementById('closeMenuBtn');
@@ -1074,6 +1129,8 @@ function openMobileMenu() {
   if (mobileMenu) {
     mobileMenu.classList.add('show');
     document.body.classList.add('menu-open');
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
   }
 }
 
@@ -1081,10 +1138,12 @@ function closeMobileMenu() {
   if (mobileMenu) {
     mobileMenu.classList.remove('show');
     document.body.classList.remove('menu-open');
+    // Re-enable scrolling
+    document.body.style.overflow = '';
   }
 }
 
-// Event listeners
+// Event listeners for menu buttons
 if (mobileMenuBtn) {
   mobileMenuBtn.addEventListener('click', openMobileMenu);
 }
@@ -1095,13 +1154,28 @@ if (closeMenuBtn) {
 
 // Close menu when clicking on any link inside mobile menu
 const mobileLinks = mobileMenu?.querySelectorAll('a');
-mobileLinks?.forEach(link => {
-  link.addEventListener('click', closeMobileMenu);
+if (mobileLinks) {
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      // Allow the link to navigate, then close menu
+      setTimeout(() => {
+        closeMobileMenu();
+      }, 100);
+    });
+  });
+}
+
+// Close menu when clicking on the overlay background (but not on the content)
+mobileMenu?.addEventListener('click', function(e) {
+  // If the clicked element is the menu itself (background overlay), close it
+  if (e.target === mobileMenu || e.target.classList.contains('mobile-menu-container')) {
+    closeMobileMenu();
+  }
 });
 
-// Close menu when clicking outside content (optional - clicking on background overlay)
-mobileMenu?.addEventListener('click', function(e) {
-  if (e.target === mobileMenu) {
+// Ensure menu closes on escape key press
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('show')) {
     closeMobileMenu();
   }
 });

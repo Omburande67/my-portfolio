@@ -1160,13 +1160,24 @@ if (closeMenuBtn) {
 
 // Close menu when clicking on any link inside mobile menu
 const mobileLinks = mobileMenu?.querySelectorAll('a');
+
 if (mobileLinks) {
   mobileLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      // Allow the link to navigate, then close menu
-      setTimeout(() => {
-        closeMobileMenu();
-      }, 100);
+    link.addEventListener('click', function (e) {
+
+      const targetId = this.getAttribute('href');
+
+      if (targetId.startsWith('#')) {
+        e.preventDefault();
+
+        const target = document.querySelector(targetId);
+
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      closeMobileMenu(); // 🔥 CLOSE AFTER CLICK
     });
   });
 }

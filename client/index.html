@@ -118,7 +118,7 @@ html {
   z-index: 999999; /* 🔥 increased */
 
   transform: translateX(-100%);
-  opacity: 0;                /* 🔥 added */
+  
   pointer-events: none;      /* 🔥 added */
 
   transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
@@ -131,10 +131,8 @@ html {
 }
 #mobileMenu.show {
   transform: translateX(0);
-  opacity: 1;              /* 🔥 added */
-  pointer-events: auto;    /* 🔥 added */
+  pointer-events: auto;
 }
-
 /* Mobile menu inner container for proper centering */
 .mobile-menu-container {
   position: relative;     /* 🔥 ADD */
@@ -161,7 +159,7 @@ html {
   gap: 2rem;
   list-style: none;
   padding: 0;
-  position: relative;     /* 🔥 ADD */
+   position: relative;     /* 🔥 ADD */
   z-index: 10002;         /* 🔥 ADD */
 }
 
@@ -242,9 +240,7 @@ body.menu-open {
 header {
   z-index: 100;
 }
-#mobileMenu {
-  position: fixed !important;
-}
+
 /* Additional fix for menu links spacing */
 @media (max-width: 768px) {
   #mobileMenu ul {
@@ -466,7 +462,7 @@ Download CV
   </div>
 
   <!-- IMAGE (independent, not affected) -->
-  <img src="assets/images/Hero1.png.png"
+  <img src="assets/images/Hero1.png"
   alt="Om Burande"
   class="relative w-[380px] sm:w-[480px] md:w-[560px] object-cover
   -translate-y-08
@@ -1187,8 +1183,8 @@ if (mobileLinks) {
 
 // Close menu when clicking on the overlay background (but not on the content)
 mobileMenu?.addEventListener('click', function(e) {
-  // If the clicked element is the menu itself (background overlay), close it
-  if (e.target === mobileMenu || e.target.classList.contains('mobile-menu-container')) {
+  // ONLY close if clicking outside content
+  if (e.target === mobileMenu) {
     closeMobileMenu();
   }
 });

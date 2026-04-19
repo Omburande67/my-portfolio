@@ -137,6 +137,9 @@ html {
 
 /* Mobile menu inner container for proper centering */
 .mobile-menu-container {
+  position: relative;     /* 🔥 ADD */
+  z-index: 10001;         /* 🔥 ADD */
+
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -158,6 +161,8 @@ html {
   gap: 2rem;
   list-style: none;
   padding: 0;
+  position: relative;     /* 🔥 ADD */
+  z-index: 10002;         /* 🔥 ADD */
 }
 
 #mobileMenu ul li {
